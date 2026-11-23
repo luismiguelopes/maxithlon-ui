@@ -1357,10 +1357,12 @@ html.mx .mx-rank > .main_row{min-width:560px;}
    * ------------------------------------------------------------------ */
   const euro = (n) => (n == null ? '–' : '€ ' + Number(n).toLocaleString(LOCALE, { maximumFractionDigits: 0, useGrouping: 'always' }));
   const signed = (n) => (n == null ? '–' : (n > 0 ? '+' : n < 0 ? '−' : '') + euro(Math.abs(n)));
-  // text of a cell without its <b> label
+  // "Label: € 1 000": the label is in a <b> or plain text before the colon
   const bLabelValue = (cell) => {
+    const txt = (cell?.textContent || '').replace(/\s+/g, ' ').trim();
     const b = cell?.querySelector('b');
-    return { label: (b?.textContent || '').trim().replace(/:\s*$/, ''), v: toNum((cell?.textContent || '').replace(b?.textContent || '', '')) };
+    const label = b ? b.textContent.trim() : txt.slice(0, txt.lastIndexOf(':') + 1);
+    return { label: label.replace(/:\s*$/, ''), v: toNum(txt.slice(txt.indexOf(label) + label.length)) };
   };
 
   function parseBudget(host) {
@@ -1455,7 +1457,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     } }, st.orig ? t('origHide') : t('origShow'));
     const tools = h('div', { class: 'mxr-tools mxf-tools' }, origBtn);
     ui.replaceChildren(h('div', { class: 'mx-tiles' }, factTiles, balTiles), chart,
-      periods.map((p, i) => breakdown(p, i === 0 && prev ? prev : null)), tools);
+      ...periods.map((p, i) => breakdown(p, i === 0 && prev ? prev : null)), tools);
   }
 
   /* ------------------------------------------------------------------ *
