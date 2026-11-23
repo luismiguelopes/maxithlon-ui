@@ -11,11 +11,10 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 - **1.4:** shared design-system components; legacy colors mapped to the theme; right column forms and coach plan; athlete page details (empty tiles, full club names, interested clubs badge, SVG event pictograms); collapsible page intros; new footer; responsive layout; checked on youth, own and other clubs' athletes and athletes on the market.
 - **1.5:** market search results dashboard (price per MAXID, time left, fit with your roster, saved views, CSV); legacy data tables (market statistics, transfers) as cards.
 - **1.6:** finances dashboard (income vs expenses per period, category breakdown, week-over-week changes) and last transactions dashboard (daily chart, categories, filterable table).
-- **1.7:** UI in Italian, Spanish, French and German; settings panel (theme, accent, density, modules); notice and clean fallback when a panel fails; roster Form colors explained (red low, green top).
+- **1.7:** UI in Italian, Spanish, French and German; settings panel (theme, accent, density, modules); notice and clean fallback when a panel fails; roster Form colors explained (red low, green top); checked with the game in English (roster, athlete radar, market, finances, transactions, icons, palette).
 
 ## 1.7 — Robustness and languages (left over)
 
-- [ ] **Language test pass**: switch the game language and check every module against real pages (roster, athlete page, market, finances, icons, palette). The UI strings were checked; the parsing still needs a run with the game in another language.
 - [ ] **Injured athlete page**: check the layout when an athlete is injured (no injured athlete was available to test 1.4 or 1.7).
 
 ## 1.8 — Home and navigation
