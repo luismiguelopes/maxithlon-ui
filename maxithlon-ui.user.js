@@ -424,6 +424,7 @@ html.mx #middle_section h4.heading strong,html.mx #middle_section h4.heading a{c
 html.mx #header .top_menu ul{display:flex!important;flex-wrap:nowrap!important;align-items:center;gap:2px;margin:0!important;padding:0!important;width:auto!important;height:auto!important;background:none!important;list-style:none!important;float:none!important;}
 html.mx #header .top_menu li{float:none!important;display:block!important;margin:0!important;padding:0!important;width:auto!important;height:auto!important;background:none!important;list-style:none!important;}
 html.mx #header .right_details{min-width:0;}
+html.mx #header .right_details > :not(.top_menu){white-space:nowrap;}
 
 /* ---------- buttons ---------- */
 html.mx input[type=submit],html.mx input[type=button],html.mx button:not([class*="mx-"]):not(#admin_hamburger_menu){box-shadow:none!important;outline:none;font:600 12.5px/1.2 var(--font)!important;padding:8px 14px!important;border-radius:9px!important;transition:filter .15s,transform .05s;}
@@ -541,12 +542,13 @@ html.mx .mx-rank > .main_row{min-width:560px;}
   html.mx #right_section > div,html.mx #right_part > div{margin:0!important;}
   html.mx #footer .wrapper{grid-template-columns:repeat(3,1fr);}
   html.mx #footer .space_none{grid-column:1/-1;}
+  html.mx #header .right_details{flex-wrap:wrap;row-gap:4px;}
+  html.mx #header .top_menu{max-width:100%;overflow-x:auto;scrollbar-width:none;}
 }
 @media (max-width:900px){
   html.mx #header{flex-wrap:wrap;}
-  html.mx #header .right_details{flex-wrap:wrap;}
-  html.mx #header .top_menu{max-width:100%;overflow-x:auto;scrollbar-width:none;}
   html.mx .mxa{grid-template-columns:1fr;}
+  html.mx .mx-hero .face_area{justify-self:start;}
 }
 @media (max-width:760px){
   html.mx #left_section{display:none!important;}
