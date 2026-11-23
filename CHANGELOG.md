@@ -2,6 +2,12 @@
 
 All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.org/): fixes bump the patch number, new features bump the minor number.
 
+## [1.3.1] — 2026-11-23
+
+### Added
+- Script icon (`@icon`, embedded as a data URI) and a Portuguese description (`@description:pt`) in the metadata header, ready for userscript directories such as Greasy Fork.
+- Screenshots in the README (`docs/screenshots/`).
+
 ## [1.3.0] — 2026-11-23
 
 ### Added
@@ -27,6 +33,7 @@ All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.or
 - UI translated into English and Portuguese, picked from the site's language with English as fallback.
 - `@updateURL` / `@downloadURL` pointing to this repository, so userscript managers update automatically.
 
+[1.3.1]: https://github.com/luismiguelopes/maxithlon-ui/releases/tag/v1.3.1
 [1.3.0]: https://github.com/luismiguelopes/maxithlon-ui/releases/tag/v1.3.0
 [1.2.1]: https://github.com/luismiguelopes/maxithlon-ui/releases/tag/v1.2.1
 [1.2.0]: https://github.com/luismiguelopes/maxithlon-ui/releases/tag/v1.2.0

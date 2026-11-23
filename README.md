@@ -4,6 +4,19 @@ A userscript that gives [Maxithlon](https://maxithlon.com), the online athletics
 
 It only changes how pages **look**. It never submits forms, makes extra requests or automates anything in the game.
 
+## Screenshots
+
+![Roster dashboard, dark theme](docs/screenshots/roster-dark.jpg)
+
+| | |
+|---|---|
+| ![Roster table with the skill heat map](docs/screenshots/roster-table.jpg) | ![Roster dashboard, light theme](docs/screenshots/roster-light.jpg) |
+| **Roster table** with the 0–20 heat map | **Light theme** |
+| ![Athlete page, dark theme](docs/screenshots/athlete-dark.jpg) | ![Athlete page, light theme](docs/screenshots/athlete-light.jpg) |
+| **Athlete page**: profile and skills | **Athlete page**, light theme |
+| ![Athlete skill radar](docs/screenshots/athlete-radar.jpg) | ![Command palette](docs/screenshots/palette.jpg) |
+| **Skill radar** compared with the roster average | **Command palette** (`Ctrl+K`) |
+
 ## Features
 
 - **Dark / light theme** with an adaptive dark mode that also fixes the colors of content loaded later via AJAX.

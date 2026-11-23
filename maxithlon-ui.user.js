@@ -1,8 +1,10 @@
 // ==UserScript==
 // @name         Maxithlon UI+
 // @namespace    v3mpire.maxithlon.uiplus
-// @version      1.3.0
+// @version      1.3.1
 // @description  A modern interface for Maxithlon: dark/light theme, wide layout, roster dashboard with filters and heat map, athlete skill radar and a command palette (Ctrl+K). Works with any site language.
+// @description:pt  Uma interface moderna para o Maxithlon: tema escuro/claro, layout largo, painel do plantel com filtros e mapa de calor, radar de habilidades do atleta e paleta de comandos (Ctrl+K). Funciona com qualquer língua do site.
+// @icon         data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmY3YTFhIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmY0ZDZkIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiByeD0iNiIgZmlsbD0idXJsKCNnKSIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQgNCkgc2NhbGUoLjY2NjcpIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgY3g9IjE1IiBjeT0iNC41IiByPSIyIi8+PHBhdGggZD0iTTcgMjFsMy41LTYgMyAyLjVWMjIiLz48cGF0aCBkPSJNNS41IDExIDkgOGw0IDEuNSAyIDMuNWgzLjUiLz48cGF0aCBkPSJtOSA4IDEuNSA3Ii8+PC9nPjwvc3ZnPgo=
 // @author       luismiguelopes
 // @license      MIT
 // @homepageURL  https://github.com/luismiguelopes/maxithlon-ui
