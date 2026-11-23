@@ -1033,14 +1033,16 @@ html.mx .mx-rank > .main_row{min-width:560px;}
   const clubKey = (href) => { try { return new URL(href, location.href).search; } catch (e) { return ''; } };
   function rememberClubs() {
     const map = LS.get('clubs', {}); let changed = false;
-    const put = (key, name) => {
+    const put = (key, name, force) => {
       name = (name || '').replace(/\s+/g, ' ').trim();
       if (!key || !name || /(\.\.\.|…)$/.test(name) || name.length > 80) return;
-      if ((map[key] || '').length >= name.length) return;
+      if (map[key] === name || (!force && (map[key] || '').length >= name.length)) return;
       map[key] = name; changed = true;
     };
     $$('#middle_section a[href*="dettagli_societa"], #right_section a[href*="dettagli_societa"], #right_part a[href*="dettagli_societa"]').forEach((a) => put(clubKey(a.href), a.textContent));
-    if (/dettagli_societa\.php$/.test(path) && location.search) put(location.search, $('#middle_section h3, .page_details h3, #middle_section h2')?.textContent);
+    // the club's own page: its heading (own text only, without the [ID] tag) is authoritative
+    const head = /dettagli_societa\.php$/.test(path) && location.search && $('#middle_section h3, .page_details h3, #middle_section h2');
+    if (head) put(location.search, Array.from(head.childNodes).filter((n) => n.nodeType === 3).map((n) => n.textContent).join(''), true);
     if (!changed) return;
     const keys = Object.keys(map);
     if (keys.length > 400) keys.slice(0, keys.length - 400).forEach((k) => delete map[k]);
