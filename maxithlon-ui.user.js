@@ -391,7 +391,7 @@
       clickFilter: 'Zum Filtern klicken',
       cAthletes: 'Athleten', cAthletesS: (s, y) => `${s} Senioren · ${y} Jugend`,
       cGender: 'Männer / Frauen', cGenderS: 'blau = M · rosa = W',
-      cAge: 'Durchschnittsalter', cAgeS: (v) => 'Jugend: ' + v, cMaxid: 'Ø MAXID', cMaxidS: (v) => 'bester: ' + v,
+      cAge: 'Ø Alter', cAgeS: (v) => 'Jugend: ' + v, cMaxid: 'Ø MAXID', cMaxidS: (v) => 'bester: ' + v,
       cNoTrain: 'Kein Training', cNoTrainS: 'diese Woche', cRisk: 'Fan-Risiko', cRiskS: '< 5 Wettkämpfe in 10 Wo.',
       cInj: 'Verletzt', cInjS: 'Details ansehen', cInjOk: 'alle fit', cSale: 'Zu verkaufen', cNoCoach: 'Kein Trainer',
       search: 'Athlet oder Land suchen…', all: 'Alle', both: 'Beide', maleChip: '♂ Männer', femaleChip: '♀ Frauen',
