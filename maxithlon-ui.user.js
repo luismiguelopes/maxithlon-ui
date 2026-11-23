@@ -442,6 +442,7 @@ html.mx .mx-rank .head_row h4{margin:0 0 4px!important;padding:0!important;text-
 html.mx .mx-rank h5{display:grid!important;grid-template-columns:1fr 1fr;margin:0!important;padding:0!important;text-align:center;font:600 10px/1.25 var(--font)!important;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)!important;background:none!important;}
 html.mx .mx-rank h5 span{color:var(--muted)!important;width:auto!important;float:none!important;overflow:visible!important;white-space:normal!important;text-overflow:clip!important;}
 html.mx .mx-rank h5 .col3{grid-column:1/-1;}
+html.mx .mx-rank h5 > br{display:none;}
 html.mx .mx-rank .text_row{align-items:center;border-bottom:1px solid var(--border)!important;border-radius:0;}
 html.mx .mx-rank .text_row:hover{background:var(--surface2)!important;}
 html.mx .mx-rank .text_row .box02{display:flex!important;align-items:center;gap:8px;font-weight:600;}
@@ -457,6 +458,7 @@ html.mx .mx-rank > .main_row + .main_row{margin-top:6px!important;}
 html.mx .mx-athlete > a.ui4-bookmark-club-count{display:inline-flex;align-items:center;gap:6px;margin:0 0 12px;color:var(--muted)!important;font-size:12.5px;}
 html.mx .mx-athlete > a.ui4-bookmark-club-count + br{display:none;}
 html.mx .mx-card textarea{width:100%!important;box-sizing:border-box;min-height:90px;}
+html.mx #middle_section .mx-card:not(.mx-skills) h4.heading > span{font:inherit!important;color:inherit!important;letter-spacing:inherit;}
 html.mx .mx-card div:has(> textarea){background:none!important;border:0!important;padding:0!important;width:auto!important;height:auto!important;}
 html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)!important;margin:0 0 10px!important;padding:0!important;background:none!important;border:0!important;}
 @media (max-width:900px){html.mx .mx-skills > .main_row{grid-template-columns:1fr;} html.mx .mx-hero{grid-template-columns:1fr;}}
