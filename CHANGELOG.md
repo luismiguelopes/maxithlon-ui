@@ -2,6 +2,17 @@
 
 All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.org/): fixes bump the patch number, new features bump the minor number.
 
+## [1.7.0] — 2026-11-23
+
+### Added
+- UI translated to Italian, Spanish, French and German (plus script descriptions in those languages).
+- Settings panel (gear in the dock, or "UI+ settings" in the palette): theme, accent color (8 colors), comfortable or compact density, and each module on or off.
+- When a page panel fails (for example after a site change), UI+ removes the half-built panel, keeps the original page and shows a notice with a link to the settings.
+
+### Changed
+- Roster: the Form column's colors are read as the site means them, red for low form and green for top form, with their own legend entry. They were shown as "dropped" before.
+- The athlete radar follows the accent color.
+
 ## [1.6.0] — 2026-11-23
 
 ### Added

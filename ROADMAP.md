@@ -11,15 +11,12 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 - **1.4:** shared design-system components; legacy colors mapped to the theme; right column forms and coach plan; athlete page details (empty tiles, full club names, interested clubs badge, SVG event pictograms); collapsible page intros; new footer; responsive layout; checked on youth, own and other clubs' athletes and athletes on the market.
 - **1.5:** market search results dashboard (price per MAXID, time left, fit with your roster, saved views, CSV); legacy data tables (market statistics, transfers) as cards.
 - **1.6:** finances dashboard (income vs expenses per period, category breakdown, week-over-week changes) and last transactions dashboard (daily chart, categories, filterable table).
+- **1.7:** UI in Italian, Spanish, French and German; settings panel (theme, accent, density, modules); notice and clean fallback when a panel fails; roster Form colors explained (red low, green top).
 
-## 1.7 — Robustness and languages
+## 1.7 — Robustness and languages (left over)
 
-- [ ] **More UI translations**: Italian, Spanish, French and German first (the site's largest communities), then others on request.
-- [ ] **Language test pass**: switch the game language and check every module (roster, athlete page, icons, palette).
-- [ ] **Graceful degradation**: when a page changes and a module fails, show a small "UI+ could not load this panel" notice instead of failing silently.
-- [ ] **Settings panel** in the dock: theme, accent color, density (compact/comfortable), and turning individual modules on or off.
-- [ ] **Confirm what the red Form value means** in the roster and show it properly in the legend.
-- [ ] **Injured athlete page**: check the layout when an athlete is injured (no injured athlete was available to test 1.4).
+- [ ] **Language test pass**: switch the game language and check every module against real pages (roster, athlete page, market, finances, icons, palette). The UI strings were checked; the parsing still needs a run with the game in another language.
+- [ ] **Injured athlete page**: check the layout when an athlete is injured (no injured athlete was available to test 1.4 or 1.7).
 
 ## 1.8 — Home and navigation
 

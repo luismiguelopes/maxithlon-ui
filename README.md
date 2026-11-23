@@ -23,6 +23,7 @@ It only changes how pages **look**. It never submits forms, makes extra requests
 - **Wide, flexible layout** instead of the original fixed-width columns. On narrow windows the right column moves under the content.
 - **Theme colors everywhere**: the site's legacy olive, teal, magenta and red text is mapped to the theme palette.
 - **Collapsible page intros**: the long explanation at the top of each page shows one line until you expand it.
+- **Settings panel** (gear in the dock): theme, accent color, comfortable or compact density, and each module on or off. If a page changes and a panel can't load, UI+ shows a short notice and leaves the original page in place.
 - **Command palette** (`Ctrl+K` or `/`): jump to any page in the menu, top bar or current page tabs. Recently used pages come first.
 - **Roster dashboard** (`Athletes` page):
   - summary cards (gender split, average age and MAXID, athletes not training, fan risk, injuries, for sale, without coach);
@@ -41,7 +42,7 @@ It only changes how pages **look**. It never submits forms, makes extra requests
 
 The script works with **any site language**. Game data (skill names, groups, tooltips) is read from the page itself, and parsing relies on page structure (column order, element position, CSS classes, image names), never on text.
 
-UI+ works with the game in any language. Its own buttons and labels are available in English and Portuguese, picked from the site's language automatically (English is used for other languages). Translations live in the `I18N` object at the top of the script. Pull requests for more languages are welcome.
+UI+ works with the game in any language. Its own buttons and labels are available in English, Portuguese, Italian, Spanish, French and German, picked from the site's language automatically (English is used for other languages). Translations live in the `I18N` object at the top of the script. Pull requests for more languages are welcome.
 
 ## Installation
 
