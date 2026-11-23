@@ -109,6 +109,7 @@
       openRoster: 'open the Athletes list to compare with your roster',
       tTotal: 'Σ skills', tTotalVs: (d) => d + ' vs average', tTotalS: '8 skills', tSpec: 'Specialty',
       tBest: 'Strongest', tWeak: 'Weakest', q4: 'excellent', q3: 'good', q2: 'weak', q1: 'very weak',
+      tipMore: 'More', tipLess: 'Less', tipT: 'Show or hide the page explanation',
     },
     pt: {
       palette: 'Paleta de comandos (Ctrl+K ou /)', toLight: 'Mudar para tema claro', toDark: 'Mudar para tema escuro',
@@ -143,6 +144,7 @@
       openRoster: 'abre a lista de Atletas para comparar com o plantel',
       tTotal: 'Σ habilidades', tTotalVs: (d) => d + ' vs média', tTotalS: '8 habilidades', tSpec: 'Especialidade',
       tBest: 'Ponto forte', tWeak: 'Ponto fraco', q4: 'excelente', q3: 'bom', q2: 'fraco', q1: 'muito fraco',
+      tipMore: 'Mais', tipLess: 'Menos', tipT: 'Mostrar ou esconder a explicação da página',
     },
   };
   const LOCALE = root.lang || navigator.language || 'en';
@@ -188,8 +190,6 @@ html.mx #left_section{flex:0 0 212px;width:212px!important;float:none!important;
   background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 8px;box-sizing:border-box;box-shadow:var(--shadow);scrollbar-width:thin;}
 html.mx #middle_section{flex:1 1 0;width:auto!important;min-width:0;float:none!important;margin:0!important;}
 html.mx #right_section,html.mx #right_part{flex:0 0 262px;width:262px!important;float:none!important;margin:0!important;}
-html.mx #footer{clear:both;width:100%!important;background:var(--surface)!important;background-image:none!important;border-top:1px solid var(--border);margin-top:28px;color:var(--muted);}
-html.mx #footer a{color:var(--muted)!important;}
 html.mx a{color:var(--link);}
 html.mx .page_details{float:none!important;display:block!important;width:auto!important;max-width:100%!important;box-sizing:border-box!important;margin-left:0!important;margin-right:0!important;}
 html.mx #middle_section > *{max-width:100%;box-sizing:border-box;}
@@ -215,8 +215,8 @@ html.mx #left_section li a.mx-current{background:var(--accent-soft)!important;co
 /* ---------- typography ---------- */
 html.mx #middle_section h3,html.mx #middle_section h1,html.mx #middle_section h2{font-family:var(--font)!important;color:var(--text)!important;background-image:none!important;text-shadow:none!important;}
 html.mx #middle_section > h3,html.mx .page_details > h3{font-size:24px!important;font-weight:700!important;letter-spacing:-.01em;margin:4px 0 12px!important;padding:0!important;}
-html.mx #right_section h2,html.mx #right_section h3,html.mx #right_part h2,html.mx #right_part h3{font-family:var(--font)!important;background-image:none!important;color:var(--text)!important;font-size:14px!important;font-weight:700!important;padding:0 0 10px!important;margin:0!important;height:auto!important;width:auto!important;}
-html.mx #right_section > div,html.mx #right_part > div{background:var(--surface)!important;background-image:none!important;border:1px solid var(--border);border-radius:var(--radius);margin:0 0 14px!important;padding:12px 14px!important;box-shadow:var(--shadow);width:auto!important;height:auto!important;float:none!important;box-sizing:border-box;}
+html.mx #right_section h2,html.mx #right_section h3,html.mx #right_part h2,html.mx #right_part h3{font-family:var(--font)!important;background-image:none!important;color:var(--text)!important;font-size:14px!important;font-weight:700!important;padding:0 0 10px!important;margin:0!important;height:auto!important;width:auto!important;float:none!important;}
+html.mx #right_section > div,html.mx #right_part > div{background:var(--surface)!important;background-image:none!important;border:1px solid var(--border);border-radius:var(--radius);margin:0 0 14px!important;padding:12px 14px!important;box-shadow:var(--shadow);width:auto!important;height:auto!important;float:none!important;box-sizing:border-box;display:flow-root;}
 html.mx #right_section > div *,html.mx #right_part > div *{background-image:none;}
 html.mx #right_section ul,html.mx #right_part ul{padding:0!important;margin:0!important;}
 html.mx #right_section p,html.mx #right_part p{margin:0 0 8px!important;padding:0!important;color:var(--muted)!important;font-size:12px!important;line-height:1.45!important;}
@@ -231,6 +231,30 @@ html.mx #right_section .coach h4,html.mx #right_part .coach h4{margin:12px 0 8px
 .mx-plan .tot.bad{color:var(--bad);}
 html.mx .user_tip{background:var(--surface)!important;background-image:none!important;border:1px solid var(--border)!important;border-radius:var(--radius);padding:12px 16px!important;color:var(--muted)!important;margin-bottom:14px;}
 html.mx .user_tip img{display:none;}
+
+/* ---------- page intro text (collapsible) ---------- */
+html.mx .mx-tip{display:flex;align-items:flex-start;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;margin:0 0 14px;color:var(--muted);font:12.5px/1.5 var(--font);box-sizing:border-box;}
+html.mx .mx-tip > .mx-ic{color:var(--accent);margin-top:1px;}
+html.mx .mx-tip .user_tip{background:none!important;border:0!important;border-radius:0;padding:0!important;margin:0!important;flex:1 1 auto;min-width:0;color:inherit!important;font:inherit!important;}
+html.mx .mx-tip:not(.open) .user_tip{display:-webkit-box!important;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
+html.mx .mx-tip:not(.open):not(.short){cursor:pointer;}
+.mx-tip-btn{all:unset;cursor:pointer;color:var(--accent);font:600 12px/1.6 var(--font);white-space:nowrap;}
+.mx-tip-btn:hover{text-decoration:underline;}
+html.mx .mx-tip.short .mx-tip-btn{display:none;}
+
+/* ---------- footer ---------- */
+html.mx #footer{clear:both;width:min(1500px,96vw)!important;margin:28px auto 0!important;padding:0 0 76px!important;background:none!important;background-image:none!important;border:0!important;height:auto!important;float:none!important;color:var(--muted);}
+html.mx #footer .wrapper{width:auto!important;margin:0!important;display:grid!important;grid-template-columns:repeat(3,minmax(120px,1fr)) minmax(260px,2fr);gap:24px;padding:22px 24px!important;background:var(--surface)!important;background-image:none!important;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);box-sizing:border-box;height:auto!important;float:none!important;}
+html.mx #footer .cols{width:auto!important;float:none!important;margin:0!important;padding:0!important;height:auto!important;background:none!important;border:0!important;}
+html.mx #footer h3{font:600 11px/1.2 var(--font)!important;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)!important;margin:0 0 10px!important;padding:0!important;background:none!important;height:auto!important;}
+html.mx #footer h4{display:none!important;}
+html.mx #footer ul{list-style:none!important;margin:0!important;padding:0!important;background:none!important;}
+html.mx #footer li{background:none!important;background-image:none!important;padding:3px 0!important;margin:0!important;float:none!important;border:0!important;color:var(--muted)!important;font-size:12.5px!important;width:auto!important;height:auto!important;display:block!important;}
+html.mx #footer a{color:var(--text)!important;text-decoration:none!important;background:none!important;}
+html.mx #footer a:hover{color:var(--accent)!important;}
+html.mx #footer .space_none ul{display:flex!important;flex-wrap:wrap;gap:2px 16px;}
+html.mx #footer .space_none li,html.mx #footer .space_none a{color:var(--muted)!important;font-size:12px!important;}
+html.mx #footer .space_none li:first-child{flex:1 1 100%;}
 
 /* ---------- tabs (page_bar) ---------- */
 html.mx .page_bar{background:none!important;border:0!important;margin:0 0 14px!important;height:auto!important;}
@@ -411,7 +435,7 @@ html.mx .mx-athlete .head_section button.bookmark-action:not(#admin_hamburger_me
 html.mx button.bookmark-action img{display:none;}
 
 /* ---------- cards ---------- */
-html.mx .mx-card{display:block;background:var(--surface)!important;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px!important;margin:0 0 16px!important;width:auto!important;height:auto!important;float:none!important;box-sizing:border-box;}
+html.mx .mx-card{display:block;background:var(--surface)!important;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px!important;margin:0 0 16px!important;width:auto!important;height:auto!important;float:none!important;box-sizing:border-box;display:flow-root;}
 html.mx .mx-card *{float:none;}
 html.mx .mx-card-t{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 12px;font:700 12px/1.2 var(--font);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
 html.mx .mx-card-t .mx-card-a{font:500 12px/1.2 var(--font);text-transform:none;letter-spacing:0;}
@@ -441,7 +465,7 @@ html.mx .mx-hero .row02 > div{display:flex!important;flex-direction:column;gap:3
 html.mx .mx-hero .row02 > div > span:first-child{color:var(--muted)!important;font:600 10.5px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.06em;}
 html.mx .mx-hero .row02 > div > :not(span:first-child),html.mx .mx-hero .row02 > div > * strong,html.mx .mx-hero .row02 > div a{color:var(--text)!important;font-size:13.5px!important;font-weight:600!important;white-space:normal;}
 html.mx .mx-hero .row02 > div > span:first-child{width:auto!important;overflow:visible!important;white-space:nowrap;}
-html.mx .mx-hero .row02 > div.mx-empty::after{content:"–";color:var(--muted);font-weight:600;}
+html.mx .mx-hero .row02 > div.mx-empty > strong{color:var(--muted)!important;}
 html.mx .mx-hero .row02 > div a:hover,html.mx .mx-hero .row02 > div a:hover strong{color:var(--accent)!important;}
 html.mx .mx-hero .row02 > div small{color:var(--muted)!important;font-weight:500;font-size:11.5px;}
 
@@ -492,15 +516,43 @@ html.mx .mx-rank > .main_row + .main_row .head_row{border-bottom:0!important;}
 html.mx .mx-rank > .main_row + .main_row{margin-top:6px!important;}
 
 /* ---------- athlete: misc ---------- */
-html.mx .mx-athlete > a.ui4-bookmark-club-count{display:inline-flex;align-items:center;gap:6px;margin:0 0 12px;color:var(--muted)!important;font-size:12.5px;}
+html.mx .mx-athlete > a.ui4-bookmark-club-count{display:inline-flex;align-items:center;gap:8px;margin:0 0 12px;padding:6px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--border);color:var(--text)!important;font-size:12.5px;text-decoration:none!important;}
+html.mx .mx-athlete > a.ui4-bookmark-club-count:hover{border-color:var(--accent);}
+html.mx .mx-athlete > a.ui4-bookmark-club-count .mx-ic{color:var(--accent);}
+/* event pictograms (replace the site's 16x16 square images) */
+.mx-evi{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;flex:0 0 20px;vertical-align:middle;background:var(--surface3);color:var(--muted);}
+.mx-evi.M{background:color-mix(in srgb,var(--male) 18%,transparent);color:var(--male);}
+.mx-evi.F{background:color-mix(in srgb,var(--female) 18%,transparent);color:var(--female);}
 html.mx .mx-athlete > a.ui4-bookmark-club-count + br{display:none;}
 html.mx .mx-card textarea{width:100%!important;box-sizing:border-box;min-height:90px;}
 html.mx #middle_section .mx-card:not(.mx-skills) h4.heading > span{font:inherit!important;color:inherit!important;letter-spacing:inherit;}
 html.mx .mx-card div:has(> textarea){background:none!important;border:0!important;padding:0!important;width:auto!important;height:auto!important;}
 html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)!important;margin:0 0 10px!important;padding:0!important;background:none!important;border:0!important;}
 @media (max-width:900px){html.mx .mx-skills > .main_row{grid-template-columns:1fr;} html.mx .mx-hero{grid-template-columns:1fr;}}
-@media (max-width:1100px){html.mx #right_section,html.mx #right_part{display:none!important;}}
-@media (max-width:760px){html.mx #left_section{display:none!important;} .mxa{grid-template-columns:1fr;}}
+/* ---------- responsive ---------- */
+html.mx .mx-rank{overflow-x:auto;}
+html.mx .mx-rank > .main_row{min-width:560px;}
+/* narrow: the right column moves under the content, its boxes side by side */
+@media (max-width:1100px){
+  html.mx #inner_body_container{flex-wrap:wrap;}
+  html.mx #middle_section{flex:1 1 calc(100% - 230px);}
+  html.mx #right_section,html.mx #right_part{display:grid!important;flex:1 1 100%;width:auto!important;margin:0 0 0 230px!important;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;align-items:start;}
+  html.mx #right_section > div,html.mx #right_part > div{margin:0!important;}
+  html.mx #footer .wrapper{grid-template-columns:repeat(3,1fr);}
+  html.mx #footer .space_none{grid-column:1/-1;}
+}
+@media (max-width:900px){
+  html.mx #header{flex-wrap:wrap;}
+  html.mx #header .right_details{flex-wrap:wrap;}
+  html.mx #header .top_menu{max-width:100%;overflow-x:auto;scrollbar-width:none;}
+  html.mx .mxa{grid-template-columns:1fr;}
+}
+@media (max-width:760px){
+  html.mx #left_section{display:none!important;}
+  html.mx #middle_section{flex-basis:100%;}
+  html.mx #right_section,html.mx #right_part{margin-left:0!important;}
+  html.mx #footer .wrapper{grid-template-columns:1fr 1fr;}
+}
 `;
 
   function injectCSS() {
@@ -596,7 +648,7 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
     const mo = new MutationObserver((muts) => {
       for (const m of muts) for (const n of m.addedNodes) if (n.nodeType === 1 && !n.closest('.mxr,.mxa,.mx-dock,.mx-pal-bg')) pending.add(n);
       clearTimeout(timer);
-      timer = setTimeout(() => { const p = pending; pending = new Set(); p.forEach((n) => { if (n.isConnected) { legacyColors(n); darkFix(n); } }); }, 60);
+      timer = setTimeout(() => { const p = pending; pending = new Set(); p.forEach((n) => { if (n.isConnected) { eventIcons(n); legacyColors(n); darkFix(n); } }); }, 60);
     });
     mo.observe(document.body, { childList: true, subtree: true });
   }
@@ -975,6 +1027,25 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
    * (profile, skills, rankings, notes). Runs before athletePage(), so the
    * radar lands right after the skills card.
    * ------------------------------------------------------------------ */
+  // Club names, cached from any page that shows them in full, keyed by the
+  // club link's query string. Used where the site cuts names short.
+  const clubKey = (href) => { try { return new URL(href, location.href).search; } catch (e) { return ''; } };
+  function rememberClubs() {
+    const map = LS.get('clubs', {}); let changed = false;
+    const put = (key, name) => {
+      name = (name || '').replace(/\s+/g, ' ').trim();
+      if (!key || !name || /(\.\.\.|…)$/.test(name) || name.length > 80) return;
+      if ((map[key] || '').length >= name.length) return;
+      map[key] = name; changed = true;
+    };
+    $$('#middle_section a[href*="dettagli_societa"], #right_section a[href*="dettagli_societa"], #right_part a[href*="dettagli_societa"]').forEach((a) => put(clubKey(a.href), a.textContent));
+    if (/dettagli_societa\.php$/.test(path) && location.search) put(location.search, $('#middle_section h3, .page_details h3, #middle_section h2')?.textContent);
+    if (!changed) return;
+    const keys = Object.keys(map);
+    if (keys.length > 400) keys.slice(0, keys.length - 400).forEach((k) => delete map[k]);
+    LS.set('clubs', map);
+  }
+
   function athleteLayout() {
     const mid = $('#middle_section');
     const rows = mid ? $$(':scope > .main_row', mid) : [];
@@ -996,8 +1067,30 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
       hero.classList.add('mx-card', 'mx-hero');
       $$('.row02 > div', hero).forEach((d) => {
         const lab = d.querySelector(':scope > span:first-child');
-        if (lab && !d.textContent.replace(lab.textContent, '').trim()) d.classList.add('mx-empty');
+        if (lab && !d.textContent.replace(lab.textContent, '').trim()) {
+          d.classList.add('mx-empty');
+          const v = d.querySelector(':scope > strong');
+          if (v) v.textContent = '–'; else d.append(h('strong', {}, '–'));
+        }
       });
+      // the site cuts long club names ("Club Na..."): show the full name when it was seen on another page
+      $$('.row02 a[href*="dettagli_societa"]', hero).forEach((a) => {
+        const shown = a.textContent.trim();
+        const cut = shown.replace(/(\.\.\.|…)$/, '');
+        if (cut === shown) return;
+        const full = (LS.get('clubs', {})[clubKey(a.href)] || '');
+        if (full.length > cut.length && full.startsWith(cut)) (a.querySelector('strong') || a).textContent = full;
+        a.title = full.startsWith(cut) && full ? full : shown;
+      });
+    }
+    // "Clubs interested in the athlete: N" -> label + count badge
+    const fans = $(':scope > a.ui4-bookmark-club-count', mid);
+    if (fans) {
+      const m = fans.textContent.trim().match(/^(.*?)[\s:]*(\d+)\s*$/);
+      if (m) {
+        const n = Number(m[2]);
+        fans.replaceChildren(svgIcon('bookmark', 15), h('span', {}, m[1]), h('span', { class: 'mx-badge pill ' + (n ? 'info' : '') }, m[2]));
+      }
     }
     // skills: the contiguous run of rows with skill bars or the specialty heading
     const isSkill = (r) => r.querySelector(':scope > .box > div.row, :scope > h4.heading');
@@ -1134,6 +1227,21 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
     power: '<path d="M12 3v8"/><path d="M6.3 7a8 8 0 1 0 11.4 0"/>',
     chevL: '<path d="m15 18-6-6 6-6"/>',
     chevR: '<path d="m9 18 6-6-6-6"/>',
+    info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
+    // event families (pictograms for the site's 16x16_<event><m|f>.png images)
+    evSprint: '<circle cx="15" cy="4.5" r="2"/><path d="M7 21l3.5-6 3 2.5V22"/><path d="M5.5 11 9 8l4 1.5 2 3.5h3.5"/><path d="m9 8 1.5 7"/>',
+    evHurdles: '<path d="M6 20V8M18 20V8M4 8h16M6 12h12"/>',
+    evDistance: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M10 2h4M12 2v3"/>',
+    evSteeple: '<path d="M6 14V5M18 14V5M4 5h16M6 9h12"/><path d="M3 19c1.5-1.4 3-1.4 4.5 0s3 1.4 4.5 0 3-1.4 4.5 0 3 1.4 4.5 0"/>',
+    evWalk: '<path d="M8 3c1.6 0 2.5 2 2.5 4.5S9.6 12 8.5 12h-1C6.4 12 5.5 10 5.5 7.5S6.4 3 8 3zM6 15h4v1.5a2 2 0 0 1-4 0z"/><path d="M16 8c1.6 0 2.5 2 2.5 4.5S17.6 17 16.5 17h-1c-1.1 0-2-2-2-4.5S14.4 8 16 8zM14 20h4"/>',
+    evHigh: '<path d="M5 21V7M19 21V7M3 7h18"/><path d="M6 17c3-6 8-8 13-6"/>',
+    evPole: '<path d="M4 21 17 4"/><path d="M14 6h7M14 6V3"/><path d="M3 21h8"/>',
+    evLong: '<path d="M3 15c3-7 9-8 13-2"/><path d="m13.5 12.5 2.5.5.7-2.5"/><path d="M3 20h18"/><path d="M15 20v-2h6"/>',
+    evShot: '<circle cx="12" cy="11" r="5"/><path d="M4 20h16"/>',
+    evDiscus: '<ellipse cx="12" cy="12" rx="9" ry="4.5"/><ellipse cx="12" cy="12" rx="2.5" ry="1.3"/>',
+    evHammer: '<circle cx="17" cy="17" r="3.5"/><path d="M4 4l10.5 10.5M3 8l5-5"/>',
+    evJavelin: '<path d="M3 21 20 4"/><path d="m21 3-1.5 4.5-3-3z"/>',
+    evRelay: '<path d="M4 18 15 7"/><path d="M10 7h5v5"/><circle cx="18" cy="18" r="3"/>',
   };
   const svgIcon = (name, size = 18) => {
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -1157,6 +1265,23 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
     [/logout/, 'logout'], [/test_settimanali/, 'clipcheck'], [/sviluppo/, 'activity'], [/prestazioni|risultati/, 'list'],
     [/momenti_gloria/, 'medal'], [/bid_history|storico/, 'history'], [/confronta/, 'scale'], [/atleta_one/, 'user'],
   ];
+  const EVENT_ICONS = [
+    [/^(100|200|400)$/, 'evSprint'], [/^110$/, 'evHurdles'], [/^(800|1500|5000|10000)$/, 'evDistance'],
+    [/^steeplechase/, 'evSteeple'], [/^walk/, 'evWalk'], [/^highjump/, 'evHigh'], [/^polevault/, 'evPole'],
+    [/^(longjump|triplejump)/, 'evLong'], [/^shotput/, 'evShot'], [/^discus/, 'evDiscus'], [/^hammer/, 'evHammer'],
+    [/^javelin/, 'evJavelin'], [/^relay/, 'evRelay'],
+  ];
+  // event image -> pictogram in the gender color (16x16_<event><m|f>.png)
+  function eventIcons(scope = document) {
+    $$('img[src*="/gare/"]', scope).forEach((im) => {
+      const m = (im.getAttribute('src') || '').split('/').pop().match(/^\d+x\d+_([a-z0-9]+?)([mf])\.(png|gif|jpg)$/i);
+      if (!m) return;
+      const rule = EVENT_ICONS.find(([re]) => re.test(m[1].toLowerCase()));
+      if (!rule) return;
+      im.replaceWith(h('span', { class: 'mx-evi ' + (m[2].toLowerCase() === 'f' ? 'F' : 'M'), title: stripTags(im.getAttribute('title') || im.getAttribute('alt') || '') || null }, svgIcon(rule[1], 14)));
+    });
+  }
+
   // athlete actions that stay on the same page are told apart by their class
   const CLASS_ICONS = { icon01: 'scale', icon02: 'userx', icon03: 'refresh', icon04: 'send' };
   const iconFor = (a) => {
@@ -1230,6 +1355,28 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
   }
 
   /* ------------------------------------------------------------------ *
+   * Page intro text (.user_tip): one line, expandable. The choice is
+   * remembered for every page.
+   * ------------------------------------------------------------------ */
+  function pageTips() {
+    $$('.user_tip').forEach((tip) => {
+      if (tip.closest('.mx-tip')) return;
+      const wrap = h('div', { class: 'mx-tip' + (LS.get('tipOpen', false) ? ' open' : '') });
+      const btn = h('button', { class: 'mx-tip-btn', title: t('tipT') });
+      const label = () => { btn.textContent = wrap.classList.contains('open') ? t('tipLess') : t('tipMore'); };
+      const toggle = (e) => { e?.stopPropagation(); const o = !wrap.classList.contains('open'); wrap.classList.toggle('open', o); LS.set('tipOpen', o); label(); };
+      btn.addEventListener('click', toggle);
+      wrap.addEventListener('click', (e) => { if (!wrap.classList.contains('open') && !wrap.classList.contains('short') && !e.target.closest('a')) toggle(e); });
+      tip.before(wrap);
+      wrap.append(svgIcon('info', 16), tip, btn);
+      label();
+      // tips that fit on one line don't need the toggle
+      const lh = parseFloat(getComputedStyle(tip).lineHeight) || 19;
+      if (tip.scrollHeight <= lh * 1.6) wrap.classList.add('short');
+    });
+  }
+
+  /* ------------------------------------------------------------------ *
    * Right column: forms on one row, coach training plan with bars
    * ------------------------------------------------------------------ */
   function rightColumn() {
@@ -1275,8 +1422,10 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
     try { if (/lista_atleti\.php$/.test(path)) rosterPage(); } catch (e) { console.warn('[UI+] roster', e); }
     try { if (/atleta_one\.php$/.test(path)) athleteLayout(); } catch (e) { console.warn('[UI+] athlete layout', e); }
     try { if (/atleta_one\.php$/.test(path)) athletePage(); } catch (e) { console.warn('[UI+] athlete', e); }
-    try { decorateIcons(); } catch (e) { console.warn('[UI+] icons', e); }
+    try { decorateIcons(); eventIcons(); } catch (e) { console.warn('[UI+] icons', e); }
+    try { rememberClubs(); } catch (e) { console.warn('[UI+] clubs', e); }
     try { rightColumn(); } catch (e) { console.warn('[UI+] right column', e); }
+    try { pageTips(); } catch (e) { console.warn('[UI+] tips', e); }
     try { restyleBars(); } catch (e) { console.warn('[UI+] bars', e); }
     buildDock();
     bindKeys();
