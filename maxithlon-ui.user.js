@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Maxithlon UI+
 // @namespace    v3mpire.maxithlon.uiplus
-// @version      1.2.1
+// @version      1.3.0
 // @description  A modern interface for Maxithlon: dark/light theme, wide layout, roster dashboard with filters and heat map, athlete skill radar and a command palette (Ctrl+K). Works with any site language.
 // @author       luismiguelopes
 // @license      MIT
@@ -359,6 +359,107 @@ html.mx #header .right_details{display:flex!important;align-items:center;justify
 html.mx #middle_section h4.heading,html.mx #middle_section h4.heading *{font-weight:600!important;}
 html.mx #middle_section h4.heading > span,html.mx #middle_section h4.heading{color:var(--muted)!important;}
 html.mx #middle_section h4.heading strong,html.mx #middle_section h4.heading a{color:var(--text)!important;}
+/* ---------- top bar: icons on a single row ---------- */
+html.mx #header .top_menu ul{display:flex!important;flex-wrap:nowrap!important;align-items:center;gap:2px;margin:0!important;padding:0!important;width:auto!important;height:auto!important;background:none!important;list-style:none!important;float:none!important;}
+html.mx #header .top_menu li{float:none!important;display:block!important;margin:0!important;padding:0!important;width:auto!important;height:auto!important;background:none!important;list-style:none!important;}
+html.mx #header .right_details{min-width:0;}
+
+/* ---------- buttons ---------- */
+html.mx input[type=submit],html.mx input[type=button],html.mx button:not([class*="mx-"]):not(#admin_hamburger_menu){box-shadow:none!important;outline:none;font:600 12.5px/1.2 var(--font)!important;padding:8px 14px!important;border-radius:9px!important;transition:filter .15s,transform .05s;}
+html.mx input[type=submit]:hover,html.mx input[type=button]:hover,html.mx button:not([class*="mx-"]):not(#admin_hamburger_menu):hover{filter:brightness(1.08);}
+html.mx input[type=submit]:active,html.mx input[type=button]:active,html.mx button:not([class*="mx-"]):not(#admin_hamburger_menu):active{transform:translateY(1px);}
+html.mx input[type=submit]:focus-visible,html.mx input[type=button]:focus-visible,html.mx button:focus-visible{outline:2px solid var(--accent)!important;outline-offset:2px;}
+html.mx input[type=text],html.mx input[type=number],html.mx input:not([type]),html.mx select,html.mx textarea{box-shadow:none!important;outline:none;padding:7px 10px!important;border-radius:9px!important;font:13px var(--font)!important;}
+html.mx input[type=text]:focus,html.mx input[type=number]:focus,html.mx input:not([type]):focus,html.mx select:focus,html.mx textarea:focus{border-color:var(--accent)!important;box-shadow:0 0 0 3px var(--accent-soft)!important;}
+html.mx .mx-athlete .head_section button.bookmark-action:not(#admin_hamburger_menu){background:var(--accent-soft)!important;color:var(--accent)!important;padding:7px 9px!important;}
+html.mx button.bookmark-action img{display:none;}
+
+/* ---------- cards ---------- */
+html.mx .mx-card{display:block;background:var(--surface)!important;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px!important;margin:0 0 16px!important;width:auto!important;height:auto!important;float:none!important;box-sizing:border-box;}
+html.mx .mx-card *{float:none;}
+html.mx .mx-card-t{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 12px;font:700 12px/1.2 var(--font);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+
+/* ---------- athlete: title ---------- */
+html.mx .mx-athlete .head_section{background:none!important;border:0!important;margin:2px 0 14px!important;padding:0!important;height:auto!important;}
+html.mx .mx-athlete .head_section h2{display:flex!important;align-items:center;gap:10px;font:700 26px/1.2 var(--font)!important;letter-spacing:-.01em;color:var(--text)!important;margin:0!important;padding:0!important;border:0!important;background:none!important;height:auto!important;}
+html.mx .mx-athlete .head_section h2 > a{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:var(--surface);border:1px solid var(--border);}
+html.mx .mx-athlete .head_section h2 > a:hover{border-color:var(--accent);}
+html.mx .mx-athlete .head_section h2 > a .mx-ic{color:var(--muted);}
+html.mx .mx-athlete .head_section h2 > a:hover .mx-ic{color:var(--accent);}
+html.mx .mx-athlete .head_section .id{font:500 12px var(--font)!important;color:var(--muted)!important;background:var(--surface2);border:1px solid var(--border);padding:3px 8px;border-radius:999px;}
+html.mx .mx-athlete .head_section .bookmark{margin-left:auto;float:none!important;position:static!important;}
+
+/* ---------- athlete: profile ---------- */
+html.mx .mx-hero{display:grid!important;grid-template-columns:auto 1fr;gap:20px;align-items:start;}
+html.mx .mx-hero .face_area{width:auto!important;height:auto!important;margin:0!important;padding:0!important;border:0!important;background:none!important;}
+html.mx .mx-hero .face_area img{display:block;width:120px!important;height:auto!important;border-radius:14px;border:1px solid var(--border)!important;background:var(--surface2);padding:0!important;box-shadow:none!important;}
+html.mx .mx-hero .text_area{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;width:auto!important;margin:0!important;padding:0!important;background:none!important;}
+html.mx .mx-hero .row01{grid-column:1/-1;display:flex!important;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 4px!important;padding:0!important;background:none!important;width:auto!important;height:auto!important;}
+html.mx .mx-hero .row01 > a:first-child img{width:20px;height:auto;border-radius:3px;}
+html.mx .mx-hero .row01 > a{font-weight:600;color:var(--text)!important;margin-right:10px;}
+html.mx .mx-hero .row01 > span{color:var(--muted)!important;font-size:12px!important;font-weight:500!important;}
+html.mx .mx-hero .row01 > strong{color:var(--text)!important;font-size:15px!important;margin-right:14px;font-variant-numeric:tabular-nums;}
+html.mx .mx-hero .row02{display:contents!important;}
+html.mx .mx-hero .row02 > div{display:flex!important;flex-direction:column;gap:3px;min-width:0;width:auto!important;height:auto!important;margin:0!important;padding:9px 12px!important;border-radius:10px;background:var(--surface2)!important;border:1px solid var(--border);}
+html.mx .mx-hero .row02 > div > span:first-child{color:var(--muted)!important;font:600 10.5px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.06em;}
+html.mx .mx-hero .row02 > div > :not(span:first-child),html.mx .mx-hero .row02 > div > * strong,html.mx .mx-hero .row02 > div a{color:var(--text)!important;font-size:13.5px!important;font-weight:600!important;white-space:normal;}
+html.mx .mx-hero .row02 > div > span:first-child{width:auto!important;overflow:visible!important;white-space:nowrap;}
+html.mx .mx-hero .row02 > div.mx-empty::after{content:"–";color:var(--muted);font-weight:600;}
+html.mx .mx-hero .row02 > div a:hover,html.mx .mx-hero .row02 > div a:hover strong{color:var(--accent)!important;}
+html.mx .mx-hero .row02 > div small{color:var(--muted)!important;font-weight:500;font-size:11.5px;}
+
+/* ---------- athlete: skills ---------- */
+html.mx .mx-skills > .main_row{display:grid!important;grid-template-columns:1fr 1fr;gap:4px 36px;width:auto!important;height:auto!important;margin:0!important;padding:12px 0!important;background:none!important;border:0!important;border-top:1px solid var(--border)!important;}
+html.mx .mx-skills > .main_row:first-of-type{border-top:0!important;padding-top:0!important;}
+html.mx .mx-skills > .main_row:has(> h4.heading){display:block!important;padding-bottom:0!important;}
+html.mx .mx-skills > .main_row:has(> h4.heading) + .main_row{border-top:0!important;}
+html.mx .mx-skills .box{display:flex!important;flex-direction:column;gap:2px;width:auto!important;height:auto!important;margin:0!important;padding:0!important;background:none!important;border:0!important;}
+html.mx #middle_section .mx-skills div.row.mx-row{display:grid!important;grid-template-columns:minmax(90px,1fr) 30px minmax(90px,1.4fr);align-items:center;gap:10px;background:none!important;border-radius:8px;padding:6px 8px!important;margin:0!important;width:auto!important;height:auto!important;}
+html.mx #middle_section .mx-skills div.row.mx-row:hover{background:var(--surface2)!important;}
+html.mx #middle_section .mx-skills div.row.mx-row > span:first-child{color:var(--muted)!important;font-size:13px!important;font-weight:500!important;}
+html.mx #middle_section .mx-skills div.row.mx-row > strong{color:var(--text)!important;font-size:14px!important;text-align:right;font-variant-numeric:tabular-nums;}
+html.mx .mx-skills div.row.mx-row > small{display:block;width:auto!important;}
+html.mx .mx-skills .mx-bar{display:block;width:100%;height:7px;}
+html.mx #middle_section .mx-skills h4.heading{display:flex!important;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:0 0 6px!important;padding:0 8px!important;background:none!important;border:0!important;height:auto!important;font:600 14px/1.3 var(--font)!important;}
+html.mx #middle_section .mx-skills h4.heading > *{float:none!important;margin:0!important;}
+html.mx #middle_section .mx-skills h4.heading > span{color:var(--muted)!important;font:600 11px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.07em;}
+html.mx #middle_section .mx-skills h4.heading > span.left{order:1;}
+html.mx #middle_section .mx-skills h4.heading > strong:not(.right){order:2;color:var(--text)!important;}
+html.mx #middle_section .mx-skills h4.heading > strong,html.mx #middle_section .mx-skills h4.heading strong.right a{text-transform:none!important;font:700 15px/1.3 var(--font)!important;letter-spacing:0;}
+html.mx #middle_section .mx-skills h4.heading > span.right{order:3;margin-left:auto!important;}
+html.mx #middle_section .mx-skills h4.heading > strong.right{order:4;}
+html.mx #middle_section .mx-skills h4.heading > a{order:5;display:inline-flex;}
+html.mx #middle_section .mx-skills h4.heading strong.right a{color:var(--text)!important;}
+html.mx #middle_section .mx-skills h4.heading img{width:16px;height:16px;border-radius:4px;}
+
+/* ---------- athlete: rankings ---------- */
+html.mx .mx-rank > .main_row{width:auto!important;height:auto!important;margin:0!important;padding:0!important;background:none!important;border:0!important;}
+html.mx .mx-rank .head_row,html.mx .mx-rank .text_row{display:grid!important;grid-template-columns:minmax(150px,1.5fr) repeat(3,minmax(110px,1fr));align-items:end;gap:0 12px;width:auto!important;height:auto!important;margin:0!important;padding:0!important;background:none!important;border:0!important;}
+html.mx .mx-rank .head_row > div,html.mx .mx-rank .text_row > div{width:auto!important;height:auto!important;margin:0!important;padding:6px 4px!important;border:0!important;background:none!important;float:none!important;}
+html.mx .mx-rank .head_row{border-bottom:1px solid var(--border)!important;padding-bottom:4px!important;}
+html.mx .mx-rank .head_row .box02{align-self:end;color:var(--muted)!important;font:700 12px var(--font)!important;text-transform:uppercase;letter-spacing:.08em;}
+html.mx .mx-rank .head_row h4{margin:0 0 4px!important;padding:0!important;text-align:center;font:700 13px var(--font)!important;color:var(--text)!important;background:none!important;}
+html.mx .mx-rank h5{display:grid!important;grid-template-columns:1fr 1fr;margin:0!important;padding:0!important;text-align:center;font:600 10px/1.25 var(--font)!important;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)!important;background:none!important;}
+html.mx .mx-rank h5 span{color:var(--muted)!important;width:auto!important;float:none!important;overflow:visible!important;white-space:normal!important;text-overflow:clip!important;}
+html.mx .mx-rank h5 .col3{grid-column:1/-1;}
+html.mx .mx-rank .text_row{align-items:center;border-bottom:1px solid var(--border)!important;border-radius:0;}
+html.mx .mx-rank .text_row:hover{background:var(--surface2)!important;}
+html.mx .mx-rank .text_row .box02{display:flex!important;align-items:center;gap:8px;font-weight:600;}
+html.mx .mx-rank .text_row .box02 img{width:16px;height:16px;border-radius:4px;}
+html.mx .mx-rank .text_row > div:not(.box02){display:grid!important;grid-template-columns:1fr 1fr;text-align:center;font-variant-numeric:tabular-nums;}
+html.mx .mx-rank .text_row span{width:auto!important;float:none!important;border:0!important;}
+html.mx .mx-rank a,html.mx .mx-rank strong{color:var(--text)!important;text-decoration:none!important;}
+html.mx .mx-rank a:hover{color:var(--accent)!important;}
+html.mx .mx-rank > .main_row + .main_row .head_row{border-bottom:0!important;}
+html.mx .mx-rank > .main_row + .main_row{margin-top:6px!important;}
+
+/* ---------- athlete: misc ---------- */
+html.mx .mx-athlete > a.ui4-bookmark-club-count{display:inline-flex;align-items:center;gap:6px;margin:0 0 12px;color:var(--muted)!important;font-size:12.5px;}
+html.mx .mx-athlete > a.ui4-bookmark-club-count + br{display:none;}
+html.mx .mx-card textarea{width:100%!important;box-sizing:border-box;min-height:90px;}
+html.mx .mx-card div:has(> textarea){background:none!important;border:0!important;padding:0!important;width:auto!important;height:auto!important;}
+html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)!important;margin:0 0 10px!important;padding:0!important;background:none!important;border:0!important;}
+@media (max-width:900px){html.mx .mx-skills > .main_row{grid-template-columns:1fr;} html.mx .mx-hero{grid-template-columns:1fr;}}
 @media (max-width:1100px){html.mx #right_section,html.mx #right_part{display:none!important;}}
 @media (max-width:760px){html.mx #left_section{display:none!important;} .mxa{grid-template-columns:1fr;}}
 `;
@@ -391,7 +492,7 @@ html.mx #middle_section h4.heading strong,html.mx #middle_section h4.heading a{c
     }
     return { h: hh, s, l };
   };
-  const SKIP_DARKFIX = 'svg,svg *,img,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,#left_section,#left_section *';
+  const SKIP_DARKFIX = 'svg,svg *,img,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-hero,.mx-hero *,.mx-skills,.mx-skills *,.mx-rank,.mx-rank *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,#left_section,#left_section *';
 
   function darkFix(scope) {
     if (theme !== 'dark') return;
@@ -804,6 +905,52 @@ html.mx #middle_section h4.heading strong,html.mx #middle_section h4.heading a{c
   /* ------------------------------------------------------------------ *
    * Athlete page (atleta_one.php): radar + summary
    * ------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------ *
+   * Athlete page layout: groups the legacy blocks into cards
+   * (profile, skills, rankings, notes). Runs before athletePage(), so the
+   * radar lands right after the skills card.
+   * ------------------------------------------------------------------ */
+  function athleteLayout() {
+    const mid = $('#middle_section');
+    const rows = mid ? $$(':scope > .main_row', mid) : [];
+    if (!rows.length || mid.classList.contains('mx-athlete')) return;
+    mid.classList.add('mx-athlete');
+    const card = (cls, els) => {
+      if (!els.length) return null;
+      const c = h('section', { class: 'mx-card ' + cls });
+      els[0].before(c);
+      c.append(...els);
+      return c;
+    };
+    // previous/next arrows -> chevrons
+    $('.head_section img.arrow_left', mid)?.replaceWith(svgIcon('chevL', 16));
+    $('.head_section img.arrow_right', mid)?.replaceWith(svgIcon('chevR', 16));
+    // profile: photo + info tiles
+    const hero = rows.find((r) => r.querySelector('.face_area'));
+    if (hero) {
+      hero.classList.add('mx-card', 'mx-hero');
+      $$('.row02 > div', hero).forEach((d) => {
+        const lab = d.querySelector(':scope > span:first-child');
+        if (lab && !d.textContent.replace(lab.textContent, '').trim()) d.classList.add('mx-empty');
+      });
+    }
+    // skills: the contiguous run of rows with skill bars or the specialty heading
+    const isSkill = (r) => r.querySelector(':scope > .box > div.row, :scope > h4.heading');
+    const run = [];
+    for (const r of rows) if (isSkill(r) && (!run.length || run[run.length - 1].nextElementSibling === r)) run.push(r);
+    card('mx-skills', run);
+    // rankings table + its footer legend
+    const rk = rows.find((r) => r.querySelector(':scope > .text_row'));
+    if (rk) {
+      const els = [rk];
+      const nx = rk.nextElementSibling;
+      if (nx?.matches('.main_row') && nx.querySelector('.head_row') && !nx.querySelector('.text_row')) els.push(nx);
+      card('mx-rank', els);
+    }
+    // notes form
+    rows.filter((r) => r.querySelector('textarea')).forEach((r) => r.classList.add('mx-card'));
+  }
+
   function athletePage() {
     const mid = $('#middle_section');
     if (!mid) return;
@@ -921,6 +1068,8 @@ html.mx #middle_section h4.heading strong,html.mx #middle_section h4.heading a{c
     sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
     moon: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
     power: '<path d="M12 3v8"/><path d="M6.3 7a8 8 0 1 0 11.4 0"/>',
+    chevL: '<path d="m15 18-6-6 6-6"/>',
+    chevR: '<path d="m9 18 6-6-6-6"/>',
   };
   const svgIcon = (name, size = 18) => {
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -1025,6 +1174,7 @@ html.mx #middle_section h4.heading strong,html.mx #middle_section h4.heading a{c
     injectCSS();
     try { markCurrent(); } catch (e) { console.warn('[UI+] nav', e); }
     try { if (/lista_atleti\.php$/.test(path)) rosterPage(); } catch (e) { console.warn('[UI+] roster', e); }
+    try { if (/atleta_one\.php$/.test(path)) athleteLayout(); } catch (e) { console.warn('[UI+] athlete layout', e); }
     try { if (/atleta_one\.php$/.test(path)) athletePage(); } catch (e) { console.warn('[UI+] athlete', e); }
     try { decorateIcons(); } catch (e) { console.warn('[UI+] icons', e); }
     try { restyleBars(); } catch (e) { console.warn('[UI+] bars', e); }
