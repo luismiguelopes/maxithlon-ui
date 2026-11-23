@@ -1511,7 +1511,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     const days = [...new Set(rows.map((r) => r.day))].sort();
     const byDay = days.map((d) => { const rs = rows.filter((r) => r.day === d); return { d, label: rs[0].date, inc: sum(rs.filter((r) => !r.exp)), exp: sum(rs.filter((r) => r.exp)) }; });
     const dmax = Math.max(1, ...byDay.map((x) => Math.max(x.inc, x.exp)));
-    const W = Math.max(320, byDay.length * 34), H = 150, mid = H / 2, bw = Math.min(22, W / byDay.length - 8);
+    const W = Math.max(900, byDay.length * 40), H = 160, mid = H / 2, bw = Math.min(36, W / byDay.length - 10);
     const svgNS = 'http://www.w3.org/2000/svg';
     const S = (tag, a) => { const e = document.createElementNS(svgNS, tag); for (const k in a) e.setAttribute(k, a[k]); return e; };
     const svg = S('svg', { viewBox: `0 0 ${W} ${H + 18}`, class: 'mxf-days' });
