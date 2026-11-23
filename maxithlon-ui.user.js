@@ -1146,7 +1146,9 @@ html.mx .mx-rank > .main_row{min-width:560px;}
       };
       BASE.forEach((b, i) => { r[b.k] = v(6 + i); });
       r.total = sumSkills(r);
-      r.perMaxid = r.price != null && r.maxid ? r.price / r.maxid : null;
+      // a price of 0 means no offer yet: shown, but left out of the price stats
+      r.priced = r.price > 0 ? r.price : null;
+      r.perMaxid = r.priced && r.maxid ? r.priced / r.maxid : null;
       rows.push(r);
     });
     return { rows, lab };
@@ -1189,7 +1191,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     applyOrig();
 
     const skill = (val, title) => h('span', { class: 'mxr-sk' + (val >= 15 ? ' top' : val >= 10 ? ' b' : ''), title: (title ? title + ': ' : '') + (val ?? '–'), style: st.heat ? { background: heatBg(val) } : null }, val ?? '–');
-    const money = (n) => (n == null ? '–' : '€ ' + fmt(n));
+    const money = (n) => (n == null ? '–' : '€ ' + Number(n).toLocaleString(LOCALE, { maximumFractionDigits: 0, useGrouping: 'always' }));
 
     function view() {
       const q = st.q.toLowerCase();
@@ -1211,7 +1213,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
         { k: 'group', label: lab.group, l: true, sv: (r) => r.group, td: (r) => { const c = ref.color(r.group); return h('span', { class: 'mxr-grp', style: { background: `color-mix(in srgb, ${c} 14%, transparent)`, color: c } }, r.group); } },
         { k: 'age', label: lab.age, sv: (r) => r.age, td: (r) => fmt(r.age) },
         { k: 'maxid', label: 'MAXID', sv: (r) => r.maxid, td: (r) => meter(r.maxid, maxMx) },
-        { k: 'price', label: t('mkPrice'), sep: true, sv: (r) => r.price, td: (r) => h('span', { class: 'mxm-num' }, money(r.price)) },
+        { k: 'price', label: t('mkPrice'), sep: true, sv: (r) => r.price, td: (r) => h('span', { class: 'mxm-num' + (r.priced ? '' : ' mxm-dim') }, money(r.price)) },
         { k: 'per', label: t('mkPerMaxid'), title: t('mkPerMaxidT'), sv: (r) => r.perMaxid, td: (r) => h('span', { class: 'mxm-num' }, fmt(r.perMaxid, 1)) },
         { k: 'left', label: t('mkLeft'), title: t('mkLeftT'), sv: (r) => r.left, td: (r) => h('span', {
           class: 'mx-badge pill ' + (r.left == null ? '' : r.left <= 0 ? 'bad' : r.left < 3600e3 ? 'warn' : ''), title: r.whenTxt }, fmtLeft(r.left)) },
@@ -1243,12 +1245,12 @@ html.mx .mx-rank > .main_row{min-width:560px;}
 
     function render() {
       const minBy = (fn) => rows.filter((r) => fn(r) != null).sort((a, b) => fn(a) - fn(b))[0];
-      const cheap = minBy((r) => r.price), value = minBy((r) => r.perMaxid), soon = minBy((r) => (r.left > 0 ? r.left : null));
+      const cheap = minBy((r) => r.priced), value = minBy((r) => r.perMaxid), soon = minBy((r) => (r.left > 0 ? r.left : null));
       const nFit = rows.filter((r) => r.fit > 0).length;
       const cards = h('div', { class: 'mx-tiles' },
         tile(t('mkResults'), rows.length, total != null ? t('mkResultsS', rows.length, fmt(total)) : ''),
-        tile(t('mkCheapest'), money(cheap?.price), cheap?.name),
-        tile(t('mkAvgPrice'), money(avg(rows.map((r) => r.price)))),
+        tile(t('mkCheapest'), money(cheap?.priced), cheap?.name),
+        tile(t('mkAvgPrice'), money(avg(rows.map((r) => r.priced)))),
         tile(t('mkBestValue'), fmt(value?.perMaxid, 1), value ? value.name + ' · ' + t('mkBestValueS') : t('mkBestValueS')),
         tile(t('mkEnding'), fmtLeft(soon?.left), soon?.name, { cls: soon && soon.left < 3600e3 ? 'warn' : '' }),
         ref.has
