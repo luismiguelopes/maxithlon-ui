@@ -627,7 +627,8 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     [[23, 160, 168], 'var(--link)'], [[23, 161, 169], 'var(--link)'], [[37, 166, 173], 'var(--link)'], [[37, 204, 173], 'var(--link)'], // teal: counters, prices
     [[50, 169, 175], 'var(--male)', true], // #32A9AF male names
     [[230, 60, 230], 'var(--female)', true], [[173, 37, 166], 'var(--female)', true], // #E63CE6 female names and values
-    [[161, 77, 67], 'var(--accent)'], [[240, 73, 53], 'var(--accent)'], // brick / red-orange headings
+    [[161, 77, 67], 'var(--accent)'], // brick headings
+    [[240, 73, 53], 'var(--bad)'], // red-orange: negative values, delete actions
   ];
   const SKIP_LEGACY = 'svg,svg *,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,#left_section,#left_section *,.mx-logo,.mx-logo *';
   function legacyColors(scope) {
