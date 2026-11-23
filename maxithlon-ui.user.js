@@ -134,6 +134,7 @@
       fnIncVsExp: 'Income vs expenses', fnVsPrev: (p) => 'vs ' + p, fnShare: 'share of the total', fnNew: 'new',
       fnNet: 'Net', fnCount: 'Transactions', fnByDay: 'By day', fnByCat: 'By category', fnAll: 'All',
       fnSearch: 'Search reason…', fnCsvFile: 'transactions', fnEmpty: 'No transactions match these filters.',
+      formLow: 'low form', formHigh: 'top form',
       setTitle: 'UI+ settings', setTheme: 'Theme', setDark: 'Dark', setLight: 'Light', setAccent: 'Accent color',
       setDensity: 'Density', setComfortable: 'Comfortable', setCompact: 'Compact', setModules: 'Modules',
       setReset: 'Reset settings', setReload: 'Reload to apply', setLive: 'Changes apply right away',
@@ -189,6 +190,7 @@
       fnIncVsExp: 'Receitas vs despesas', fnVsPrev: (p) => 'vs ' + p, fnShare: 'do total', fnNew: 'novo',
       fnNet: 'Saldo', fnCount: 'Transações', fnByDay: 'Por dia', fnByCat: 'Por categoria', fnAll: 'Todas',
       fnSearch: 'Procurar motivo…', fnCsvFile: 'transacoes', fnEmpty: 'Nenhuma transação com estes filtros.',
+      formLow: 'forma baixa', formHigh: 'forma ótima',
       setTitle: 'Definições do UI+', setTheme: 'Tema', setDark: 'Escuro', setLight: 'Claro', setAccent: 'Cor de destaque',
       setDensity: 'Densidade', setComfortable: 'Confortável', setCompact: 'Compacta', setModules: 'Módulos',
       setReset: 'Repor definições', setReload: 'Recarregar para aplicar', setLive: 'As alterações aplicam-se logo',
@@ -466,6 +468,8 @@ html.mx-light .mxr-sk.top{color:#0b3d17;}
 .mxr-sk.down{outline:1.5px solid var(--bad);outline-offset:-1.5px;}
 .mxr-sk.up{outline:1.5px solid var(--good);outline-offset:-1.5px;}
 .mxr-sk.upd{outline:1.5px solid #58a6ff;outline-offset:-1.5px;}
+.mxr-sk.low{color:var(--bad)!important;font-weight:800;}
+.mxr-sk.high{color:var(--good)!important;font-weight:800;}
 .mxr-meter{display:flex;align-items:center;gap:6px;justify-content:flex-end;}
 .mxr-meter i{display:block;height:5px;border-radius:9px;background:var(--accent);opacity:.85;}
 .mxr-meter span{min-width:34px;text-align:right;font-variant-numeric:tabular-nums;}
@@ -999,6 +1003,12 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     return mark;
   }
 
+  function formMark(td) {
+    const fc = (td.querySelector('font')?.getAttribute('color') || '').toLowerCase();
+    const red = fc === 'red' || /^#?f{2}0{4}$/.test(fc), green = fc === 'green' || /^#?0{2}(80|ff)0{2}$/.test(fc);
+    return { v: toNum(td.textContent), m: red ? 'low' : green ? 'high' : '' };
+  }
+
   function parseRoster() {
     const rows = [];
     const groups = [];
@@ -1043,7 +1053,8 @@ html.mx .mx-rank > .main_row{min-width:560px;}
           sale, inj: inj.length ? inj.join(' · ') + (nameExtra ? ' (' + nameExtra + ')' : '') : null,
           coach: trOk, coachTip: stripTags(trImg?.getAttribute('title') || '') || (trOk ? t('hasCoach') : t('noCoach')),
           age: toNum(c[3].textContent), maxid: toNum(c[4].textContent), fans: toNum(c[5].textContent),
-          emp: v(6), forma: v(7),
+          // Form uses its own colors: red font = low form, green font = top form (not rise/drop markers)
+          emp: v(6), forma: formMark(c[7]),
           trainOk, trainTip: stripTags(tnImg?.getAttribute('title') || '') || (trainOk ? t('trains') : t('noTrains')),
           // fewer than 5 official events in the last 10 weeks means losing fans
           ev: evNum, evTip: evTitle, evRisk: evNum != null && evNum < 5,
@@ -1098,7 +1109,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     const skillCell = (o, title) => {
       const val = o?.v;
       const cls = 'mxr-sk' + (val >= 15 ? ' top' : val >= 10 ? ' b' : '') + (o?.m ? ' ' + o.m : '');
-      const tip = (title ? title + ': ' : '') + (val ?? '–') + (o?.m === 'down' ? ' · ' + t('mDown') : o?.m === 'up' ? ' · ' + t('mUp') : o?.m === 'upd' ? ' · ' + t('mUpd') : '');
+      const tip = (title ? title + ': ' : '') + (val ?? '–') + (o?.m === 'down' ? ' · ' + t('mDown') : o?.m === 'up' ? ' · ' + t('mUp') : o?.m === 'upd' ? ' · ' + t('mUpd') : o?.m === 'low' ? ' · ' + t('formLow') : o?.m === 'high' ? ' · ' + t('formHigh') : '');
       return h('span', { class: cls, title: tip, style: st.heat ? { background: heatBg(val) } : null }, val ?? '–');
     };
 
@@ -1205,6 +1216,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
         h('span', {}, '0', h('i', { class: 'sw', style: { background: `linear-gradient(90deg,${heatBg(0)},${heatBg(10)},${heatBg(20)})` } }), '20'),
         h('span', {}, h('b', {}, t('lgBold')), ' ≥ 10 · ', h('b', {}, t('lgTop')), ' ≥ 15'),
         h('span', {}, t('lgOutline'), h('span', { style: { color: 'var(--bad)' } }, t('lgDown')), ' · ', h('span', { style: { color: 'var(--good)' } }, t('lgUp')), ' · ', h('span', { style: { color: '#58a6ff' } }, t('lgUpd'))),
+        h('span', {}, lab.forma + ': ', h('span', { style: { color: 'var(--bad)' } }, t('formLow')), ' · ', h('span', { style: { color: 'var(--good)' } }, t('formHigh'))),
         h('span', {}, t('lgHelp')));
 
       function renderTable() {
