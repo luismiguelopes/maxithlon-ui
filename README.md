@@ -35,7 +35,7 @@ It only changes how pages **look**. It never submits forms, makes extra requests
 
 The script works with **any site language**. Game data (skill names, groups, tooltips) is read from the page itself, and parsing relies on page structure (column order, element position, CSS classes, image names), never on text.
 
-The script's own interface is translated into English and Portuguese and picks the site's language automatically, falling back to English. Translations live in the `I18N` object at the top of the script. Pull requests for more languages are welcome.
+UI+ works with the game in any language. Its own buttons and labels are available in English and Portuguese, picked from the site's language automatically (English is used for other languages). Translations live in the `I18N` object at the top of the script. Pull requests for more languages are welcome.
 
 ## Installation
 
