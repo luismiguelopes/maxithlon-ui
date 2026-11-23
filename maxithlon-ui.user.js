@@ -61,6 +61,14 @@
   const tile = (k, v, s, o = {}) => h('div', { class: 'mx-tile ' + (o.cls || '') + (o.onclick ? ' click' : ''), onclick: o.onclick || null, title: o.title || null },
     h('div', { class: 'k' }, k), h('div', { class: 'v' }, v), s ? h('div', { class: 's' }, s) : null, o.extra || null);
   const sectionTitle = (title, aside) => h('div', { class: 'mx-card-t' }, h('span', {}, title), aside ? h('span', { class: 'mx-card-a' }, aside) : null);
+  // CSV with ";" and a BOM, so Excel opens it with the right columns and accents
+  const downloadCSV = (name, header, lines) => {
+    const q = (x) => '"' + String(x ?? '').replace(/"/g, '""') + '"';
+    const body = [header, ...lines].map((l) => l.map(q).join(';')).join('\n');
+    const a = h('a', { href: URL.createObjectURL(new Blob(['﻿' + body], { type: 'text/csv;charset=utf-8' })), download: name + '-' + new Date().toISOString().slice(0, 10) + '.csv' });
+    document.body.append(a); a.click(); a.remove();
+  };
+  const meter = (val, max, d = 0) => h('div', { class: 'mxr-meter' }, h('i', { style: { width: Math.round(((val || 0) / (max || 1)) * 34) + 'px' } }), h('span', {}, fmt(val, d)));
 
   const theme = LS.get('theme', 'dark');
   const enabled = LS.get('enabled', true);
@@ -110,6 +118,16 @@
       tTotal: 'Σ skills', tTotalVs: (d) => d + ' vs average', tTotalS: '8 skills', tSpec: 'Specialty',
       tBest: 'Strongest', tWeak: 'Weakest', q4: 'excellent', q3: 'good', q2: 'weak', q1: 'very weak',
       tipMore: 'More', tipLess: 'Less', tipT: 'Show or hide the page explanation',
+      mkResults: 'Results', mkResultsS: (n, tot) => `${n} on this page · ${tot} in total`,
+      mkCheapest: 'Cheapest', mkAvgPrice: 'Average price', mkBestValue: 'Best value', mkBestValueS: '€ per MAXID point',
+      mkEnding: 'Ending first', mkFits: 'Fits my roster', mkFitsS: 'above your group average',
+      mkNoRoster: 'open your Athletes list to compare', mkPrice: 'Price', mkPerMaxid: '€/MAXID', mkPerMaxidT: 'Price per MAXID point (lower is better value)',
+      mkLeft: 'Time left', mkLeftT: 'Time until the deadline (server time)', mkEnded: 'ended',
+      mkFit: 'vs roster', mkFitT: 'Sum of the 8 skills compared with your roster average for the same group',
+      mkFitTip: (s, g, a, n) => `Σ ${s} vs your ${g} average ${a} (${n} athletes)`,
+      mkSearch: 'Search athlete or country…', mkPageNote: 'Sorting and filters apply to the results on this page.',
+      mkSave: '★ Save view', mkSaveT: 'Save the current filters as a quick view', mkRemove: 'Remove this view',
+      mkCsvFile: 'market', mkEmpty: 'No results match these filters.',
     },
     pt: {
       palette: 'Paleta de comandos (Ctrl+K ou /)', toLight: 'Mudar para tema claro', toDark: 'Mudar para tema escuro',
@@ -145,6 +163,16 @@
       tTotal: 'Σ habilidades', tTotalVs: (d) => d + ' vs média', tTotalS: '8 habilidades', tSpec: 'Especialidade',
       tBest: 'Ponto forte', tWeak: 'Ponto fraco', q4: 'excelente', q3: 'bom', q2: 'fraco', q1: 'muito fraco',
       tipMore: 'Mais', tipLess: 'Menos', tipT: 'Mostrar ou esconder a explicação da página',
+      mkResults: 'Resultados', mkResultsS: (n, tot) => `${n} nesta página · ${tot} no total`,
+      mkCheapest: 'Mais barato', mkAvgPrice: 'Preço médio', mkBestValue: 'Melhor valor', mkBestValueS: '€ por ponto de MAXID',
+      mkEnding: 'Termina primeiro', mkFits: 'Serve o plantel', mkFitsS: 'acima da média do grupo',
+      mkNoRoster: 'abre a lista de Atletas para comparar', mkPrice: 'Preço', mkPerMaxid: '€/MAXID', mkPerMaxidT: 'Preço por ponto de MAXID (mais baixo = melhor valor)',
+      mkLeft: 'Falta', mkLeftT: 'Tempo até ao prazo (hora do servidor)', mkEnded: 'terminou',
+      mkFit: 'vs plantel', mkFitT: 'Soma das 8 habilidades comparada com a média do teu plantel no mesmo grupo',
+      mkFitTip: (s, g, a, n) => `Σ ${s} vs média dos teus ${g} ${a} (${n} atletas)`,
+      mkSearch: 'Procurar atleta ou país…', mkPageNote: 'A ordenação e os filtros aplicam-se aos resultados desta página.',
+      mkSave: '★ Guardar vista', mkSaveT: 'Guardar os filtros atuais como vista rápida', mkRemove: 'Remover esta vista',
+      mkCsvFile: 'mercado', mkEmpty: 'Nenhum resultado com estes filtros.',
     },
   };
   const LOCALE = root.lang || navigator.language || 'en';
@@ -381,6 +409,30 @@ html.mx-light .mxr-sk.top{color:#0b3d17;}
 .mxr-legend{display:flex;flex-wrap:wrap;gap:14px;color:var(--muted);font-size:11.5px;margin-top:10px;align-items:center;}
 .mxr-legend .sw{display:inline-block;width:46px;height:8px;border-radius:9px;vertical-align:middle;margin:0 4px;}
 .mx-hide-orig > table[id^="atleti"],.mx-hide-orig > table[id^="atleti"] + br{display:none!important;}
+
+/* ---------- market ---------- */
+.mx-hide-orig-mk > table.results{display:none!important;}
+.mxm .mx-tile.on{border-color:var(--accent);}
+.mxm-num{font-variant-numeric:tabular-nums;}
+.mxm-dim{color:var(--muted);}
+.mxm-views:empty{display:none;}
+.mxm-view{padding:0;gap:0;overflow:hidden;}
+.mxm-view > span:first-child{padding:6px 4px 6px 12px;}
+.mxm-view .x{padding:6px 10px 6px 6px;opacity:.6;}
+.mxm-view .x:hover{opacity:1;}
+html.mx table.mx-pager{margin:10px 0!important;}
+html.mx table.mx-pager td{border:0!important;background:transparent!important;}
+html.mx table.mx-pager a{display:inline-block;padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text)!important;text-decoration:none!important;font-size:12.5px;}
+html.mx table.mx-pager a:hover{border-color:var(--accent);}
+
+/* ---------- legacy data tables (market stats, transfers, finances…) ---------- */
+html.mx #middle_section table.results,html.mx #middle_section table.man_details{width:100%!important;background:var(--surface)!important;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);border-collapse:separate!important;border-spacing:0;margin:6px 0 16px;}
+html.mx #middle_section table.results td,html.mx #middle_section table.man_details td{padding:7px 8px!important;background:transparent!important;border:0!important;border-bottom:1px solid var(--border)!important;color:var(--text);}
+html.mx #middle_section table.results tr:last-child td,html.mx #middle_section table.man_details tr:last-child td{border-bottom:0!important;}
+html.mx #middle_section table.results tbody tr:hover td,html.mx #middle_section table.man_details tr:hover td{background:var(--surface3)!important;}
+html.mx #middle_section table.results th{white-space:nowrap;}
+html.mx #middle_section table.results tfoot{display:none;}
+html.mx #middle_section table.results td,html.mx #middle_section table.man_details td{font-variant-numeric:tabular-nums;}
 
 /* ---------- athlete page ---------- */
 .mxa{display:grid;grid-template-columns:minmax(260px,330px) 1fr;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:6px 0 16px;box-shadow:var(--shadow);font-family:var(--font);color:var(--text);}
@@ -899,7 +951,6 @@ html.mx .mx-rank > .main_row{min-width:560px;}
       const tip = (title ? title + ': ' : '') + (val ?? '–') + (o?.m === 'down' ? ' · ' + t('mDown') : o?.m === 'up' ? ' · ' + t('mUp') : o?.m === 'upd' ? ' · ' + t('mUpd') : '');
       return h('span', { class: cls, title: tip, style: st.heat ? { background: heatBg(val) } : null }, val ?? '–');
     };
-    const meter = (val, max, d = 0) => h('div', { class: 'mxr-meter' }, h('i', { style: { width: Math.round(((val || 0) / (max || 1)) * 34) + 'px' } }), h('span', {}, fmt(val, d)));
 
     const cols = () => {
       const one = st.grp !== 'all' ? groups.find((g) => g.name === st.grp) : null;
@@ -948,11 +999,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     function exportCSV() {
       const vis = sorted(view());
       const hdr = [t('csvName'), t('csvGroup'), t('csvGender'), lab.age, 'MAXID', lab.fans, lab.emp, lab.forma, ...lab.base, t('csvSpec1'), t('csvSpec1v'), t('csvSpec2'), t('csvSpec2v'), t('csvTotal'), t('colTrain'), t('csvEv'), lab.coach, t('forSale'), t('injured')];
-      const q = (x) => '"' + String(x ?? '').replace(/"/g, '""') + '"';
-      const lines = [hdr.map(q).join(';'), ...vis.map((r) => [r.name, r.group, r.gender, r.age, r.maxid, r.fans, r.emp.v, r.forma.v, ...BASE.map((b) => r[b.k].v), r.spec[0], r.s1.v, r.spec[1], r.s2.v, r.total, r.trainOk ? t('yes') : t('no'), r.ev, r.coach ? t('yes') : t('no'), r.sale || '', r.inj || ''].map(q).join(';'))];
-      const blob = new Blob(['﻿' + lines.join('\n')], { type: 'text/csv;charset=utf-8' });
-      const a = h('a', { href: URL.createObjectURL(blob), download: t('csvFile') + '-' + new Date().toISOString().slice(0, 10) + '.csv' });
-      document.body.append(a); a.click(); a.remove();
+      downloadCSV(t('csvFile'), hdr, vis.map((r) => [r.name, r.group, r.gender, r.age, r.maxid, r.fans, r.emp.v, r.forma.v, ...BASE.map((b) => r[b.k].v), r.spec[0], r.s1.v, r.spec[1], r.s2.v, r.total, r.trainOk ? t('yes') : t('no'), r.ev, r.coach ? t('yes') : t('no'), r.sale || '', r.inj || '']));
     }
 
     function sorted(list) {
@@ -1023,6 +1070,234 @@ html.mx .mx-rank > .main_row{min-width:560px;}
       }
 
       ui.replaceChildren(cards, tools1, tools2, tableWrap, legend);
+      renderTable();
+    }
+    render();
+  }
+
+  /* ------------------------------------------------------------------ *
+   * Market search results (mercato.php after a search)
+   * The site shows 20 results per page in table.results:
+   * 0 flag · 1 name (link, <font color> gender, then two spans: deadline
+   * and price) · 2 age · 3 MAXID · 4 group · 5 commitment · 6-11 base
+   * skills · 12-13 specialty skills. Only this page's rows are used: no
+   * requests to other pages.
+   * ------------------------------------------------------------------ */
+  // Server clock from the header (#ora, HH:MM:SS), as an offset from the local clock.
+  // Rounded to 15 minutes, which is what time zones step by.
+  function serverNow() {
+    const now = new Date();
+    const m = ($('#ora')?.textContent || '').match(/(\d{1,2}):(\d{2}):(\d{2})/);
+    if (!m) return now;
+    let d = (+m[1] * 3600 + +m[2] * 60 + +m[3]) - (now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds());
+    if (d > 43200) d -= 86400;
+    if (d < -43200) d += 86400;
+    return new Date(now.getTime() + Math.round(d / 900) * 900 * 1000);
+  }
+  // "15:13 23-11-2026" (day first; swapped if the second number can't be a month)
+  const parseWhen = (s) => {
+    const m = (s || '').match(/(\d{1,2}):(\d{2})\D+(\d{1,2})\D(\d{1,2})\D(\d{4})/);
+    if (!m) return null;
+    const [H, M, a, b, y] = m.slice(1).map(Number);
+    const [d, mo] = b > 12 ? [b, a] : [a, b];
+    return new Date(y, mo - 1, d, H, M);
+  };
+  const fmtLeft = (ms) => {
+    if (ms == null) return '–';
+    if (ms <= 0) return t('mkEnded');
+    const m = Math.floor(ms / 60000), d = Math.floor(m / 1440), hh = Math.floor((m % 1440) / 60), mm = m % 60;
+    return d ? `${d}d ${hh}h` : hh ? `${hh}h ${String(mm).padStart(2, '0')}m` : `${mm}m`;
+  };
+  // Own roster averages per group (saved by the Athletes list), with the group colors in roster order
+  const rosterRef = () => {
+    const ra = LS.get('rosterAvg', null);
+    const groups = ra?.groups || {};
+    const keys = Object.keys(groups);
+    return {
+      get: (name) => groups[(name || '').toLowerCase()] || null,
+      color: (name) => { const i = keys.indexOf((name || '').toLowerCase()); return i >= 0 ? GROUP_COLORS[i % GROUP_COLORS.length] : 'var(--muted)'; },
+      has: keys.length > 0,
+    };
+  };
+  const sumSkills = (o) => [...BASE.map((b) => o[b.k]), o.s1, o.s2].reduce((s, x) => s + (x || 0), 0);
+
+  function parseMarket(tbl) {
+    const head = Array.from((tbl.tHead || tbl).rows[0].cells).map((c) => c.textContent.trim());
+    if (head.length < 14) return null;
+    const lab = { age: head[2], maxid: head[3], group: head[4], emp: head[5], base: head.slice(6, 12), spec: [head[12], head[13]] };
+    const rows = [];
+    Array.from(tbl.tBodies[0]?.rows || []).forEach((tr) => {
+      const c = tr.cells;
+      if (c.length < 14) return;
+      const a = c[1].querySelector('a[href*="atleta"]');
+      if (!a) return;
+      const col = (c[1].querySelector('font')?.getAttribute('color') || '').toUpperCase();
+      const spans = $$('span', c[1]).map((s) => s.textContent.trim());
+      const whenTxt = spans.find((s) => /\d:\d\d/.test(s)) || '';
+      const priceTxt = spans.find((s) => s !== whenTxt && /\d/.test(s)) || '';
+      const flag = c[0].querySelector('img');
+      const v = (i) => toNum(c[i].textContent);
+      const r = {
+        tr, name: a.textContent.replace(/\s+/g, ' ').trim(), href: a.href,
+        gender: col === '#E63CE6' ? 'F' : col === '#32A9AF' ? 'M' : '?',
+        flagSrc: flag?.getAttribute('src') || null, flagTitle: stripTags(flag?.getAttribute('title') || ''),
+        whenTxt, when: parseWhen(whenTxt), price: toNum(priceTxt),
+        age: v(2), maxid: v(3), group: c[4].textContent.replace(/\s+/g, ' ').trim(), emp: v(5), s1: v(12), s2: v(13),
+      };
+      BASE.forEach((b, i) => { r[b.k] = v(6 + i); });
+      r.total = sumSkills(r);
+      r.perMaxid = r.price != null && r.maxid ? r.price / r.maxid : null;
+      rows.push(r);
+    });
+    return { rows, lab };
+  }
+
+  function marketPage() {
+    const host = $('.page_details');
+    const tbl = host && $('table.results', host);
+    if (!tbl) return;
+    const parsed = parseMarket(tbl);
+    if (!parsed || !parsed.rows.length) return;
+    const { rows, lab } = parsed;
+
+    // "Results 1 to 20 of 888": the text right before the table; the last number is the total
+    let total = null;
+    for (let n = tbl.previousSibling; n && total == null; n = n.previousSibling) {
+      const nums = (n.textContent || '').match(/\d[\d.\s]*/g);
+      if (nums && nums.length >= 3) total = toNum(nums[nums.length - 1]);
+    }
+    // the pager is the small table right after the results
+    const pager = tbl.nextElementSibling?.tagName === 'TABLE' ? tbl.nextElementSibling : null;
+    if (pager && pager.querySelector('a')) pager.classList.add('mx-pager');
+
+    const ref = rosterRef();
+    const now = serverNow();
+    rows.forEach((r) => {
+      r.left = r.when ? r.when - now : null;
+      const g = ref.get(r.group);
+      if (g) { r.ref = g; r.refTotal = sumSkills(g); r.fit = r.total - r.refTotal; }
+    });
+    const groupNames = [...new Set(rows.map((r) => r.group))];
+
+    const st = Object.assign({ grp: 'all', gender: 'all', q: '', fit: false, sort: { k: 'left', d: 1 }, heat: true, orig: false }, LS.get('market', {}));
+    const save = () => LS.set('market', { grp: st.grp, gender: st.gender, fit: st.fit, sort: st.sort, heat: st.heat });
+    let views = LS.get('marketViews', []);
+
+    const ui = h('div', { class: 'mxr mxm' });
+    tbl.parentNode.insertBefore(ui, tbl);
+    const applyOrig = () => host.classList.toggle('mx-hide-orig-mk', !st.orig);
+    applyOrig();
+
+    const skill = (val, title) => h('span', { class: 'mxr-sk' + (val >= 15 ? ' top' : val >= 10 ? ' b' : ''), title: (title ? title + ': ' : '') + (val ?? '–'), style: st.heat ? { background: heatBg(val) } : null }, val ?? '–');
+    const money = (n) => (n == null ? '–' : '€ ' + fmt(n));
+
+    function view() {
+      const q = st.q.toLowerCase();
+      return rows.filter((r) => (st.grp === 'all' || r.group === st.grp)
+        && (st.gender === 'all' || r.gender === st.gender)
+        && (!st.fit || r.fit > 0)
+        && (!q || r.name.toLowerCase().includes(q) || r.flagTitle.toLowerCase().includes(q)));
+    }
+
+    const cols = () => {
+      const vis = view();
+      const maxMx = Math.max(1, ...vis.map((r) => r.maxid || 0));
+      const maxT = Math.max(1, ...vis.map((r) => r.total || 0));
+      return [
+        { k: 'name', label: t('athlete'), l: true, sv: (r) => r.name, td: (r) => h('div', { class: 'mxr-name' },
+          h('span', { class: 'mxr-g ' + r.gender, title: r.gender === 'F' ? t('female') : r.gender === 'M' ? t('male') : '' }),
+          r.flagSrc ? h('img', { src: r.flagSrc, title: r.flagTitle, alt: '' }) : null,
+          h('a', { href: r.href }, r.name)) },
+        { k: 'group', label: lab.group, l: true, sv: (r) => r.group, td: (r) => { const c = ref.color(r.group); return h('span', { class: 'mxr-grp', style: { background: `color-mix(in srgb, ${c} 14%, transparent)`, color: c } }, r.group); } },
+        { k: 'age', label: lab.age, sv: (r) => r.age, td: (r) => fmt(r.age) },
+        { k: 'maxid', label: 'MAXID', sv: (r) => r.maxid, td: (r) => meter(r.maxid, maxMx) },
+        { k: 'price', label: t('mkPrice'), sep: true, sv: (r) => r.price, td: (r) => h('span', { class: 'mxm-num' }, money(r.price)) },
+        { k: 'per', label: t('mkPerMaxid'), title: t('mkPerMaxidT'), sv: (r) => r.perMaxid, td: (r) => h('span', { class: 'mxm-num' }, fmt(r.perMaxid, 1)) },
+        { k: 'left', label: t('mkLeft'), title: t('mkLeftT'), sv: (r) => r.left, td: (r) => h('span', {
+          class: 'mx-badge pill ' + (r.left == null ? '' : r.left <= 0 ? 'bad' : r.left < 3600e3 ? 'warn' : ''), title: r.whenTxt }, fmtLeft(r.left)) },
+        { k: 'emp', label: lab.emp, title: lab.emp, sep: true, sv: (r) => r.emp, td: (r) => skill(r.emp, lab.emp) },
+        ...BASE.map((b, i) => ({ k: b.k, label: lab.base[i], title: lab.base[i], sep: i === 0, sv: (r) => r[b.k], td: (r) => skill(r[b.k], lab.base[i]) })),
+        { k: 's1', label: lab.spec[0], title: t('spec1T'), sep: true, sv: (r) => r.s1, td: (r) => skill(r.s1, lab.spec[0]) },
+        { k: 's2', label: lab.spec[1], title: t('spec2T'), sv: (r) => r.s2, td: (r) => skill(r.s2, lab.spec[1]) },
+        { k: 'total', label: 'Σ', title: t('totalT'), sep: true, sv: (r) => r.total, td: (r) => meter(r.total, maxT) },
+        { k: 'fit', label: t('mkFit'), title: ref.has ? t('mkFitT') : t('mkNoRoster'), sv: (r) => r.fit, td: (r) => (r.fit == null ? h('span', { class: 'mxm-dim', title: t('mkNoRoster') }, '–')
+          : h('span', { class: 'mx-badge pill ' + (r.fit > 0 ? 'good' : r.fit < 0 ? 'bad' : ''), title: t('mkFitTip', r.total, r.group, fmt(r.refTotal, 1), r.ref.n) }, (r.fit > 0 ? '+' : '') + fmt(r.fit, 1))) },
+      ];
+    };
+
+    function sorted(list) {
+      const c = cols().find((x) => x.k === st.sort.k) || cols().find((x) => x.k === 'left');
+      return list.slice().sort((a, b) => {
+        const A = c.sv(a), B = c.sv(b);
+        if (A == null && B == null) return 0; if (A == null) return 1; if (B == null) return -1;
+        return (typeof A === 'string' ? A.localeCompare(B, LOCALE) : A - B) * st.sort.d;
+      });
+    }
+
+    function exportCSV() {
+      const hdr = [t('csvName'), lab.group, t('csvGender'), lab.age, 'MAXID', t('mkPrice'), t('mkPerMaxid'), t('mkLeft'), lab.emp, ...lab.base, lab.spec[0], lab.spec[1], t('csvTotal'), t('mkFit')];
+      downloadCSV(t('mkCsvFile'), hdr, sorted(view()).map((r) => [r.name, r.group, r.gender, r.age, r.maxid, r.price, r.perMaxid == null ? '' : r.perMaxid.toFixed(2), r.whenTxt, r.emp, ...BASE.map((b) => r[b.k]), r.s1, r.s2, r.total, r.fit == null ? '' : r.fit.toFixed(1)]));
+    }
+
+    const viewName = () => [st.grp === 'all' ? t('all') : st.grp, st.gender === 'M' ? '♂' : st.gender === 'F' ? '♀' : '', st.fit ? '★' : '', st.q ? '“' + st.q + '”' : ''].filter(Boolean).join(' · ');
+
+    function render() {
+      const minBy = (fn) => rows.filter((r) => fn(r) != null).sort((a, b) => fn(a) - fn(b))[0];
+      const cheap = minBy((r) => r.price), value = minBy((r) => r.perMaxid), soon = minBy((r) => (r.left > 0 ? r.left : null));
+      const nFit = rows.filter((r) => r.fit > 0).length;
+      const cards = h('div', { class: 'mx-tiles' },
+        tile(t('mkResults'), rows.length, total != null ? t('mkResultsS', rows.length, fmt(total)) : ''),
+        tile(t('mkCheapest'), money(cheap?.price), cheap?.name),
+        tile(t('mkAvgPrice'), money(avg(rows.map((r) => r.price)))),
+        tile(t('mkBestValue'), fmt(value?.perMaxid, 1), value ? value.name + ' · ' + t('mkBestValueS') : t('mkBestValueS')),
+        tile(t('mkEnding'), fmtLeft(soon?.left), soon?.name, { cls: soon && soon.left < 3600e3 ? 'warn' : '' }),
+        ref.has
+          ? tile(t('mkFits'), nFit, t('mkFitsS'), { cls: (nFit ? 'good' : '') + (st.fit ? ' on' : ''), title: t('clickFilter'), onclick: () => { st.fit = !st.fit; save(); render(); } })
+          : tile(t('mkFits'), '–', t('mkNoRoster')));
+
+      const chip = (on, label, onclick, extra) => h('button', { class: 'mx-chip' + (on ? ' on' : ''), onclick }, extra || null, label);
+      const search = h('input', { type: 'text', placeholder: t('mkSearch'), value: st.q, oninput: (e) => { st.q = e.target.value; renderTable(); } });
+      const tools1 = h('div', { class: 'mxr-tools' },
+        chip(st.grp === 'all', [t('all'), h('span', { class: 'n' }, rows.length)], () => { st.grp = 'all'; save(); render(); }),
+        groupNames.map((g) => chip(st.grp === g, [g, h('span', { class: 'n' }, rows.filter((r) => r.group === g).length)], () => { st.grp = g; save(); render(); },
+          h('span', { class: 'dot', style: { background: ref.color(g) } }))));
+      const tools2 = h('div', { class: 'mxr-tools' },
+        ['all', 'M', 'F'].map((g) => chip(st.gender === g, g === 'all' ? t('both') : g === 'M' ? t('maleChip') : t('femaleChip'), () => { st.gender = g; save(); render(); })),
+        ref.has ? chip(st.fit, t('mkFits'), () => { st.fit = !st.fit; save(); render(); }) : null,
+        h('div', { class: 'mxr-search' }, search),
+        h('button', { class: 'mx-btn', title: t('heatT'), onclick: () => { st.heat = !st.heat; save(); render(); } }, st.heat ? t('heatOn') : t('heatOff')),
+        h('button', { class: 'mx-btn', title: t('csvT'), onclick: exportCSV }, '⇩ CSV'),
+        h('button', { class: 'mx-btn', title: t('origT'), onclick: () => { st.orig = !st.orig; applyOrig(); render(); } }, st.orig ? t('origHide') : t('origShow')));
+
+      // saved views: named sets of the filters above, kept in localStorage
+      const same = (v) => v.grp === st.grp && v.gender === st.gender && !!v.fit === !!st.fit && (v.q || '') === st.q;
+      const tools3 = h('div', { class: 'mxr-tools mxm-views' },
+        views.map((v, i) => h('span', { class: 'mx-chip mxm-view' + (same(v) ? ' on' : '') },
+          h('span', { onclick: () => { Object.assign(st, { grp: v.grp, gender: v.gender, fit: !!v.fit, q: v.q || '' }); save(); render(); } }, v.name),
+          h('span', { class: 'x', title: t('mkRemove'), onclick: () => { views = views.filter((_, j) => j !== i); LS.set('marketViews', views); render(); } }, '×'))),
+        views.some(same) ? null : h('button', { class: 'mx-btn', title: t('mkSaveT'), onclick: () => {
+          views = [...views, { name: viewName(), grp: st.grp, gender: st.gender, fit: st.fit, q: st.q }];
+          LS.set('marketViews', views); render();
+        } }, t('mkSave')));
+
+      const tableWrap = h('div', { class: 'mx-table-wrap' });
+      const legend = h('div', { class: 'mxr-legend' },
+        h('span', {}, '0', h('i', { class: 'sw', style: { background: `linear-gradient(90deg,${heatBg(0)},${heatBg(10)},${heatBg(20)})` } }), '20'),
+        h('span', {}, h('b', {}, t('lgBold')), ' ≥ 10 · ', h('b', {}, t('lgTop')), ' ≥ 15'),
+        h('span', {}, t('mkPageNote')));
+
+      function renderTable() {
+        const cs = cols();
+        const list = sorted(view());
+        const thead = h('thead', {}, h('tr', {}, cs.map((c) => h('th', {
+          class: (c.l ? 'l ' : '') + (c.sep ? 'sep ' : '') + (st.sort.k === c.k ? 'sorted' : ''), title: c.title || null,
+          onclick: () => { st.sort = { k: c.k, d: st.sort.k === c.k ? -st.sort.d : (['name', 'group', 'age', 'price', 'per', 'left'].includes(c.k) ? 1 : -1) }; save(); renderTable(); },
+        }, c.label, st.sort.k === c.k ? (st.sort.d > 0 ? ' ▲' : ' ▼') : ''))));
+        const tbody = h('tbody', {}, list.map((r) => h('tr', {}, cs.map((c) => h('td', { class: (c.l ? 'l ' : '') + (c.sep ? 'sep' : '') }, c.td(r))))));
+        tableWrap.replaceChildren(list.length ? h('table', { class: 'mx-table sortable' }, thead, tbody) : h('div', { class: 'mx-empty-state' }, t('mkEmpty')));
+      }
+
+      ui.replaceChildren(cards, tools1, tools2, tools3, tableWrap, legend);
       renderTable();
     }
     render();
@@ -1433,6 +1708,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     injectCSS();
     try { markCurrent(); } catch (e) { console.warn('[UI+] nav', e); }
     try { if (/lista_atleti\.php$/.test(path)) rosterPage(); } catch (e) { console.warn('[UI+] roster', e); }
+    try { if (/mercato\.php$/.test(path)) marketPage(); } catch (e) { console.warn('[UI+] market', e); }
     try { if (/atleta_one\.php$/.test(path)) athleteLayout(); } catch (e) { console.warn('[UI+] athlete layout', e); }
     try { if (/atleta_one\.php$/.test(path)) athletePage(); } catch (e) { console.warn('[UI+] athlete', e); }
     try { decorateIcons(); eventIcons(); } catch (e) { console.warn('[UI+] icons', e); }
