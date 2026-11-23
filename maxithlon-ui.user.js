@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Maxithlon UI+
 // @namespace    v3mpire.maxithlon.uiplus
-// @version      1.2.0
+// @version      1.2.1
 // @description  A modern interface for Maxithlon: dark/light theme, wide layout, roster dashboard with filters and heat map, athlete skill radar and a command palette (Ctrl+K). Works with any site language.
 // @author       luismiguelopes
 // @license      MIT
@@ -447,7 +447,7 @@ html.mx #middle_section h4.heading strong,html.mx #middle_section h4.heading a{c
   /* ------------------------------------------------------------------ *
    * Dock + command palette
    * ------------------------------------------------------------------ */
-  function setTheme(t) { LS.set('theme', t); location.reload(); }
+  function setTheme(next) { LS.set('theme', next); location.reload(); }
   function setEnabled(v) { LS.set('enabled', v); location.reload(); }
 
   function buildDock() {
@@ -578,15 +578,15 @@ html.mx #middle_section h4.heading strong,html.mx #middle_section h4.heading a{c
     const rows = [];
     const groups = [];
     let lab = null; // column labels, in the site's language
-    $$('table[id^="atleti"]').forEach((t, gi) => {
-      if (!t.rows.length) return;
-      const head = Array.from(t.rows[0].cells).map((c) => c.textContent.trim());
+    $$('table[id^="atleti"]').forEach((tbl, gi) => {
+      if (!tbl.rows.length) return;
+      const head = Array.from(tbl.rows[0].cells).map((c) => c.textContent.trim());
       if (head.length < 18) return;
       const group = head[1] || t('group', gi + 1);
       if (!lab) lab = { coach: head[2], age: head[3], fans: head[5], emp: head[6], forma: head[7], base: head.slice(8, 14) };
-      const isYouth = t.id === 'atleti8' || t.classList.contains('youth');
+      const isYouth = tbl.id === 'atleti8' || tbl.classList.contains('youth');
       groups.push({ name: group, spec: [head[14], head[15]], color: GROUP_COLORS[gi % GROUP_COLORS.length], youth: isYouth });
-      Array.from(t.tBodies[0]?.rows || []).forEach((tr) => {
+      Array.from(tbl.tBodies[0]?.rows || []).forEach((tr) => {
         const c = tr.cells;
         if (c.length < 18) return;
         const a = c[1].querySelector('a[href*="atleta"]') || c[1].querySelector('a');
