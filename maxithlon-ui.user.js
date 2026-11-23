@@ -220,9 +220,10 @@ html.mx #right_section > div,html.mx #right_part > div{background:var(--surface)
 html.mx #right_section > div *,html.mx #right_part > div *{background-image:none;}
 html.mx #right_section ul,html.mx #right_part ul{padding:0!important;margin:0!important;}
 html.mx #right_section p,html.mx #right_part p{margin:0 0 8px!important;padding:0!important;color:var(--muted)!important;font-size:12px!important;line-height:1.45!important;}
-html.mx #right_section form,html.mx #right_part form{margin:0 0 10px!important;padding:0!important;}
-html.mx #right_section .coach h4,html.mx #right_part .coach h4{margin:12px 0 8px!important;padding:0!important;font:600 13.5px/1.3 var(--font)!important;background:none!important;}
-.mx-plan{display:grid;grid-template-columns:auto 1fr auto;gap:7px 10px;align-items:center;font:12.5px/1.2 var(--font);color:var(--text);}
+html.mx #right_section form,html.mx #right_part form{margin:0 0 10px!important;padding:0!important;float:none!important;width:auto!important;}
+html.mx #right_section .coach h4,html.mx #right_part .coach h4{margin:12px 0 8px!important;padding:0!important;font:600 13.5px/1.3 var(--font)!important;background:none!important;float:none!important;}
+html.mx #right_section .coach h4 a,html.mx #right_part .coach h4 a{font:inherit!important;}
+.mx-plan{clear:both;display:grid;grid-template-columns:auto 1fr auto;gap:7px 10px;align-items:center;font:12.5px/1.2 var(--font);color:var(--text);}
 .mx-plan .cap{grid-column:1/-1;color:var(--muted);font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
 .mx-plan .val{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;}
 .mx-plan .mx-bar{display:block;width:auto;height:6px;}
@@ -317,7 +318,7 @@ html:not(.mx) .mx-dock{background:#161b22;}
 .mx-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;box-shadow:var(--shadow);cursor:default;position:relative;overflow:hidden;min-width:0;font-family:var(--font);color:var(--text);}
 .mx-tile.click{cursor:pointer;}
 .mx-tile.click:hover{border-color:var(--accent);}
-.mx-tile .k{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mx-tile .k{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);}
 .mx-tile .v{font-size:24px;font-weight:700;margin-top:4px;letter-spacing:-.02em;line-height:1.15;}
 .mx-tile .s{font-size:12px;color:var(--muted);margin-top:2px;}
 .mx-tile.warn .v{color:var(--warn);} .mx-tile.bad .v{color:var(--bad);} .mx-tile.good .v{color:var(--good);}
