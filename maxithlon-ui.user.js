@@ -854,6 +854,10 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     return { rows, groups, lab };
   }
 
+  // Another club's pages carry its id in ?u=; our own id comes from the club link in the sidebar.
+  const ownClubId = () => { try { return new URL($('#left_section a[href*="dettagli_societa"]').href).searchParams.get('u'); } catch (e) { return null; } };
+  const foreignClubPage = () => { const u = new URLSearchParams(location.search).get('u'); return !!u && u !== ownClubId(); };
+
   function saveRosterAverages(rows, groups) {
     const out = {};
     groups.forEach((g) => {
@@ -874,7 +878,8 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     if (!host || !first) return;
     const { rows, groups, lab } = parseRoster();
     if (!rows.length) return;
-    saveRosterAverages(rows, groups);
+    // only our own roster is the reference for the athlete radar
+    if (!foreignClubPage()) saveRosterAverages(rows, groups);
 
     const st = Object.assign({ grp: 'all', gender: 'all', q: '', flags: [], sort: { k: 'maxid', d: -1 }, heat: true, orig: false }, LS.get('roster', {}));
     const save = () => LS.set('roster', { grp: st.grp, gender: st.gender, sort: st.sort, heat: st.heat, flags: st.flags });
