@@ -2,29 +2,13 @@
 
 Planned work for Maxithlon UI+. Items are grouped by milestone, roughly in priority order. The scope rule never changes: UI+ only changes **presentation**. It does not submit forms, automate actions or work around game rules.
 
-Pages already redesigned: **Athletes list** (roster dashboard) and **athlete page**. Every other page only gets the theme, colors and icons so far.
+Pages already redesigned: **Athletes list** (roster dashboard) and **athlete page**. Every other page gets the theme, colors, icons, collapsible intro, footer and right column styles so far.
 
 ## Done
 
 - **1.2:** parsing that works with any site language; UI translated (English, Portuguese).
 - **1.3:** athlete page redesign (profile, skills, radar, rankings and notes cards); top bar icons on a single row; buttons and page tabs without the legacy borders and shadows.
-
-## 1.4 — Design system and polish
-
-Make every page feel like one product before redesigning more of them.
-
-- [ ] **Shared components**: card, section title, stat tile, data table, tag/chip, empty state and form controls, documented in the CSS and reused by every page module.
-- [ ] **Legacy colors**: replace the pink, olive and teal text the site still uses (e.g. "50.5%" and "€ 15 608" in the right column, female athlete values) with theme colors.
-- [ ] **Right column**: restyle the "Put up for sale" and "Assign to coach" boxes (price input + button on one row, training plan as a small table with bars instead of colored text).
-- [ ] **Athlete page details**:
-  - empty tiles (e.g. sponsor) aligned with the others;
-  - full club name in a tooltip (the site cuts it to "Petisc...");
-  - "Clubs interested in the athlete" as a proper badge or link;
-  - the event icons (pink squares) restyled or replaced with SVG.
-- [ ] **Page intro text** (`.user_tip`): collapsible, so long explanations don't push the content down.
-- [ ] **Footer**: modern layout without the old logo image and underlined link lists.
-- [ ] **Responsive layout**: check tablet and narrow-window widths, where the right column is hidden and cards should stack.
-- [ ] **Check other athlete page variants**: youth academy athletes, athletes from other clubs, athletes on the market and injured athletes.
+- **1.4:** shared design-system components; legacy colors mapped to the theme; right column forms and coach plan; athlete page details (empty tiles, full club names, interested clubs badge, SVG event pictograms); collapsible page intros; new footer; responsive layout; checked on youth, own and other clubs' athletes and athletes on the market.
 
 ## 1.5 — Robustness and languages
 
@@ -33,6 +17,7 @@ Make every page feel like one product before redesigning more of them.
 - [ ] **Graceful degradation**: when a page changes and a module fails, show a small "UI+ could not load this panel" notice instead of failing silently.
 - [ ] **Settings panel** in the dock: theme, accent color, density (compact/comfortable), and turning individual modules on or off.
 - [ ] **Confirm what the red Form value means** in the roster and show it properly in the legend.
+- [ ] **Injured athlete page**: check the layout when an athlete is injured (no injured athlete was available to test 1.4).
 
 ## 1.6 — Home and navigation
 

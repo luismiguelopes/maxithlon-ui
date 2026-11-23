@@ -2,6 +2,22 @@
 
 All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.org/): fixes bump the patch number, new features bump the minor number.
 
+## [1.4.0] — 2026-11-23
+
+### Added
+- Shared design-system components (card, section title, stat tile, data table, chip, badge, empty state, form row), documented in the CSS and used by the roster and the athlete radar.
+- Legacy text colors (olive, teal, magenta, red) mapped to theme colors in both themes, including content loaded later.
+- Right column: "Put up for sale" and "Assign to coach" forms on one row; the coach's training plan shown as bars.
+- Athlete page: empty tiles show a dash aligned with the other values; full club name (remembered from any page that shows it) instead of the cut one; "Clubs interested in the athlete" as a count badge.
+- Event pictograms in SVG, in the athlete's gender color, replacing the square event images.
+- Page intro text (`.user_tip`) collapsed to one line, with More/Less (remembered).
+- New footer: link columns in a card, without the old logo and underlines.
+- Responsive layout: below 1100px the right column moves under the content with its boxes side by side; the top bar wraps; the rankings table scrolls.
+
+### Fixed
+- Opening another club's athletes list no longer overwrites your group averages used by the athlete radar.
+- Club names inside market text no longer get an action icon.
+
 ## [1.3.1] — 2026-11-23
 
 ### Added
@@ -33,6 +49,7 @@ All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.or
 - UI translated into English and Portuguese, picked from the site's language with English as fallback.
 - `@updateURL` / `@downloadURL` pointing to this repository, so userscript managers update automatically.
 
+[1.4.0]: https://github.com/luismiguelopes/maxithlon-ui/releases/tag/v1.4.0
 [1.3.1]: https://github.com/luismiguelopes/maxithlon-ui/releases/tag/v1.3.1
 [1.3.0]: https://github.com/luismiguelopes/maxithlon-ui/releases/tag/v1.3.0
 [1.2.1]: https://github.com/luismiguelopes/maxithlon-ui/releases/tag/v1.2.1

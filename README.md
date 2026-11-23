@@ -20,14 +20,18 @@ It only changes how pages **look**. It never submits forms, makes extra requests
 ## Features
 
 - **Dark / light theme** with an adaptive dark mode that also fixes the colors of content loaded later via AJAX.
-- **Wide, flexible layout** instead of the original fixed-width columns.
+- **Wide, flexible layout** instead of the original fixed-width columns. On narrow windows the right column moves under the content.
+- **Theme colors everywhere**: the site's legacy olive, teal, magenta and red text is mapped to the theme palette.
+- **Collapsible page intros**: the long explanation at the top of each page shows one line until you expand it.
 - **Command palette** (`Ctrl+K` or `/`): jump to any page in the menu, top bar or current page tabs. Recently used pages come first.
 - **Roster dashboard** (`Athletes` page):
   - summary cards (gender split, average age and MAXID, athletes not training, fan risk, injuries, for sale, without coach);
   - filters by group, gender and status, plus search by name or country;
   - sortable table with a 0–20 heat map and the site's rise/drop markers;
   - CSV export of the current view (opens in Excel).
-- **Athlete skill radar**: the 8 skills (6 base + 2 specialty) compared with your roster's average for that group.
+- **Athlete page** as cards (profile, skills, rankings, notes) with a **skill radar**: the 8 skills (6 base + 2 specialty) compared with your roster's average for that group. Full club names instead of the site's cut ones, once seen on another page.
+- **Right column**: price and coach forms on one row, the coach's training plan as bars.
+- **Event pictograms** (sprint, hurdles, jumps, throws…) in the athlete's gender color instead of the square images.
 - **Skill bars** colored from red (0) to green (20).
 - **Consistent SVG icons** for the menus, top bar and athlete actions.
 
