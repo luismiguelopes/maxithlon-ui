@@ -2,7 +2,7 @@
 
 Planned work for Maxithlon UI+. Items are grouped by milestone, roughly in priority order. The scope rule never changes: UI+ only changes **presentation**. It does not submit forms, automate actions or work around game rules.
 
-Pages already redesigned: **Athletes list** (roster dashboard), **athlete page** and **market search results**. Every other page gets the theme, colors, icons, collapsible intro, footer and right column styles so far.
+Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**, **market search results**, **finances** and **last transactions**. Every other page gets the theme, colors, icons, collapsible intro, footer and right column styles so far.
 
 ## Done
 
@@ -10,12 +10,7 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 - **1.3:** athlete page redesign (profile, skills, radar, rankings and notes cards); top bar icons on a single row; buttons and page tabs without the legacy borders and shadows.
 - **1.4:** shared design-system components; legacy colors mapped to the theme; right column forms and coach plan; athlete page details (empty tiles, full club names, interested clubs badge, SVG event pictograms); collapsible page intros; new footer; responsive layout; checked on youth, own and other clubs' athletes and athletes on the market.
 - **1.5:** market search results dashboard (price per MAXID, time left, fit with your roster, saved views, CSV); legacy data tables (market statistics, transfers) as cards.
-
-## 1.6 — Finances
-
-- [ ] Finances page (`/user/budget_det.php`) redesign with income vs. expenses charts.
-- [ ] Breakdown by category (salaries, staff, stadium, transfers…).
-- [ ] Week-over-week change highlights.
+- **1.6:** finances dashboard (income vs expenses per period, category breakdown, week-over-week changes) and last transactions dashboard (daily chart, categories, filterable table).
 
 ## 1.7 — Robustness and languages
 

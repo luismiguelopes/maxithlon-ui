@@ -2,6 +2,14 @@
 
 All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.org/): fixes bump the patch number, new features bump the minor number.
 
+## [1.6.0] — 2026-11-23
+
+### Added
+- Finances page as a dashboard: current cash, loyalty and the balance of each period as tiles; income vs expenses bars for this week, last week and last season.
+- Category breakdown per period, sorted by amount, with each category's share of the total.
+- Week-over-week changes: the current week shows how much each category rose or fell against last week, and which ones are new.
+- Last transactions page as a dashboard: income, expenses, net and count tiles; a daily chart (income up, expenses down); totals by category; a sortable table filtered by type or reason, with CSV export.
+
 ## [1.5.0] — 2026-11-23
 
 ### Added
