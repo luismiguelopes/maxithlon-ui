@@ -528,6 +528,7 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
     const els = scope.nodeType === 1 ? [scope, ...scope.querySelectorAll('*')] : [];
     for (const el of els) {
       if (el.matches(SKIP_DARKFIX)) continue;
+      const mapped = el.classList.contains('mx-lc');
       const cs = getComputedStyle(el);
       // light backgrounds -> dark surface (skips thin skill bars)
       const bg = parseRGB(cs.backgroundColor);
@@ -542,7 +543,7 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
       }
       // dark text -> light (keeps the hue if it is colored)
       const hasText = Array.from(el.childNodes).some((n) => n.nodeType === 3 && n.textContent.trim());
-      if (!hasText) continue;
+      if (!hasText || mapped) continue;
       const fg = parseRGB(cs.color);
       if (!fg) continue;
       const hsl = rgbToHsl(fg);
@@ -553,13 +554,39 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
     }
   }
 
-  function watchDark() {
-    if (theme !== 'dark') return;
+  /* Legacy text colors (olive, teal, magenta, brick…) mapped to theme
+   * colors, in both themes. Matched by RGB value, never by text. Links
+   * keep the link color, except the gender colors. */
+  const LEGACY_COLORS = [
+    [[131, 153, 62], 'var(--good)'], // olive: percentages, positive values
+    [[23, 160, 168], 'var(--link)'], [[23, 161, 169], 'var(--link)'], [[37, 166, 173], 'var(--link)'], [[37, 204, 173], 'var(--link)'], // teal: counters, prices
+    [[50, 169, 175], 'var(--male)', true], // #32A9AF male names
+    [[230, 60, 230], 'var(--female)', true], [[173, 37, 166], 'var(--female)', true], // #E63CE6 female names and values
+    [[161, 77, 67], 'var(--accent)'], [[240, 73, 53], 'var(--accent)'], // brick / red-orange headings
+  ];
+  const SKIP_LEGACY = 'svg,svg *,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,#left_section,#left_section *,.mx-logo,.mx-logo *';
+  function legacyColors(scope) {
+    const els = scope.nodeType === 1 ? [scope, ...scope.querySelectorAll('*')] : [];
+    for (const el of els) {
+      if (el.matches(SKIP_LEGACY)) continue;
+      if (!Array.from(el.childNodes).some((n) => n.nodeType === 3 && n.textContent.trim())) continue;
+      const c = parseRGB(getComputedStyle(el).color);
+      if (!c) continue;
+      const hit = LEGACY_COLORS.find(([[r, g, b]]) => Math.abs(c.r - r) + Math.abs(c.g - g) + Math.abs(c.b - b) <= 12);
+      if (!hit) continue;
+      const inLink = !hit[2] && el.closest('a');
+      el.style.setProperty('color', inLink ? 'var(--link)' : hit[1], 'important');
+      el.classList.add('mx-lc');
+    }
+  }
+
+  // Content loaded later by AJAX gets the same color fixes.
+  function watchDom() {
     let pending = new Set(); let timer = null;
     const mo = new MutationObserver((muts) => {
       for (const m of muts) for (const n of m.addedNodes) if (n.nodeType === 1 && !n.closest('.mxr,.mxa,.mx-dock,.mx-pal-bg')) pending.add(n);
       clearTimeout(timer);
-      timer = setTimeout(() => { const p = pending; pending = new Set(); p.forEach((n) => n.isConnected && darkFix(n)); }, 60);
+      timer = setTimeout(() => { const p = pending; pending = new Set(); p.forEach((n) => { if (n.isConnected) { legacyColors(n); darkFix(n); } }); }, 60);
     });
     mo.observe(document.body, { childList: true, subtree: true });
   }
@@ -1207,7 +1234,10 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
     try { restyleBars(); } catch (e) { console.warn('[UI+] bars', e); }
     buildDock();
     bindKeys();
-    requestAnimationFrame(() => { try { darkFix(document.body); watchDark(); } catch (e) { console.warn('[UI+] dark', e); } });
+    requestAnimationFrame(() => {
+      try { legacyColors(document.body); } catch (e) { console.warn('[UI+] colors', e); }
+      try { darkFix(document.body); watchDom(); } catch (e) { console.warn('[UI+] dark', e); }
+    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
