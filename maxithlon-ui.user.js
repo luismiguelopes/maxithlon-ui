@@ -1328,7 +1328,9 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     // ---- right-column menus ----
     $$('#right_section a, #right_part a').forEach((a) => {
       if (a.querySelector('.mx-ic, img') || !a.textContent.trim()) return;
-      const inMenu = a.closest('.right_menu, .market, .coach') || /^icon\d/.test(a.className);
+      // actions only: menu entries, iconNN links and list/heading links in the market and coach boxes
+      // (not names inside a sentence, e.g. the club with the best offer)
+      const inMenu = a.closest('.right_menu') || /^icon\d/.test(a.className) || (a.closest('.market, .coach') && a.closest('li, h4'));
       if (!inMenu) return;
       a.classList.add('mx-ri');
       a.prepend(svgIcon(iconFor(a), 15));
