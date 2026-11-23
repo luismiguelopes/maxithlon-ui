@@ -221,6 +221,7 @@ html.mx .page_bar ul{display:flex!important;flex-wrap:wrap;gap:6px;background:no
 html.mx .page_bar li{float:none!important;background:none!important;margin:0!important;padding:0!important;width:auto!important;height:auto!important;border:0!important;}
 html.mx .page_bar li a{display:block;padding:7px 14px!important;border-radius:999px;background:var(--surface)!important;border:1px solid var(--border)!important;color:var(--text)!important;
   text-decoration:none!important;font-size:12.5px!important;height:auto!important;line-height:1.3!important;border-image:none!important;box-shadow:none!important;background-image:none!important;}
+html.mx .page_bar *{box-shadow:none!important;}
 html.mx .page_bar li a:hover{border-color:var(--accent)!important;}
 html.mx .page_bar li a.mx-current{background:var(--accent)!important;border-color:var(--accent)!important;color:#fff!important;}
 
