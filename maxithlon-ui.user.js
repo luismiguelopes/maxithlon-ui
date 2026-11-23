@@ -72,6 +72,9 @@
 
   const theme = LS.get('theme', 'dark');
   const enabled = LS.get('enabled', true);
+  // User settings (dock gear): accent color, density and modules turned off
+  const ACCENTS = ['#ff7a1a', '#3b82f6', '#22c55e', '#a855f7', '#ec4899', '#ef4444', '#14b8a6', '#eab308'];
+  const settings = Object.assign({ accent: ACCENTS[0], density: 'comfortable', off: [] }, LS.get('settings', {}));
   const root = document.documentElement;
 
   /* ------------------------------------------------------------------ *
@@ -131,6 +134,13 @@
       fnIncVsExp: 'Income vs expenses', fnVsPrev: (p) => 'vs ' + p, fnShare: 'share of the total', fnNew: 'new',
       fnNet: 'Net', fnCount: 'Transactions', fnByDay: 'By day', fnByCat: 'By category', fnAll: 'All',
       fnSearch: 'Search reason…', fnCsvFile: 'transactions', fnEmpty: 'No transactions match these filters.',
+      setTitle: 'UI+ settings', setTheme: 'Theme', setDark: 'Dark', setLight: 'Light', setAccent: 'Accent color',
+      setDensity: 'Density', setComfortable: 'Comfortable', setCompact: 'Compact', setModules: 'Modules',
+      setReset: 'Reset settings', setReload: 'Reload to apply', setLive: 'Changes apply right away',
+      modRoster: 'Athletes list dashboard', modMarket: 'Market dashboard', modFinances: 'Finances dashboard',
+      modTransactions: 'Transactions dashboard', modAthlete: 'Athlete page cards and radar', modIcons: 'SVG icons and event pictograms',
+      modRightCol: 'Right column forms', modTips: 'Collapsible page intros', modBars: 'Colored skill bars', modPalette: 'Command palette (Ctrl+K)',
+      failPanel: (n) => `UI+ could not load this panel (${n}). The original page is shown instead.`, failDetails: 'Details in the console',
     },
     pt: {
       palette: 'Paleta de comandos (Ctrl+K ou /)', toLight: 'Mudar para tema claro', toDark: 'Mudar para tema escuro',
@@ -179,6 +189,13 @@
       fnIncVsExp: 'Receitas vs despesas', fnVsPrev: (p) => 'vs ' + p, fnShare: 'do total', fnNew: 'novo',
       fnNet: 'Saldo', fnCount: 'Transações', fnByDay: 'Por dia', fnByCat: 'Por categoria', fnAll: 'Todas',
       fnSearch: 'Procurar motivo…', fnCsvFile: 'transacoes', fnEmpty: 'Nenhuma transação com estes filtros.',
+      setTitle: 'Definições do UI+', setTheme: 'Tema', setDark: 'Escuro', setLight: 'Claro', setAccent: 'Cor de destaque',
+      setDensity: 'Densidade', setComfortable: 'Confortável', setCompact: 'Compacta', setModules: 'Módulos',
+      setReset: 'Repor definições', setReload: 'Recarregar para aplicar', setLive: 'As alterações aplicam-se logo',
+      modRoster: 'Painel da lista de atletas', modMarket: 'Painel do mercado', modFinances: 'Painel das finanças',
+      modTransactions: 'Painel das transações', modAthlete: 'Cartões e radar da página do atleta', modIcons: 'Ícones SVG e pictogramas das provas',
+      modRightCol: 'Formulários da coluna direita', modTips: 'Introduções das páginas recolhíveis', modBars: 'Barras de habilidade coloridas', modPalette: 'Paleta de comandos (Ctrl+K)',
+      failPanel: (n) => `O UI+ não conseguiu carregar este painel (${n}). Está a ser mostrada a página original.`, failDetails: 'Detalhes na consola',
     },
   };
   const LOCALE = root.lang || navigator.language || 'en';
@@ -330,6 +347,47 @@ html:not(.mx) .mx-dock{background:#161b22;}
 .mx-pal li{padding:9px 12px;border-radius:9px;display:flex;justify-content:space-between;gap:12px;cursor:pointer;color:var(--text);font-size:14px;}
 .mx-pal li small{color:var(--muted);font-size:12px;}
 .mx-pal li.on{background:var(--accent-soft);color:var(--accent);}
+/* ---------- settings panel ---------- */
+.mx-set{width:min(480px,92vw);color:var(--text);}
+.mx-set-h{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border);}
+.mx-set-h > span{display:inline-flex;align-items:center;gap:8px;font:700 15px/1.2 var(--font);}
+.mx-set-x,.mx-notice-x{all:unset;cursor:pointer;font-size:20px;line-height:1;color:var(--muted);padding:0 4px;}
+.mx-set-x:hover,.mx-notice-x:hover{color:var(--text);}
+.mx-set-body{padding:6px 18px 12px;max-height:62vh;overflow:auto;}
+.mx-set-row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--border);}
+.mx-set-row .l{font-size:13.5px;font-weight:600;}
+.mx-set .hint{font-size:11.5px;color:var(--muted);}
+.mx-set-sub{font:600 11px/1.2 var(--font);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:14px 0 6px;}
+.mx-set-mod{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:13px;cursor:pointer;}
+.mx-set-mod input{accent-color:var(--accent);width:16px;height:16px;margin:0;}
+.mx-set-f{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 18px;border-top:1px solid var(--border);}
+.mx-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
+.mx-seg{display:inline-flex;padding:3px;border-radius:10px;background:var(--surface3);gap:2px;}
+.mx-seg button{all:unset;cursor:pointer;padding:5px 12px;border-radius:8px;font-size:12.5px;color:var(--muted);}
+.mx-seg button.on{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.2);}
+.mx-swatches{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;}
+.mx-swatches .sw{all:unset;cursor:pointer;width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(0,0,0,.12);}
+.mx-swatches .sw.on{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--text);}
+
+/* ---------- module failure notice ---------- */
+.mx-notice{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 14px;padding:10px 14px;border-radius:12px;border:1px solid rgba(227,179,65,.45);background:rgba(227,179,65,.1);color:var(--text);font:13px/1.4 var(--font);}
+.mx-notice > svg{color:var(--warn);}
+.mx-notice > span{flex:1 1 220px;}
+
+/* ---------- compact density ---------- */
+html.mx-compact body{font-size:12.5px;}
+html.mx-compact table.mx-table td{padding:3px 4px!important;}
+html.mx-compact table.mx-table th{padding:6px 4px!important;}
+html.mx-compact .mxr-sk{padding:1px 0;}
+html.mx-compact .mx-tiles{gap:8px;margin-bottom:10px;}
+html.mx-compact .mx-tile{padding:8px 11px;}
+html.mx-compact .mx-tile .v{font-size:19px;}
+html.mx-compact .mx-card{padding:11px 14px!important;margin-bottom:11px!important;}
+html.mx-compact .mxr-tools{gap:6px;margin-bottom:7px;}
+html.mx-compact .mx-chip{padding:4px 10px;}
+html.mx-compact .mxf-item{padding:3px 0;}
+html.mx-compact #middle_section table.results td,html.mx-compact #middle_section table.man_details td,html.mx-compact #middle_section table.tablesorter td{padding:4px 6px!important;}
+
 .mx-pal .mx-pal-foot{padding:8px 14px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;display:flex;gap:14px;}
 
 /* ==================================================================
@@ -678,7 +736,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     }
     return { h: hh, s, l };
   };
-  const SKIP_DARKFIX = 'svg,svg *,img,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-hero,.mx-hero *,.mx-skills,.mx-skills *,.mx-rank,.mx-rank *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,#left_section,#left_section *';
+  const SKIP_DARKFIX = 'svg,svg *,img,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-hero,.mx-hero *,.mx-skills,.mx-skills *,.mx-rank,.mx-rank *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,.mx-notice,.mx-notice *,#left_section,#left_section *';
 
   function darkFix(scope) {
     if (theme !== 'dark') return;
@@ -722,7 +780,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     [[161, 77, 67], 'var(--accent)'], // brick headings
     [[240, 73, 53], 'var(--bad)'], // red-orange: negative values, delete actions
   ];
-  const SKIP_LEGACY = 'svg,svg *,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,#left_section,#left_section *,.mx-logo,.mx-logo *';
+  const SKIP_LEGACY = 'svg,svg *,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,.mx-notice,.mx-notice *,#left_section,#left_section *,.mx-logo,.mx-logo *';
   function legacyColors(scope) {
     const els = scope.nodeType === 1 ? [scope, ...scope.querySelectorAll('*')] : [];
     for (const el of els) {
@@ -742,7 +800,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
   function watchDom() {
     let pending = new Set(); let timer = null;
     const mo = new MutationObserver((muts) => {
-      for (const m of muts) for (const n of m.addedNodes) if (n.nodeType === 1 && !n.closest('.mxr,.mxa,.mx-dock,.mx-pal-bg')) pending.add(n);
+      for (const m of muts) for (const n of m.addedNodes) if (n.nodeType === 1 && !n.closest('.mxr,.mxa,.mx-dock,.mx-pal-bg,.mx-notice')) pending.add(n);
       clearTimeout(timer);
       timer = setTimeout(() => { const p = pending; pending = new Set(); p.forEach((n) => { if (n.isConnected) { eventIcons(n); legacyColors(n); darkFix(n); } }); }, 60);
     });
@@ -769,8 +827,9 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     const dock = h('div', { class: 'mx-dock' });
     if (enabled) {
       dock.append(
-        h('button', { class: 'mx-d', title: t('palette'), onclick: openPalette }, svgIcon('search', 16), h('kbd', {}, 'Ctrl K')),
+        moduleOn('palette') ? h('button', { class: 'mx-d', title: t('palette'), onclick: openPalette }, svgIcon('search', 16), h('kbd', {}, 'Ctrl K')) : null,
         h('button', { class: 'mx-d', title: theme === 'dark' ? t('toLight') : t('toDark'), onclick: () => setTheme(theme === 'dark' ? 'light' : 'dark') }, svgIcon(theme === 'dark' ? 'sun' : 'moon', 16)),
+        h('button', { class: 'mx-d', title: t('setTitle'), onclick: openSettings }, svgIcon('settings', 16)),
         h('button', { class: 'mx-d', title: t('turnOff'), onclick: () => setEnabled(false) }, svgIcon('power', 16)),
       );
     } else {
@@ -805,6 +864,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     const recent = LS.get('recent', []);
     const actions = [
       { label: theme === 'dark' ? t('lightTheme') : t('darkTheme'), group: 'UI+', run: () => setTheme(theme === 'dark' ? 'light' : 'dark') },
+      { label: t('setTitle'), group: 'UI+', run: openSettings },
       { label: t('turnOffShort'), group: 'UI+', run: () => setEnabled(false) },
     ];
     const all = [...items, ...actions];
@@ -849,9 +909,59 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     input.focus();
   }
 
+  /* ------------------------------------------------------------------ *
+   * Settings panel (dock gear or palette): theme, accent, density and
+   * modules. Accent and density apply at once; theme and modules reload.
+   * ------------------------------------------------------------------ */
+  const moduleOn = (k) => !settings.off.includes(k);
+  const saveSettings = () => LS.set('settings', settings);
+  function applySettings() {
+    const hex = /^#[0-9a-f]{6}$/i.test(settings.accent) ? settings.accent : ACCENTS[0];
+    const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+    root.style.setProperty('--accent', hex);
+    root.style.setProperty('--accent-soft', `rgba(${r},${g},${b},.14)`);
+    root.classList.toggle('mx-compact', settings.density === 'compact');
+  }
+
+  function openSettings() {
+    if ($('.mx-set-bg')) return;
+    let reload = false;
+    const bg = h('div', { class: 'mx-pal-bg mx-set-bg', onclick: (e) => { if (e.target === bg) close(); } });
+    const close = () => { bg.remove(); document.removeEventListener('keydown', onKey); };
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+    const seg = (opts, cur, pick) => h('div', { class: 'mx-seg' }, opts.map(([v, label]) => h('button', { class: v === cur ? 'on' : '', onclick: () => pick(v) }, label)));
+    const row = (label, ctrl, hint) => h('div', { class: 'mx-set-row' }, h('div', {}, h('div', { class: 'l' }, label), hint ? h('div', { class: 'hint' }, hint) : null), ctrl);
+    function render() {
+      const panel = h('div', { class: 'mx-pal mx-set' },
+        h('div', { class: 'mx-set-h' }, h('span', {}, svgIcon('settings', 18), t('setTitle')), h('button', { class: 'mx-set-x', title: t('palClose'), onclick: close }, '×')),
+        h('div', { class: 'mx-set-body' },
+          row(t('setTheme'), seg([['dark', t('setDark')], ['light', t('setLight')]], theme, (v) => { if (v !== theme) setTheme(v); })),
+          row(t('setAccent'), h('div', { class: 'mx-swatches' }, ACCENTS.map((c) => h('button', {
+            class: 'sw' + (c === settings.accent ? ' on' : ''), style: { background: c }, title: c,
+            onclick: () => { settings.accent = c; saveSettings(); applySettings(); render(); },
+          })))),
+          row(t('setDensity'), seg([['comfortable', t('setComfortable')], ['compact', t('setCompact')]], settings.density, (v) => { settings.density = v; saveSettings(); applySettings(); render(); })),
+          h('div', { class: 'mx-set-sub' }, t('setModules')),
+          MODULES.filter((m) => m.label).map((m) => h('label', { class: 'mx-set-mod' },
+            h('input', { type: 'checkbox', checked: moduleOn(m.k), onchange: (e) => {
+              settings.off = e.target.checked ? settings.off.filter((x) => x !== m.k) : [...settings.off, m.k];
+              saveSettings(); reload = true; render();
+            } }),
+            h('span', {}, t(m.label))))),
+        h('div', { class: 'mx-set-f' },
+          h('button', { class: 'mx-btn', onclick: () => { LS.set('settings', {}); location.reload(); } }, t('setReset')),
+          reload ? h('button', { class: 'mx-btn primary', onclick: () => location.reload() }, t('setReload')) : h('span', { class: 'hint' }, t('setLive'))));
+      bg.replaceChildren(panel);
+    }
+    document.addEventListener('keydown', onKey);
+    document.body.append(bg);
+    render();
+  }
+
   function bindKeys() {
     document.addEventListener('keydown', (e) => {
       const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName) || document.activeElement?.isContentEditable;
+      if (!moduleOn('palette')) return;
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openPalette(); }
       else if (!typing && e.key === '/') { e.preventDefault(); openPalette(); }
     });
@@ -1718,7 +1828,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     [10, 20].forEach((lv) => { const txt = S('text', { x: C + 4, y: C - (lv / 20) * R + 10, 'font-size': 8.5, fill: 'var(--muted)' }); txt.textContent = lv; svg.append(txt); });
     if (refVals && refVals.every((x) => x != null)) svg.append(S('polygon', { points: poly(refVals), fill: 'rgba(148,163,184,.14)', stroke: '#94a3b8', 'stroke-width': 1.4, 'stroke-dasharray': '4 3' }));
     const me = axes.map((a) => a.v);
-    svg.append(S('polygon', { points: poly(me), fill: 'rgba(255,122,26,.25)', stroke: 'var(--accent)', 'stroke-width': 2, 'stroke-linejoin': 'round' }));
+    svg.append(S('polygon', { points: poly(me), fill: 'color-mix(in srgb, var(--accent) 25%, transparent)', stroke: 'var(--accent)', 'stroke-width': 2, 'stroke-linejoin': 'round' }));
     me.forEach((v, i) => { const [x, y] = pt(i, v); const c = S('circle', { cx: x, cy: y, r: 3.2, fill: 'var(--accent)' }); const tt = S('title', {}); tt.textContent = `${axes[i].k}: ${v}`; c.append(tt); svg.append(c); });
 
     const total = me.reduce((s, x) => s + (x || 0), 0);
@@ -1794,6 +1904,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     chevL: '<path d="m15 18-6-6 6-6"/>',
     chevR: '<path d="m9 18 6-6-6-6"/>',
     info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
+    alert: '<path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/>',
     // event families (pictograms for the site's 16x16_<event><m|f>.png images)
     evSprint: '<circle cx="15" cy="4.5" r="2"/><path d="M7 21l3.5-6 3 2.5V22"/><path d="M5.5 11 9 8l4 1.5 2 3.5h3.5"/><path d="m9 8 1.5 7"/>',
     evHurdles: '<path d="M6 20V8M18 20V8M4 8h16M6 12h12"/>',
@@ -1982,22 +2093,60 @@ html.mx .mx-rank > .main_row{min-width:560px;}
   /* ------------------------------------------------------------------ *
    * Boot
    * ------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------ *
+   * Modules. Each one runs inside its own try/catch, so a page that
+   * changes does not break the rest. Page panels (with a path test) show
+   * a notice when they fail, and their half-built UI is removed so the
+   * original page stays usable. Modules with a label can be turned off
+   * in the settings panel.
+   * ------------------------------------------------------------------ */
+  const MODULES = [
+    { k: 'roster', label: 'modRoster', page: /lista_atleti\.php$/, run: rosterPage },
+    { k: 'market', label: 'modMarket', page: /mercato\.php$/, run: marketPage },
+    { k: 'finances', label: 'modFinances', page: /budget_det\.php$/, run: financePage },
+    { k: 'transactions', label: 'modTransactions', page: /last_budget\.php$/, run: transactionsPage },
+    { k: 'athlete', label: 'modAthlete', page: /atleta_one\.php$/, run: () => { try { athleteLayout(); } catch (e) { console.warn('[UI+] athlete layout', e); } athletePage(); } },
+    { k: 'icons', label: 'modIcons', run: () => { decorateIcons(); eventIcons(); } },
+    { k: 'clubs', run: rememberClubs },
+    { k: 'rightCol', label: 'modRightCol', run: rightColumn },
+    { k: 'tips', label: 'modTips', run: pageTips },
+    { k: 'bars', label: 'modBars', run: restyleBars },
+    { k: 'palette', label: 'modPalette', run: () => {} },
+  ];
+
+  function failNotice(m, err) {
+    const host = $('.page_details') || $('#middle_section');
+    if (!host) return;
+    // undo what the panel managed to build: its containers and the "hide original" classes
+    $$('.mxr, .mxa', host).forEach((el) => el.remove());
+    host.className = host.className.split(/\s+/).filter((c) => !c.startsWith('mx-hide-orig')).join(' ');
+    const note = h('div', { class: 'mx-notice', role: 'status' },
+      svgIcon('alert', 16),
+      h('span', {}, t('failPanel', t(m.label))),
+      h('button', { class: 'mx-btn', title: String(err && (err.stack || err.message) || err), onclick: () => console.warn('[UI+] ' + m.k, err) }, t('failDetails')),
+      h('button', { class: 'mx-btn', onclick: openSettings }, t('setTitle')),
+      h('button', { class: 'mx-notice-x', title: t('palClose'), onclick: () => note.remove() }, '×'));
+    const bar = $(':scope > .page_bar', host);
+    if (bar) bar.after(note); else host.prepend(note);
+  }
+
+  function runModules() {
+    for (const m of MODULES) {
+      if (!moduleOn(m.k) || (m.page && !m.page.test(path))) continue;
+      try { m.run(); } catch (e) {
+        console.warn('[UI+] ' + m.k, e);
+        if (m.page) try { failNotice(m, e); } catch (e2) { /* ignore */ }
+      }
+    }
+  }
+
   function start() {
     if (!enabled) { buildDock(); return; }
     root.classList.add('mx', 'mx-' + theme);
     injectCSS();
+    try { applySettings(); } catch (e) { console.warn('[UI+] settings', e); }
     try { markCurrent(); } catch (e) { console.warn('[UI+] nav', e); }
-    try { if (/lista_atleti\.php$/.test(path)) rosterPage(); } catch (e) { console.warn('[UI+] roster', e); }
-    try { if (/mercato\.php$/.test(path)) marketPage(); } catch (e) { console.warn('[UI+] market', e); }
-    try { if (/budget_det\.php$/.test(path)) financePage(); } catch (e) { console.warn('[UI+] finances', e); }
-    try { if (/last_budget\.php$/.test(path)) transactionsPage(); } catch (e) { console.warn('[UI+] transactions', e); }
-    try { if (/atleta_one\.php$/.test(path)) athleteLayout(); } catch (e) { console.warn('[UI+] athlete layout', e); }
-    try { if (/atleta_one\.php$/.test(path)) athletePage(); } catch (e) { console.warn('[UI+] athlete', e); }
-    try { decorateIcons(); eventIcons(); } catch (e) { console.warn('[UI+] icons', e); }
-    try { rememberClubs(); } catch (e) { console.warn('[UI+] clubs', e); }
-    try { rightColumn(); } catch (e) { console.warn('[UI+] right column', e); }
-    try { pageTips(); } catch (e) { console.warn('[UI+] tips', e); }
-    try { restyleBars(); } catch (e) { console.warn('[UI+] bars', e); }
+    runModules();
     buildDock();
     bindKeys();
     requestAnimationFrame(() => {
