@@ -80,7 +80,8 @@ Make every page feel like one product before redesigning more of them.
 - [ ] Local snapshots of the roster (localStorage) to show skill changes between visits.
 - [ ] Keyboard shortcuts beyond the palette (e.g. `g a` for Athletes, `g m` for Market).
 - [ ] Mobile layout.
-- [ ] Publish on Greasy Fork / OpenUserJS.
+- [x] Publish on [Greasy Fork](https://greasyfork.org/scripts/606889-maxithlon-ui).
+- [ ] Publish on OpenUserJS.
 - [ ] Optional data from other game pages via `fetch` (e.g. market data on the roster page). Needs a careful review against the game rules before starting.
 
 ## Contributing

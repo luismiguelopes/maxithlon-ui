@@ -40,8 +40,8 @@ The script's own interface is translated into English and Portuguese and picks t
 ## Installation
 
 1. Install a userscript manager such as [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/).
-2. Open [`maxithlon-ui.user.js` (raw)](https://raw.githubusercontent.com/luismiguelopes/maxithlon-ui/main/maxithlon-ui.user.js) and confirm the installation.
-3. Open Maxithlon. Updates are picked up automatically through `@updateURL`.
+2. Install the script from **[Greasy Fork](https://greasyfork.org/scripts/606889-maxithlon-ui)** (recommended) or straight from GitHub: [`maxithlon-ui.user.js` (raw)](https://raw.githubusercontent.com/luismiguelopes/maxithlon-ui/main/maxithlon-ui.user.js).
+3. Open Maxithlon. Updates are picked up automatically from wherever you installed it.
 
 Use the dock in the bottom-right corner to switch themes, open the palette or turn UI+ off (going back to the original site).
 
