@@ -1465,7 +1465,14 @@ html.mx .mx-rank > .main_row{min-width:560px;}
    * One table.tablesorter: thead (title row, then headings), tbody rows
    * date | type | reason | amount. Expenses have a red <font> amount.
    * ------------------------------------------------------------------ */
-  const isRed = (el) => { const c = parseRGB(el?.getAttribute('color') || el?.style.color || ''); return !!c && c.r > 180 && c.g < 80 && c.b < 80; };
+  const isRed = (el) => {
+    let s = (el?.getAttribute('color') || el?.style.color || '').trim().toLowerCase();
+    if (s === 'red') return true;
+    const hx = s.match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/);
+    if (hx) { const x = hx[1].length === 3 ? hx[1].replace(/./g, '$&$&') : hx[1]; s = `rgb(${parseInt(x.slice(0, 2), 16)},${parseInt(x.slice(2, 4), 16)},${parseInt(x.slice(4, 6), 16)})`; }
+    const c = parseRGB(s);
+    return !!c && c.r > 180 && c.g < 80 && c.b < 80;
+  };
 
   function transactionsPage() {
     const host = $('.page_details');
