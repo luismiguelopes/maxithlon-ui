@@ -2,6 +2,15 @@
 
 All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.org/): fixes bump the patch number, new features bump the minor number.
 
+## [1.5.0] — 2026-11-23
+
+### Added
+- Market search results as a dashboard: tiles (results, cheapest, average price, best value, ending first, athletes that fit your roster), group and gender chips, search, heat map, sortable columns and CSV export.
+- New columns: price per MAXID point, time left until the deadline (from the server clock, highlighted in the last hour) and the sum of the 8 skills compared with your roster average for the same group.
+- "Fits my roster" filter: athletes above your own group average (needs a visit to your Athletes list).
+- Saved views: keep sets of market filters as chips (stored in the browser).
+- Market statistics, transfers in progress and other legacy data tables (`results`, `man_details`) styled as cards; the results pager as a button.
+
 ## [1.4.0] — 2026-11-23
 
 ### Added

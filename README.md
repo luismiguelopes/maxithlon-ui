@@ -1,6 +1,6 @@
 # Maxithlon UI+
 
-A userscript that gives [Maxithlon](https://maxithlon.com), the online athletics management game, a modern interface: dark and light themes, a wide layout, SVG icons, a roster dashboard, an athlete skill radar and a command palette.
+A userscript that gives [Maxithlon](https://maxithlon.com), the online athletics management game, a modern interface: dark and light themes, a wide layout, SVG icons, a roster dashboard, a market dashboard, an athlete skill radar and a command palette.
 
 It only changes how pages **look**. It never submits forms, makes extra requests or automates anything in the game.
 
@@ -29,6 +29,7 @@ It only changes how pages **look**. It never submits forms, makes extra requests
   - filters by group, gender and status, plus search by name or country;
   - sortable table with a 0–20 heat map and the site's rise/drop markers;
   - CSV export of the current view (opens in Excel).
+- **Market search results** as a dashboard: cheapest, average price, best value and ending-first cards; price per MAXID point; time left to the deadline; the sum of skills compared with your roster average for the same group, with a "fits my roster" filter; group and gender filters, saved views, heat map, sorting and CSV export.
 - **Athlete page** as cards (profile, skills, rankings, notes) with a **skill radar**: the 8 skills (6 base + 2 specialty) compared with your roster's average for that group. Full club names instead of the site's cut ones, once seen on another page.
 - **Right column**: price and coach forms on one row, the coach's training plan as bars.
 - **Event pictograms** (sprint, hurdles, jumps, throws…) in the athlete's gender color instead of the square images.
