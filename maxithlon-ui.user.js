@@ -359,15 +359,15 @@ html:not(.mx) .mx-dock{background:#161b22;}
 .mx-set .hint{font-size:11.5px;color:var(--muted);}
 .mx-set-sub{font:600 11px/1.2 var(--font);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:14px 0 6px;}
 .mx-set-mod{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:13px;cursor:pointer;}
-.mx-set-mod input{accent-color:var(--accent);width:16px;height:16px;margin:0;}
+.mx-set-mod input{accent-color:var(--accent);width:16px!important;height:16px!important;margin:0!important;padding:0!important;appearance:auto!important;-webkit-appearance:checkbox!important;display:inline-block!important;opacity:1!important;position:static!important;flex:0 0 16px;}
 .mx-set-f{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 18px;border-top:1px solid var(--border);}
 .mx-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
 .mx-seg{display:inline-flex;padding:3px;border-radius:10px;background:var(--surface3);gap:2px;}
-.mx-seg button{all:unset;cursor:pointer;padding:5px 12px;border-radius:8px;font-size:12.5px;color:var(--muted);}
-.mx-seg button.on{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.2);}
+.mx-seg .mx-seg-b{all:unset;cursor:pointer;padding:5px 12px;border-radius:8px;font-size:12.5px;color:var(--muted);}
+.mx-seg .mx-seg-b.on{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.2);}
 .mx-swatches{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;}
-.mx-swatches .sw{all:unset;cursor:pointer;width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(0,0,0,.12);}
-.mx-swatches .sw.on{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--text);}
+.mx-swatches .mx-sw{all:unset;cursor:pointer;width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(0,0,0,.12);}
+.mx-swatches .mx-sw.on{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--text);}
 
 /* ---------- module failure notice ---------- */
 .mx-notice{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 14px;padding:10px 14px;border-radius:12px;border:1px solid rgba(227,179,65,.45);background:rgba(227,179,65,.1);color:var(--text);font:13px/1.4 var(--font);}
@@ -929,7 +929,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     const bg = h('div', { class: 'mx-pal-bg mx-set-bg', onclick: (e) => { if (e.target === bg) close(); } });
     const close = () => { bg.remove(); document.removeEventListener('keydown', onKey); };
     const onKey = (e) => { if (e.key === 'Escape') close(); };
-    const seg = (opts, cur, pick) => h('div', { class: 'mx-seg' }, opts.map(([v, label]) => h('button', { class: v === cur ? 'on' : '', onclick: () => pick(v) }, label)));
+    const seg = (opts, cur, pick) => h('div', { class: 'mx-seg' }, opts.map(([v, label]) => h('button', { class: 'mx-seg-b' + (v === cur ? ' on' : ''), onclick: () => pick(v) }, label)));
     const row = (label, ctrl, hint) => h('div', { class: 'mx-set-row' }, h('div', {}, h('div', { class: 'l' }, label), hint ? h('div', { class: 'hint' }, hint) : null), ctrl);
     function render() {
       const panel = h('div', { class: 'mx-pal mx-set' },
@@ -937,7 +937,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
         h('div', { class: 'mx-set-body' },
           row(t('setTheme'), seg([['dark', t('setDark')], ['light', t('setLight')]], theme, (v) => { if (v !== theme) setTheme(v); })),
           row(t('setAccent'), h('div', { class: 'mx-swatches' }, ACCENTS.map((c) => h('button', {
-            class: 'sw' + (c === settings.accent ? ' on' : ''), style: { background: c }, title: c,
+            class: 'mx-sw' + (c === settings.accent ? ' on' : ''), style: { background: c }, title: c,
             onclick: () => { settings.accent = c; saveSettings(); applySettings(); render(); },
           })))),
           row(t('setDensity'), seg([['comfortable', t('setComfortable')], ['compact', t('setCompact')]], settings.density, (v) => { settings.density = v; saveSettings(); applySettings(); render(); })),
