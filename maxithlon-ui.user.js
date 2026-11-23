@@ -128,6 +128,9 @@
       mkSearch: 'Search athlete or country…', mkPageNote: 'Sorting and filters apply to the results on this page.',
       mkSave: '★ Save view', mkSaveT: 'Save the current filters as a quick view', mkRemove: 'Remove this view',
       mkCsvFile: 'market', mkEmpty: 'No results match these filters.',
+      fnIncVsExp: 'Income vs expenses', fnVsPrev: (p) => 'vs ' + p, fnShare: 'share of the total', fnNew: 'new',
+      fnNet: 'Net', fnCount: 'Transactions', fnByDay: 'By day', fnByCat: 'By category', fnAll: 'All',
+      fnSearch: 'Search reason…', fnCsvFile: 'transactions', fnEmpty: 'No transactions match these filters.',
     },
     pt: {
       palette: 'Paleta de comandos (Ctrl+K ou /)', toLight: 'Mudar para tema claro', toDark: 'Mudar para tema escuro',
@@ -173,6 +176,9 @@
       mkSearch: 'Procurar atleta ou país…', mkPageNote: 'A ordenação e os filtros aplicam-se aos resultados desta página.',
       mkSave: '★ Guardar vista', mkSaveT: 'Guardar os filtros atuais como vista rápida', mkRemove: 'Remover esta vista',
       mkCsvFile: 'mercado', mkEmpty: 'Nenhum resultado com estes filtros.',
+      fnIncVsExp: 'Receitas vs despesas', fnVsPrev: (p) => 'vs ' + p, fnShare: 'do total', fnNew: 'novo',
+      fnNet: 'Saldo', fnCount: 'Transações', fnByDay: 'Por dia', fnByCat: 'Por categoria', fnAll: 'Todas',
+      fnSearch: 'Procurar motivo…', fnCsvFile: 'transacoes', fnEmpty: 'Nenhuma transação com estes filtros.',
     },
   };
   const LOCALE = root.lang || navigator.language || 'en';
@@ -424,6 +430,40 @@ html.mx table.mx-pager{margin:10px 0!important;}
 html.mx table.mx-pager td{border:0!important;background:transparent!important;}
 html.mx table.mx-pager a{display:inline-block;padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text)!important;text-decoration:none!important;font-size:12.5px;}
 html.mx table.mx-pager a:hover{border-color:var(--accent);}
+
+/* ---------- finances ---------- */
+.mx-hide-orig-fin > table.tablesorter,.mx-hide-orig-fin > .mxf-fact,.mx-hide-orig-fin > br{display:none!important;}
+.mxf .mx-tile .v{font-size:21px;}
+.mxf .inc{background:var(--good);color:var(--good);} .mxf .exp{background:var(--bad);color:var(--bad);}
+.mxf b.inc,.mxf b.exp,.mxf .mxf-amt{background:none!important;}
+.mxf-key{display:inline-flex;align-items:center;gap:6px;}
+.mxf-key i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-left:8px;}
+.mxf-cmp-row{display:grid;grid-template-columns:minmax(150px,220px) 1fr 1fr;gap:14px;align-items:center;padding:7px 0;border-top:1px solid var(--border);}
+.mxf-cmp-row:first-of-type{border-top:0;}
+.mxf-cmp-t{display:flex;flex-direction:column;gap:4px;font-weight:600;font-size:12.5px;}
+.mxf-cmp-t .mx-badge{align-self:flex-start;}
+.mxf-bar{display:flex;align-items:center;gap:8px;min-width:0;}
+.mxf-bar i{display:block;height:12px;border-radius:6px;min-width:2px;opacity:.85;}
+.mxf-bar span{font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--text);}
+.mxf-sides{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+.mxf-side-t{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding-bottom:6px;border-bottom:1px solid var(--border);margin-bottom:6px;}
+.mxf-side-t b{font-size:14px;letter-spacing:0;}
+.mxf-item{padding:5px 0;}
+.mxf-item-l{display:flex;align-items:center;gap:6px;font-size:12.5px;}
+.mxf-item-l > span:first-child{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mxf-item-l b{font-variant-numeric:tabular-nums;white-space:nowrap;}
+.mxf-track{height:5px;border-radius:9px;background:var(--surface3);margin-top:4px;overflow:hidden;}
+.mxf-track i{display:block;height:100%;border-radius:9px;opacity:.8;}
+.mxf-d{font-size:11px;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.mxf-d.up{color:var(--good);} .mxf-d.down{color:var(--bad);}
+.mxf-vs{font-size:11.5px;color:var(--muted);margin-right:8px;}
+.mxf-days-wrap{overflow-x:auto;}
+svg.mxf-days{width:100%;min-width:320px;height:auto;max-height:220px;display:block;}
+svg.mxf-days .axis{stroke:var(--border);}
+svg.mxf-days rect.inc{fill:var(--good);opacity:.85;} svg.mxf-days rect.exp{fill:var(--bad);opacity:.85;}
+svg.mxf-days g:hover rect{opacity:1;}
+svg.mxf-days text{fill:var(--muted);font:10px var(--font);}
+@media (max-width:900px){.mxf-sides{grid-template-columns:1fr;}.mxf-cmp-row{grid-template-columns:1fr;}}
 
 /* ---------- legacy data tables (market stats, transfers, finances…) ---------- */
 html.mx #middle_section table.results,html.mx #middle_section table.man_details{width:100%!important;background:var(--surface)!important;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);border-collapse:separate!important;border-spacing:0;margin:6px 0 16px;}
@@ -1308,6 +1348,233 @@ html.mx .mx-rank > .main_row{min-width:560px;}
   }
 
   /* ------------------------------------------------------------------ *
+   * Finances (budget_det.php)
+   * Direct table.tablesorter children of .page_details, one per period
+   * (this week, last week, last season). Rows by position:
+   * 0 title · 1 income/expense headings · 2 two nested tables with
+   * label | (empty) | amount · 3 totals (<b>label</b> amount) · 4 balance.
+   * Above them, <b>label</b> value pairs: current cash and loyalty.
+   * ------------------------------------------------------------------ */
+  const euro = (n) => (n == null ? '–' : '€ ' + Number(n).toLocaleString(LOCALE, { maximumFractionDigits: 0, useGrouping: 'always' }));
+  const signed = (n) => (n == null ? '–' : (n > 0 ? '+' : n < 0 ? '−' : '') + euro(Math.abs(n)));
+  // text of a cell without its <b> label
+  const bLabelValue = (cell) => {
+    const b = cell?.querySelector('b');
+    return { label: (b?.textContent || '').trim().replace(/:\s*$/, ''), v: toNum((cell?.textContent || '').replace(b?.textContent || '', '')) };
+  };
+
+  function parseBudget(host) {
+    const items = (cell) => {
+      const tb = cell?.querySelector('table');
+      return tb ? Array.from(tb.rows).map((r) => ({ label: r.cells[0]?.textContent.replace(/\s+/g, ' ').trim(), v: toNum(r.cells[r.cells.length - 1]?.textContent) })).filter((x) => x.label && x.v != null) : [];
+    };
+    const periods = $$(':scope > table.tablesorter', host).map((tb) => {
+      const R = tb.rows;
+      if (R.length < 5 || R[2].cells.length < 2) return null;
+      return {
+        tb, title: R[0].textContent.replace(/\s+/g, ' ').trim(),
+        heads: Array.from(R[1].cells).map((c) => c.textContent.trim()),
+        inc: items(R[2].cells[0]), exp: items(R[2].cells[1]),
+        tInc: bLabelValue(R[3].cells[0]), tExp: bLabelValue(R[3].cells[1]), bal: bLabelValue(R[4].cells[0]),
+      };
+    }).filter(Boolean);
+    // <b>Label:</b> value<br> pairs above the tables
+    // (each pair is wrapped in a span, so "show original" can hide it with the tables)
+    const facts = $$(':scope > b', host).map((b) => {
+      const wrap = h('span', { class: 'mxf-fact' });
+      b.before(wrap);
+      let s = '';
+      for (let n = b; n && n.nodeName !== 'BR' && (n === b || n.nodeName !== 'B'); n = wrap.nextSibling) {
+        if (n !== b) s += n.textContent;
+        wrap.append(n);
+      }
+      return { label: b.textContent.trim().replace(/:\s*$/, ''), text: s.trim() };
+    });
+    return { periods, facts };
+  }
+
+  function financePage() {
+    const host = $('.page_details');
+    if (!host) return;
+    const { periods, facts } = parseBudget(host);
+    if (!periods.length) return;
+    // remember the category names, so the transactions page can group by them
+    LS.set('finCats', [...new Set(periods.flatMap((p) => [...p.inc, ...p.exp].map((x) => x.label)))]);
+
+    const st = Object.assign({ orig: false }, LS.get('finance', {}));
+    const ui = h('div', { class: 'mxr mxf' });
+    host.insertBefore(ui, periods[0].tb);
+    const applyOrig = () => { host.classList.toggle('mx-hide-orig-fin', !st.orig); };
+    applyOrig();
+
+    const cur = periods[0], prev = periods[1];
+    const factTiles = facts.map((f) => {
+      const n = toNum(f.text);
+      return tile(f.label, /\//.test(f.text) || n == null ? f.text : euro(n), null, { cls: n != null && n < 0 ? 'bad' : '' });
+    });
+    const balTiles = periods.map((p) => tile(p.title, signed(p.bal.v), p.bal.label, { cls: p.bal.v < 0 ? 'bad' : 'good' }));
+
+    // income vs expenses: one row per period, each on its own scale (a season is ~10× a week)
+    const chart = h('div', { class: 'mx-card mxf-cmp' }, sectionTitle(t('fnIncVsExp'),
+      h('span', { class: 'mxf-key' }, h('i', { class: 'inc' }), cur.heads[0] || '', h('i', { class: 'exp' }), cur.heads[1] || '')),
+      periods.map((p) => {
+        const max = Math.max(1, p.tInc.v || 0, p.tExp.v || 0);
+        const bar = (v, cls) => h('div', { class: 'mxf-bar' }, h('i', { class: cls, style: { width: ((v || 0) / max * 100).toFixed(1) + '%' } }), h('span', {}, euro(v)));
+        return h('div', { class: 'mxf-cmp-row' },
+          h('div', { class: 'mxf-cmp-t' }, p.title, h('span', { class: 'mx-badge pill ' + (p.bal.v < 0 ? 'bad' : 'good') }, signed(p.bal.v))),
+          bar(p.tInc.v, 'inc'), bar(p.tExp.v, 'exp'));
+      }));
+
+    // category breakdown per period; the current week also shows the change against last week
+    const breakdown = (p, cmp) => {
+      const side = (list, total, cls, head, other) => {
+        const max = Math.max(1, ...list.map((x) => x.v));
+        return h('div', { class: 'mxf-side' },
+          h('div', { class: 'mxf-side-t' }, h('span', {}, head), h('b', { class: cls }, euro(total))),
+          list.slice().sort((a, b) => b.v - a.v).map((x) => {
+            const before = other ? other.find((o) => o.label === x.label) : undefined;
+            const d = other ? x.v - (before ? before.v : 0) : null;
+            return h('div', { class: 'mxf-item', title: total ? Math.round(x.v / total * 100) + '% ' + t('fnShare') : '' },
+              h('div', { class: 'mxf-item-l' }, h('span', {}, x.label),
+                other && !before ? h('span', { class: 'mx-badge info' }, t('fnNew')) : null,
+                d ? h('span', { class: 'mxf-d ' + ((d > 0) === (cls === 'inc') ? 'up' : 'down'), title: t('fnVsPrev', cmp.title) }, (d > 0 ? '▲ ' : '▼ ') + euro(Math.abs(d))) : null,
+                h('b', {}, euro(x.v))),
+              h('div', { class: 'mxf-track' }, h('i', { class: cls, style: { width: (x.v / max * 100).toFixed(1) + '%' } })));
+          }));
+      };
+      return h('div', { class: 'mx-card mxf-period' },
+        sectionTitle(p.title, h('span', {}, cmp ? h('span', { class: 'mxf-vs' }, t('fnVsPrev', cmp.title)) : null,
+          h('span', { class: 'mx-badge pill ' + (p.bal.v < 0 ? 'bad' : 'good'), title: p.bal.label }, p.bal.label + ': ' + signed(p.bal.v)))),
+        h('div', { class: 'mxf-sides' },
+          side(p.inc, p.tInc.v, 'inc', p.heads[0], cmp?.inc),
+          side(p.exp, p.tExp.v, 'exp', p.heads[1], cmp?.exp)));
+    };
+
+    const origBtn = h('button', { class: 'mx-btn', title: t('origT'), onclick: () => {
+      st.orig = !st.orig; LS.set('finance', { orig: st.orig }); applyOrig(); origBtn.textContent = st.orig ? t('origHide') : t('origShow');
+    } }, st.orig ? t('origHide') : t('origShow'));
+    const tools = h('div', { class: 'mxr-tools mxf-tools' }, origBtn);
+    ui.replaceChildren(h('div', { class: 'mx-tiles' }, factTiles, balTiles), chart,
+      periods.map((p, i) => breakdown(p, i === 0 && prev ? prev : null)), tools);
+  }
+
+  /* ------------------------------------------------------------------ *
+   * Last transactions (last_budget.php)
+   * One table.tablesorter: thead (title row, then headings), tbody rows
+   * date | type | reason | amount. Expenses have a red <font> amount.
+   * ------------------------------------------------------------------ */
+  const isRed = (el) => { const c = parseRGB(el?.getAttribute('color') || el?.style.color || ''); return !!c && c.r > 180 && c.g < 80 && c.b < 80; };
+
+  function transactionsPage() {
+    const host = $('.page_details');
+    const tbl = host && $(':scope > table.tablesorter', host);
+    if (!tbl || !tbl.tHead) return;
+    const hr = tbl.tHead.rows;
+    const heads = Array.from(hr[hr.length - 1].cells).map((c) => c.textContent.trim());
+    if (heads.length < 4) return;
+    const title = hr.length > 1 ? hr[0].textContent.trim() : '';
+    const cats = LS.get('finCats', []).slice().sort((a, b) => b.length - a.length);
+    const rows = Array.from(tbl.tBodies[0]?.rows || []).filter((r) => r.cells.length >= 4).map((r) => {
+      const c = r.cells;
+      const reason = c[2].textContent.replace(/\s+/g, ' ').trim();
+      const exp = isRed(c[3].querySelector('font')) || isRed(c[3]);
+      const v = toNum(c[3].textContent);
+      // category: a known name from the finances page, else the reason without its last " - part"
+      const cat = cats.find((k) => reason === k || reason.startsWith(k + ' ')) || (reason.includes(' - ') ? reason.slice(0, reason.lastIndexOf(' - ')) : reason);
+      const date = c[0].textContent.trim();
+      const m = date.match(/(\d{1,2})\D(\d{1,2})\D(\d{4})/);
+      return { date, day: m ? `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}` : date, type: c[1].textContent.trim(), reason, cat, exp, v, amt: v == null ? null : exp ? -v : v };
+    }).filter((r) => r.v != null);
+    if (!rows.length) return;
+    const typeName = { inc: rows.find((r) => !r.exp)?.type || '+', exp: rows.find((r) => r.exp)?.type || '−' };
+
+    const st = Object.assign({ kind: 'all', q: '', sort: { k: 'day', d: -1 }, orig: false }, LS.get('transactions', {}));
+    const save = () => LS.set('transactions', { kind: st.kind, sort: st.sort });
+    const ui = h('div', { class: 'mxr mxf' });
+    host.insertBefore(ui, tbl);
+    const applyOrig = () => host.classList.toggle('mx-hide-orig-fin', !st.orig);
+    applyOrig();
+
+    const sum = (list) => list.reduce((s, r) => s + r.v, 0);
+    const inc = sum(rows.filter((r) => !r.exp)), exp = sum(rows.filter((r) => r.exp));
+
+    // daily bars: income up, expenses down, on one scale
+    const days = [...new Set(rows.map((r) => r.day))].sort();
+    const byDay = days.map((d) => { const rs = rows.filter((r) => r.day === d); return { d, label: rs[0].date, inc: sum(rs.filter((r) => !r.exp)), exp: sum(rs.filter((r) => r.exp)) }; });
+    const dmax = Math.max(1, ...byDay.map((x) => Math.max(x.inc, x.exp)));
+    const W = Math.max(320, byDay.length * 34), H = 150, mid = H / 2, bw = Math.min(22, W / byDay.length - 8);
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const S = (tag, a) => { const e = document.createElementNS(svgNS, tag); for (const k in a) e.setAttribute(k, a[k]); return e; };
+    const svg = S('svg', { viewBox: `0 0 ${W} ${H + 18}`, class: 'mxf-days' });
+    svg.append(S('line', { x1: 0, x2: W, y1: mid, y2: mid, class: 'axis' }));
+    byDay.forEach((x, i) => {
+      const cx = (i + 0.5) * (W / byDay.length);
+      const hi = (x.inc / dmax) * (mid - 6), he = (x.exp / dmax) * (mid - 6);
+      const g = S('g', {});
+      const tip = S('title', {}); tip.textContent = `${x.label}\n${typeName.inc}: ${euro(x.inc)}\n${typeName.exp}: ${euro(x.exp)}\n${t('fnNet')}: ${signed(x.inc - x.exp)}`;
+      g.append(tip, S('rect', { x: cx - bw / 2, y: mid - hi, width: bw, height: Math.max(hi, 0), rx: 3, class: 'inc' }), S('rect', { x: cx - bw / 2, y: mid, width: bw, height: Math.max(he, 0), rx: 3, class: 'exp' }));
+      const lb = S('text', { x: cx, y: H + 14, 'text-anchor': 'middle' }); lb.textContent = x.label.slice(0, 5);
+      g.append(lb);
+      svg.append(g);
+    });
+
+    // totals per category, income and expenses apart
+    const catList = (isExp) => {
+      const m = new Map();
+      rows.filter((r) => r.exp === isExp).forEach((r) => m.set(r.cat, (m.get(r.cat) || 0) + r.v));
+      const list = [...m].sort((a, b) => b[1] - a[1]);
+      const max = Math.max(1, ...list.map((x) => x[1]));
+      return h('div', { class: 'mxf-side' },
+        h('div', { class: 'mxf-side-t' }, h('span', {}, isExp ? typeName.exp : typeName.inc), h('b', { class: isExp ? 'exp' : 'inc' }, euro(isExp ? exp : inc))),
+        list.map(([k, v]) => h('div', { class: 'mxf-item' },
+          h('div', { class: 'mxf-item-l' }, h('span', {}, k), h('b', {}, euro(v))),
+          h('div', { class: 'mxf-track' }, h('i', { class: isExp ? 'exp' : 'inc', style: { width: (v / max * 100).toFixed(1) + '%' } })))));
+    };
+
+    const tableWrap = h('div', { class: 'mx-table-wrap' });
+    const view = () => {
+      const q = st.q.toLowerCase();
+      return rows.filter((r) => (st.kind === 'all' || (st.kind === 'exp') === r.exp) && (!q || r.reason.toLowerCase().includes(q)));
+    };
+    const cols = [
+      { k: 'day', label: heads[0], l: true, sv: (r) => r.day, td: (r) => r.date },
+      { k: 'type', label: heads[1], l: true, sv: (r) => (r.exp ? 1 : 0), td: (r) => h('span', { class: 'mx-badge ' + (r.exp ? 'bad' : 'good') }, r.type) },
+      { k: 'cat', label: heads[2], l: true, sv: (r) => r.reason, td: (r) => r.reason },
+      { k: 'amt', label: heads[3], sv: (r) => r.amt, td: (r) => h('b', { class: 'mxf-amt ' + (r.exp ? 'exp' : 'inc') }, signed(r.amt)) },
+    ];
+    function renderTable() {
+      const c = cols.find((x) => x.k === st.sort.k) || cols[0];
+      const list = view().sort((a, b) => { const A = c.sv(a), B = c.sv(b); return (typeof A === 'string' ? A.localeCompare(B, LOCALE) : A - B) * st.sort.d; });
+      const thead = h('thead', {}, h('tr', {}, cols.map((x) => h('th', {
+        class: (x.l ? 'l ' : '') + (st.sort.k === x.k ? 'sorted' : ''),
+        onclick: () => { st.sort = { k: x.k, d: st.sort.k === x.k ? -st.sort.d : (x.k === 'cat' || x.k === 'type' ? 1 : -1) }; save(); renderTable(); },
+      }, x.label, st.sort.k === x.k ? (st.sort.d > 0 ? ' ▲' : ' ▼') : ''))));
+      const tbody = h('tbody', {}, list.map((r) => h('tr', {}, cols.map((x) => h('td', { class: x.l ? 'l' : '' }, x.td(r))))));
+      tableWrap.replaceChildren(list.length ? h('table', { class: 'mx-table sortable' }, thead, tbody) : h('div', { class: 'mx-empty-state' }, t('fnEmpty')));
+    }
+
+    function render() {
+      const chip = (k, label) => h('button', { class: 'mx-chip' + (st.kind === k ? ' on' : ''), onclick: () => { st.kind = k; save(); render(); } }, label);
+      const tools = h('div', { class: 'mxr-tools' },
+        chip('all', t('fnAll')), chip('inc', typeName.inc), chip('exp', typeName.exp),
+        h('div', { class: 'mxr-search' }, h('input', { type: 'text', placeholder: t('fnSearch'), value: st.q, oninput: (e) => { st.q = e.target.value; renderTable(); } })),
+        h('button', { class: 'mx-btn', title: t('csvT'), onclick: () => downloadCSV(t('fnCsvFile'), heads, view().map((r) => [r.date, r.type, r.reason, r.amt])) }, '⇩ CSV'),
+        h('button', { class: 'mx-btn', title: t('origT'), onclick: () => { st.orig = !st.orig; applyOrig(); render(); } }, st.orig ? t('origHide') : t('origShow')));
+      ui.replaceChildren(
+        h('div', { class: 'mx-tiles' },
+          tile(typeName.inc, euro(inc), title, { cls: 'good' }),
+          tile(typeName.exp, euro(exp), title, { cls: 'bad' }),
+          tile(t('fnNet'), signed(inc - exp), title, { cls: inc - exp < 0 ? 'bad' : 'good' }),
+          tile(t('fnCount'), rows.length, title)),
+        h('div', { class: 'mx-card' }, sectionTitle(t('fnByDay'), h('span', { class: 'mxf-key' }, h('i', { class: 'inc' }), typeName.inc, h('i', { class: 'exp' }), typeName.exp)), h('div', { class: 'mxf-days-wrap' }, svg)),
+        h('div', { class: 'mx-card' }, sectionTitle(t('fnByCat')), h('div', { class: 'mxf-sides' }, catList(false), catList(true))),
+        tools, tableWrap);
+      renderTable();
+    }
+    render();
+  }
+
+  /* ------------------------------------------------------------------ *
    * Athlete page (atleta_one.php): radar + summary
    * ------------------------------------------------------------------ */
   /* ------------------------------------------------------------------ *
@@ -1713,6 +1980,8 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     try { markCurrent(); } catch (e) { console.warn('[UI+] nav', e); }
     try { if (/lista_atleti\.php$/.test(path)) rosterPage(); } catch (e) { console.warn('[UI+] roster', e); }
     try { if (/mercato\.php$/.test(path)) marketPage(); } catch (e) { console.warn('[UI+] market', e); }
+    try { if (/budget_det\.php$/.test(path)) financePage(); } catch (e) { console.warn('[UI+] finances', e); }
+    try { if (/last_budget\.php$/.test(path)) transactionsPage(); } catch (e) { console.warn('[UI+] transactions', e); }
     try { if (/atleta_one\.php$/.test(path)) athleteLayout(); } catch (e) { console.warn('[UI+] athlete layout', e); }
     try { if (/atleta_one\.php$/.test(path)) athletePage(); } catch (e) { console.warn('[UI+] athlete', e); }
     try { decorateIcons(); eventIcons(); } catch (e) { console.warn('[UI+] icons', e); }
