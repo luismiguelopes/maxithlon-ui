@@ -1168,9 +1168,10 @@ html.mx .mx-rank > .main_row{min-width:560px;}
       const nums = (n.textContent || '').match(/\d[\d.\s]*/g);
       if (nums && nums.length >= 3) total = toNum(nums[nums.length - 1]);
     }
-    // the pager is the small table right after the results
-    const pager = tbl.nextElementSibling?.tagName === 'TABLE' ? tbl.nextElementSibling : null;
-    if (pager && pager.querySelector('a')) pager.classList.add('mx-pager');
+    // the pager is the next small table after the results (a few <br>/text nodes in between)
+    let pager = tbl.nextElementSibling;
+    while (pager && pager.tagName !== 'TABLE') pager = pager.nextElementSibling;
+    if (pager && pager.rows.length === 1 && pager.querySelector('a')) pager.classList.add('mx-pager');
 
     const ref = rosterRef();
     const now = serverNow();
@@ -1191,6 +1192,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     applyOrig();
 
     const skill = (val, title) => h('span', { class: 'mxr-sk' + (val >= 15 ? ' top' : val >= 10 ? ' b' : ''), title: (title ? title + ': ' : '') + (val ?? '–'), style: st.heat ? { background: heatBg(val) } : null }, val ?? '–');
+    const perFmt = (n) => fmt(n, n != null && n < 1 ? 2 : 1);
     const money = (n) => (n == null ? '–' : '€ ' + Number(n).toLocaleString(LOCALE, { maximumFractionDigits: 0, useGrouping: 'always' }));
 
     function view() {
@@ -1214,7 +1216,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
         { k: 'age', label: lab.age, sv: (r) => r.age, td: (r) => fmt(r.age) },
         { k: 'maxid', label: 'MAXID', sv: (r) => r.maxid, td: (r) => meter(r.maxid, maxMx) },
         { k: 'price', label: t('mkPrice'), sep: true, sv: (r) => r.price, td: (r) => h('span', { class: 'mxm-num' + (r.priced ? '' : ' mxm-dim') }, money(r.price)) },
-        { k: 'per', label: t('mkPerMaxid'), title: t('mkPerMaxidT'), sv: (r) => r.perMaxid, td: (r) => h('span', { class: 'mxm-num' }, fmt(r.perMaxid, 1)) },
+        { k: 'per', label: t('mkPerMaxid'), title: t('mkPerMaxidT'), sv: (r) => r.perMaxid, td: (r) => h('span', { class: 'mxm-num' }, perFmt(r.perMaxid)) },
         { k: 'left', label: t('mkLeft'), title: t('mkLeftT'), sv: (r) => r.left, td: (r) => h('span', {
           class: 'mx-badge pill ' + (r.left == null ? '' : r.left <= 0 ? 'bad' : r.left < 3600e3 ? 'warn' : ''), title: r.whenTxt }, fmtLeft(r.left)) },
         { k: 'emp', label: lab.emp, title: lab.emp, sep: true, sv: (r) => r.emp, td: (r) => skill(r.emp, lab.emp) },
@@ -1251,7 +1253,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
         tile(t('mkResults'), rows.length, total != null ? t('mkResultsS', rows.length, fmt(total)) : ''),
         tile(t('mkCheapest'), money(cheap?.priced), cheap?.name),
         tile(t('mkAvgPrice'), money(avg(rows.map((r) => r.priced)))),
-        tile(t('mkBestValue'), fmt(value?.perMaxid, 1), value ? value.name + ' · ' + t('mkBestValueS') : t('mkBestValueS')),
+        tile(t('mkBestValue'), perFmt(value?.perMaxid), value ? value.name + ' · ' + t('mkBestValueS') : t('mkBestValueS')),
         tile(t('mkEnding'), fmtLeft(soon?.left), soon?.name, { cls: soon && soon.left < 3600e3 ? 'warn' : '' }),
         ref.has
           ? tile(t('mkFits'), nFit, t('mkFitsS'), { cls: (nFit ? 'good' : '') + (st.fit ? ' on' : ''), title: t('clickFilter'), onclick: () => { st.fit = !st.fit; save(); render(); } })
