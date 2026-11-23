@@ -215,10 +215,20 @@ html.mx #left_section li a.mx-current{background:var(--accent-soft)!important;co
 /* ---------- typography ---------- */
 html.mx #middle_section h3,html.mx #middle_section h1,html.mx #middle_section h2{font-family:var(--font)!important;color:var(--text)!important;background-image:none!important;text-shadow:none!important;}
 html.mx #middle_section > h3,html.mx .page_details > h3{font-size:24px!important;font-weight:700!important;letter-spacing:-.01em;margin:4px 0 12px!important;padding:0!important;}
-html.mx #right_section h2,html.mx #right_section h3,html.mx #right_part h2,html.mx #right_part h3{font-family:var(--font)!important;background-image:none!important;color:var(--text)!important;font-size:14px!important;font-weight:700!important;padding:12px 14px 6px!important;margin:0!important;height:auto!important;}
-html.mx #right_section > div,html.mx #right_part > div{background:var(--surface)!important;background-image:none!important;border:1px solid var(--border);border-radius:var(--radius);margin:0 0 14px!important;padding-bottom:10px;box-shadow:var(--shadow);width:auto!important;}
+html.mx #right_section h2,html.mx #right_section h3,html.mx #right_part h2,html.mx #right_part h3{font-family:var(--font)!important;background-image:none!important;color:var(--text)!important;font-size:14px!important;font-weight:700!important;padding:0 0 10px!important;margin:0!important;height:auto!important;width:auto!important;}
+html.mx #right_section > div,html.mx #right_part > div{background:var(--surface)!important;background-image:none!important;border:1px solid var(--border);border-radius:var(--radius);margin:0 0 14px!important;padding:12px 14px!important;box-shadow:var(--shadow);width:auto!important;height:auto!important;float:none!important;box-sizing:border-box;}
 html.mx #right_section > div *,html.mx #right_part > div *{background-image:none;}
-html.mx #right_section ul,html.mx #right_part ul{padding:0 14px!important;margin:0!important;}
+html.mx #right_section ul,html.mx #right_part ul{padding:0!important;margin:0!important;}
+html.mx #right_section p,html.mx #right_part p{margin:0 0 8px!important;padding:0!important;color:var(--muted)!important;font-size:12px!important;line-height:1.45!important;}
+html.mx #right_section form,html.mx #right_part form{margin:0 0 10px!important;padding:0!important;}
+html.mx #right_section .coach h4,html.mx #right_part .coach h4{margin:12px 0 8px!important;padding:0!important;font:600 13.5px/1.3 var(--font)!important;background:none!important;}
+.mx-plan{display:grid;grid-template-columns:auto 1fr auto;gap:7px 10px;align-items:center;font:12.5px/1.2 var(--font);color:var(--text);}
+.mx-plan .cap{grid-column:1/-1;color:var(--muted);font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
+.mx-plan .val{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;}
+.mx-plan .mx-bar{display:block;width:auto;height:6px;}
+.mx-plan .tot{color:var(--muted);border-top:1px solid var(--border);padding-top:7px;}
+.mx-plan .tot.val{color:var(--text);}
+.mx-plan .tot.bad{color:var(--bad);}
 html.mx .user_tip{background:var(--surface)!important;background-image:none!important;border:1px solid var(--border)!important;border-radius:var(--radius);padding:12px 16px!important;color:var(--muted)!important;margin-bottom:14px;}
 html.mx .user_tip img{display:none;}
 
@@ -1220,6 +1230,41 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
   }
 
   /* ------------------------------------------------------------------ *
+   * Right column: forms on one row, coach training plan with bars
+   * ------------------------------------------------------------------ */
+  function rightColumn() {
+    const cols = $$('#right_section, #right_part');
+    // forms whose visible controls are just inputs/selects/buttons -> one row
+    cols.forEach((col) => $$('form', col).forEach((f) => {
+      const vis = Array.from(f.children).filter((c) => !c.matches('input[type=hidden], script'));
+      if (vis.length >= 2 && vis.every((c) => c.matches('input, select, button'))) f.classList.add('mx-form-row');
+    }));
+    // coach box: "Skill: <span>25%</span>" items + "Total: <strong>100%</strong>"
+    cols.forEach((col) => $$('.coach ul', col).forEach((ul) => {
+      const lis = Array.from(ul.children);
+      const pct = (el) => toNum(el?.textContent);
+      if (!lis.some((li) => pct(li.querySelector(':scope > span')) != null)) return;
+      const label = (li, v) => li.textContent.replace(v.textContent, '').replace(/[:\s]+$/, '').trim();
+      const plan = h('div', { class: 'mx-plan' });
+      lis.forEach((li) => {
+        const sp = li.querySelector(':scope > span'); const st = li.querySelector(':scope > strong');
+        if (sp && pct(sp) != null) {
+          const v = pct(sp);
+          plan.append(h('span', {}, label(li, sp)),
+            h('span', { class: 'mx-bar', title: sp.textContent.trim() }, h('i', { style: { width: Math.max(2, Math.min(100, v)) + '%', background: 'var(--accent)' } })),
+            h('span', { class: 'val' }, sp.textContent.trim()));
+        } else if (st && pct(st) != null) {
+          const v = pct(st);
+          plan.append(h('span', { class: 'tot' }, label(li, st)), h('span', { class: 'tot' }), h('span', { class: 'tot val' + (v !== 100 ? ' bad' : '') }, st.textContent.trim()));
+        } else if (li.textContent.trim()) {
+          plan.append(h('span', { class: 'cap' }, li.textContent.replace(/[:\s]+$/, '').trim()));
+        }
+      });
+      ul.replaceWith(plan);
+    }));
+  }
+
+  /* ------------------------------------------------------------------ *
    * Boot
    * ------------------------------------------------------------------ */
   function start() {
@@ -1231,6 +1276,7 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
     try { if (/atleta_one\.php$/.test(path)) athleteLayout(); } catch (e) { console.warn('[UI+] athlete layout', e); }
     try { if (/atleta_one\.php$/.test(path)) athletePage(); } catch (e) { console.warn('[UI+] athlete', e); }
     try { decorateIcons(); } catch (e) { console.warn('[UI+] icons', e); }
+    try { rightColumn(); } catch (e) { console.warn('[UI+] right column', e); }
     try { restyleBars(); } catch (e) { console.warn('[UI+] bars', e); }
     buildDock();
     bindKeys();
