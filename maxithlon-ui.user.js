@@ -57,6 +57,11 @@
   const fmt = (n, d = 0) => (n == null ? '–' : Number(n).toLocaleString(LOCALE, { minimumFractionDigits: d, maximumFractionDigits: d }));
   const path = location.pathname;
 
+  // Shared component builders (see the design system block in CSS)
+  const tile = (k, v, s, o = {}) => h('div', { class: 'mx-tile ' + (o.cls || '') + (o.onclick ? ' click' : ''), onclick: o.onclick || null, title: o.title || null },
+    h('div', { class: 'k' }, k), h('div', { class: 'v' }, v), s ? h('div', { class: 's' }, s) : null, o.extra || null);
+  const sectionTitle = (title, aside) => h('div', { class: 'mx-card-t' }, h('span', {}, title), aside ? h('span', { class: 'mx-card-a' }, aside) : null);
+
   const theme = LS.get('theme', 'dark');
   const enabled = LS.get('enabled', true);
   const root = document.documentElement;
@@ -258,48 +263,74 @@ html:not(.mx) .mx-dock{background:#161b22;}
 .mx-pal li.on{background:var(--accent-soft);color:var(--accent);}
 .mx-pal .mx-pal-foot{padding:8px 14px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;display:flex;gap:14px;}
 
-/* ---------- roster ---------- */
-.mxr{font-family:var(--font);color:var(--text);margin-bottom:18px;}
-.mxr-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px;margin-bottom:14px;}
-.mxr-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;box-shadow:var(--shadow);cursor:default;position:relative;overflow:hidden;}
-.mxr-card.click{cursor:pointer;}
-.mxr-card.click:hover{border-color:var(--accent);}
-.mxr-card .k{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);}
-.mxr-card .v{font-size:24px;font-weight:700;margin-top:4px;letter-spacing:-.02em;}
-.mxr-card .s{font-size:12px;color:var(--muted);margin-top:2px;}
-.mxr-card.warn .v{color:var(--warn);} .mxr-card.bad .v{color:var(--bad);} .mxr-card.good .v{color:var(--good);}
-.mxr-card .bar{display:flex;height:5px;border-radius:9px;overflow:hidden;margin-top:8px;background:var(--surface3);}
-.mxr-bar-m{background:var(--male);} .mxr-bar-f{background:var(--female);}
-.mxr-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px;}
+/* ==================================================================
+ * Design system: shared components. Page modules build their UI from
+ * these instead of defining their own look.
+ *   .mx-card / .mx-card-t   surface card and its section title row
+ *                           (title on the left, optional aside on the right)
+ *   .mx-tiles / .mx-tile    stat tiles: .k label, .v value, .s sub-text;
+ *                           modifiers .good .warn .bad, .click (filters)
+ *   .mx-table-wrap/.mx-table  data table: sticky header, row hover,
+ *                           th.sorted, .l (left) and .sep (column divider)
+ *   .mx-chip                filter chip, .on when active
+ *   .mx-badge               small status label: .good .bad .warn .info, .pill
+ *   .mx-btn                 secondary button (native submit = primary)
+ *   .mx-empty-state         placeholder when a list is empty
+ *   .mx-form-row            puts form controls on one line
+ * Native inputs, selects and buttons are themed globally (see "buttons").
+ * ================================================================== */
+.mx-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px;margin-bottom:14px;}
+.mx-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;box-shadow:var(--shadow);cursor:default;position:relative;overflow:hidden;min-width:0;font-family:var(--font);color:var(--text);}
+.mx-tile.click{cursor:pointer;}
+.mx-tile.click:hover{border-color:var(--accent);}
+.mx-tile .k{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mx-tile .v{font-size:24px;font-weight:700;margin-top:4px;letter-spacing:-.02em;line-height:1.15;}
+.mx-tile .s{font-size:12px;color:var(--muted);margin-top:2px;}
+.mx-tile.warn .v{color:var(--warn);} .mx-tile.bad .v{color:var(--bad);} .mx-tile.good .v{color:var(--good);}
+.mx-tile .bar{display:flex;height:5px;border-radius:9px;overflow:hidden;margin-top:8px;background:var(--surface3);}
+.mx-card .mx-tile,.mxa .mx-tile{background:var(--surface2);box-shadow:none;border-radius:10px;padding:9px 11px;}
+.mx-card .mx-tile .v,.mxa .mx-tile .v{font-size:20px;margin-top:2px;}
 .mx-chip{all:unset;cursor:pointer;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12.5px;display:inline-flex;gap:6px;align-items:center;}
 .mx-chip:hover{border-color:var(--accent);}
 .mx-chip.on{background:var(--accent);border-color:var(--accent);color:#fff;}
 .mx-chip .n{opacity:.7;font-size:11px;}
 .mx-chip .dot{width:8px;height:8px;border-radius:50%;}
-.mxr-search{flex:1 1 200px;min-width:160px;}
-.mxr-search input{width:100%!important;box-sizing:border-box;padding:8px 12px!important;border-radius:999px!important;font-size:13px!important;}
+.mx-badge{display:inline-block;font-size:10.5px;padding:1px 6px;border-radius:6px;font-weight:600;line-height:1.5;white-space:nowrap;background:var(--surface3);color:var(--muted);}
+.mx-badge.pill{font-size:11.5px;padding:2px 7px;border-radius:999px;font-weight:500;font-variant-numeric:tabular-nums;}
+.mx-badge.good{background:rgba(63,185,80,.16);color:var(--good);}
+.mx-badge.bad{background:rgba(248,81,73,.16);color:var(--bad);}
+.mx-badge.warn{background:rgba(227,179,65,.18);color:var(--warn);}
+.mx-badge.info{background:var(--accent-soft);color:var(--accent);}
 .mx-btn{all:unset;cursor:pointer;padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12.5px;}
 .mx-btn:hover{border-color:var(--accent);}
-.mxr-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:auto;max-height:78vh;}
-table.mxr-t{width:100%;border-collapse:separate!important;border-spacing:0;font-size:12.5px;background:transparent!important;box-shadow:none!important;}
-table.mxr-t th{position:sticky;top:0;z-index:2;background:var(--surface2)!important;color:var(--muted)!important;font:600 11px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.04em;
-  padding:9px 4px!important;text-align:center;cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid var(--border)!important;}
-table.mxr-t th.l,table.mxr-t td.l{text-align:left;}
-table.mxr-t th:hover{color:var(--text)!important;}
-table.mxr-t th.sorted{color:var(--accent)!important;}
-table.mxr-t th.sep,table.mxr-t td.sep{border-left:1px solid var(--border)!important;}
-table.mxr-t td{padding:6px 4px!important;text-align:center;border-bottom:1px solid var(--border)!important;white-space:nowrap;background:transparent!important;color:var(--text);}
-table.mxr-t tbody tr:hover td{background:var(--surface3)!important;}
-table.mxr-t tr.inj td{box-shadow:inset 0 0 0 9999px rgba(248,81,73,.06);}
+.mx-table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:auto;max-height:78vh;}
+table.mx-table{width:100%;border-collapse:separate!important;border-spacing:0;font-size:12.5px;background:transparent!important;box-shadow:none!important;}
+table.mx-table th{position:sticky;top:0;z-index:2;background:var(--surface2)!important;color:var(--muted)!important;font:600 11px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.04em;
+  padding:9px 4px!important;text-align:center;user-select:none;white-space:nowrap;border-bottom:1px solid var(--border)!important;}
+table.mx-table.sortable th{cursor:pointer;}
+table.mx-table th.l,table.mx-table td.l{text-align:left;}
+table.mx-table th:hover{color:var(--text)!important;}
+table.mx-table th.sorted{color:var(--accent)!important;}
+table.mx-table th.sep,table.mx-table td.sep{border-left:1px solid var(--border)!important;}
+table.mx-table td{padding:6px 4px!important;text-align:center;border-bottom:1px solid var(--border)!important;white-space:nowrap;background:transparent!important;color:var(--text);}
+table.mx-table tbody tr:hover td{background:var(--surface3)!important;}
+.mx-empty-state{padding:30px;text-align:center;color:var(--muted);}
+.mx-form-row{display:flex!important;align-items:center;gap:8px;flex-wrap:wrap;}
+.mx-form-row > input[type=text],.mx-form-row > input:not([type]),.mx-form-row > select{flex:1 1 80px;min-width:0;width:auto!important;}
+
+/* ---------- roster ---------- */
+.mxr{font-family:var(--font);color:var(--text);margin-bottom:18px;}
+.mxr-bar-m{background:var(--male);} .mxr-bar-f{background:var(--female);}
+.mxr-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px;}
+.mxr-search{flex:1 1 200px;min-width:160px;}
+.mxr-search input{width:100%!important;box-sizing:border-box;padding:8px 12px!important;border-radius:999px!important;font-size:13px!important;}
+table.mx-table tr.inj td{box-shadow:inset 0 0 0 9999px rgba(248,81,73,.06);}
 .mxr-name{display:flex;align-items:center;gap:7px;}
 .mxr-name a{color:var(--text)!important;text-decoration:none!important;font-weight:600;}
 .mxr-name a:hover{color:var(--accent)!important;}
 .mxr-name img{width:16px;height:11px;border-radius:2px;object-fit:cover;}
 .mxr-g{width:7px;height:7px;border-radius:50%;flex:0 0 7px;}
 .mxr-g.M{background:var(--male);} .mxr-g.F{background:var(--female);} .mxr-g.\\?{background:var(--muted);}
-.mxr-badge{font-size:10.5px;padding:1px 6px;border-radius:6px;font-weight:600;}
-.mxr-badge.sale{background:rgba(63,185,80,.16);color:var(--good);}
-.mxr-badge.inj{background:rgba(248,81,73,.16);color:var(--bad);}
 .mxr-grp{font-size:11px;padding:2px 8px;border-radius:999px;font-weight:600;}
 .mxr-sk{display:inline-block;min-width:24px;padding:3px 0;border-radius:6px;font-variant-numeric:tabular-nums;}
 .mxr-sk.b{font-weight:700;}
@@ -312,25 +343,17 @@ html.mx-light .mxr-sk.top{color:#0b3d17;}
 .mxr-meter i{display:block;height:5px;border-radius:9px;background:var(--accent);opacity:.85;}
 .mxr-meter span{min-width:34px;text-align:right;font-variant-numeric:tabular-nums;}
 .mxr-ok{color:var(--good);font-weight:700;} .mxr-no{color:var(--bad);font-weight:700;cursor:help;}
-.mxr-ev{font-size:11.5px;padding:2px 7px;border-radius:999px;font-variant-numeric:tabular-nums;cursor:help;}
-.mxr-ev.ok{background:rgba(63,185,80,.14);color:var(--good);} .mxr-ev.risk{background:rgba(248,81,73,.16);color:var(--bad);}
 .mxr-legend{display:flex;flex-wrap:wrap;gap:14px;color:var(--muted);font-size:11.5px;margin-top:10px;align-items:center;}
 .mxr-legend .sw{display:inline-block;width:46px;height:8px;border-radius:9px;vertical-align:middle;margin:0 4px;}
-.mxr-empty{padding:30px;text-align:center;color:var(--muted);}
 .mx-hide-orig > table[id^="atleti"],.mx-hide-orig > table[id^="atleti"] + br{display:none!important;}
 
 /* ---------- athlete page ---------- */
 .mxa{display:grid;grid-template-columns:minmax(260px,330px) 1fr;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:6px 0 16px;box-shadow:var(--shadow);font-family:var(--font);color:var(--text);}
+.mxa > .mx-card-t{grid-column:1/-1;margin:0;}
+.mxa > .mx-tiles{grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px;align-content:start;margin:0;}
 .mxa svg{width:100%;height:auto;}
-.mxa-k{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px;align-content:start;}
-.mxa-k div{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:9px 11px;}
-.mxa-k b{display:block;font-size:20px;letter-spacing:-.02em;margin-top:2px;}
-.mxa-k small{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;}
-.mxa-k em{font-style:normal;font-size:11.5px;color:var(--muted);}
 .mxa-leg{display:flex;gap:14px;font-size:11.5px;color:var(--muted);margin-top:4px;justify-content:center;}
 .mxa-leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px;}
-.mxa-title{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;}
-.mxa-title b{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
 html.mx #middle_section div.row{border-radius:8px;}
 html.mx body *:not(svg):not(svg *):not(kbd){font-family:var(--font)!important;}
 .mx-ic{flex:0 0 auto;vertical-align:-3px;}
@@ -381,6 +404,7 @@ html.mx button.bookmark-action img{display:none;}
 html.mx .mx-card{display:block;background:var(--surface)!important;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px!important;margin:0 0 16px!important;width:auto!important;height:auto!important;float:none!important;box-sizing:border-box;}
 html.mx .mx-card *{float:none;}
 html.mx .mx-card-t{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 12px;font:700 12px/1.2 var(--font);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+html.mx .mx-card-t .mx-card-a{font:500 12px/1.2 var(--font);text-transform:none;letter-spacing:0;}
 
 /* ---------- athlete: title ---------- */
 html.mx .mx-athlete .head_section{background:none!important;border:0!important;margin:2px 0 14px!important;padding:0!important;height:auto!important;}
@@ -789,8 +813,8 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
           h('span', { class: 'mxr-g ' + r.gender, title: r.gender === 'F' ? t('female') : r.gender === 'M' ? t('male') : '' }),
           r.flagSrc ? h('img', { src: r.flagSrc, title: r.flagTitle, alt: '' }) : null,
           r.href ? h('a', { href: r.href }, r.name) : r.name,
-          r.sale ? h('span', { class: 'mxr-badge sale', title: r.sale }, t('badgeSale')) : null,
-          r.inj ? h('span', { class: 'mxr-badge inj', title: r.inj }, t('badgeInj')) : null) },
+          r.sale ? h('span', { class: 'mx-badge good', title: r.sale }, t('badgeSale')) : null,
+          r.inj ? h('span', { class: 'mx-badge bad', title: r.inj }, t('badgeInj')) : null) },
         { k: 'group', label: t('colGroup'), l: true, hide: !!one, sv: (r) => r.gi, td: (r) => { const g = groups[r.gi] || {}; return h('span', { class: 'mxr-grp', style: { background: g.color + '22', color: g.color } }, r.group); } },
         { k: 'age', label: lab.age, sv: (r) => r.age, td: (r) => fmt(r.age) },
         { k: 'maxid', label: 'MAXID', sv: (r) => r.maxid, td: (r) => meter(r.maxid, maxMx) },
@@ -802,7 +826,7 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
         { k: 's2', label: one ? one.spec[1] : t('spec2'), title: one ? one.spec[1] : t('spec2T'), sv: (r) => r.s2.v, td: (r) => skillCell(r.s2, r.spec[1]) },
         { k: 'total', label: 'Σ', title: t('totalT'), sep: true, sv: (r) => r.total, td: (r) => meter(r.total, maxT) },
         { k: 'train', label: t('colTrain'), sep: true, title: t('colTrainT'), sv: (r) => (r.trainOk ? 1 : 0), td: (r) => h('span', { class: r.trainOk ? 'mxr-ok' : 'mxr-no', title: r.trainTip }, r.trainOk ? '✓' : '✕') },
-        { k: 'ev', label: t('colEv'), title: t('colEvT'), sv: (r) => r.ev, td: (r) => h('span', { class: 'mxr-ev ' + (r.evRisk ? 'risk' : 'ok'), title: r.evTip }, (r.ev ?? '–') + '/10') },
+        { k: 'ev', label: t('colEv'), title: t('colEvT'), sv: (r) => r.ev, td: (r) => h('span', { class: 'mx-badge pill ' + (r.evRisk ? 'bad' : 'good'), title: r.evTip, style: { cursor: 'help' } }, (r.ev ?? '–') + '/10') },
         { k: 'coach', label: lab.coach, title: t('colCoachT'), sv: (r) => (r.coach ? 1 : 0), td: (r) => h('span', { class: r.coach ? 'mxr-ok' : 'mxr-no', title: r.coachTip }, r.coach ? '✓' : '✕') },
       ].filter((c) => !c.hide);
     };
@@ -849,12 +873,11 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
       const M = cnt((r) => r.gender === 'M'), F = cnt((r) => r.gender === 'F');
       const youth = cnt((r) => r.youth);
 
-      const card = (k, v, s, cls, onclick, extra) => h('div', { class: 'mxr-card ' + (cls || '') + (onclick ? ' click' : ''), onclick, title: onclick ? t('clickFilter') : null },
-        h('div', { class: 'k' }, k), h('div', { class: 'v' }, v), s ? h('div', { class: 's' }, s) : null, extra || null);
+      const card = (k, v, s, cls, onclick, extra) => tile(k, v, s, { cls, onclick, title: onclick ? t('clickFilter') : null, extra });
       const toggleFlag = (k) => () => { st.flags = st.flags.includes(k) ? st.flags.filter((x) => x !== k) : [...st.flags, k]; save(); render(); };
 
       const nNoTrain = cnt((r) => !r.trainOk), nRisk = cnt((r) => r.evRisk), nSale = cnt((r) => !!r.sale), nInj = cnt((r) => !!r.inj), nNoCoach = cnt((r) => !r.coach);
-      const cards = h('div', { class: 'mxr-cards' },
+      const cards = h('div', { class: 'mx-tiles' },
         card(t('cAthletes'), all.length, t('cAthletesS', all.length - youth, youth), '', null,
           h('div', { class: 'bar' }, h('i', { class: 'mxr-bar-m', style: { width: (M / all.length * 100) + '%' } }), h('i', { class: 'mxr-bar-f', style: { width: (F / all.length * 100) + '%' } }))),
         card(t('cGender'), `${M} / ${F}`, t('cGenderS')),
@@ -882,7 +905,7 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
         h('button', { class: 'mx-btn', title: t('csvT'), onclick: exportCSV }, '⇩ CSV'),
         h('button', { class: 'mx-btn', title: t('origT'), onclick: () => { st.orig = !st.orig; applyOrig(); render(); } }, st.orig ? t('origHide') : t('origShow')));
 
-      const tableWrap = h('div', { class: 'mxr-wrap' });
+      const tableWrap = h('div', { class: 'mx-table-wrap' });
       const legend = h('div', { class: 'mxr-legend' },
         h('span', {}, '0', h('i', { class: 'sw', style: { background: `linear-gradient(90deg,${heatBg(0)},${heatBg(10)},${heatBg(20)})` } }), '20'),
         h('span', {}, h('b', {}, t('lgBold')), ' ≥ 10 · ', h('b', {}, t('lgTop')), ' ≥ 15'),
@@ -897,8 +920,8 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
           onclick: () => { st.sort = { k: c.k, d: st.sort.k === c.k ? -st.sort.d : (c.k === 'name' || c.k === 'group' || c.k === 'age' ? 1 : -1) }; save(); renderTable(); },
         }, c.label, st.sort.k === c.k ? (st.sort.d > 0 ? ' ▲' : ' ▼') : ''))));
         const tbody = h('tbody', {}, list.map((r) => h('tr', { class: r.inj ? 'inj' : '' }, cs.map((c) => h('td', { class: (c.l ? 'l ' : '') + (c.sep ? 'sep' : '') }, c.td(r))))));
-        const tbl = h('table', { class: 'mxr-t' }, thead, tbody);
-        tableWrap.replaceChildren(list.length ? tbl : h('div', { class: 'mxr-empty' }, t('empty')));
+        const tbl = h('table', { class: 'mx-table sortable' }, thead, tbody);
+        tableWrap.replaceChildren(list.length ? tbl : h('div', { class: 'mx-empty-state' }, t('empty')));
       }
 
       ui.replaceChildren(cards, tools1, tools2, tableWrap, legend);
@@ -1007,13 +1030,12 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
     const best = axes.reduce((b, a) => (a.v > b.v ? a : b)).k;
     const weak = axes.reduce((b, a) => (a.v < b.v ? a : b)).k;
     const refTotal = refVals && refVals.every((x) => x != null) ? refVals.reduce((s, x) => s + x, 0) : null;
-    const tile = (k, v, e) => h('div', {}, h('small', {}, k), h('b', {}, v), e ? h('em', {}, e) : null);
 
     const panel = h('div', { class: 'mxa' },
-      h('div', { class: 'mxa-title' }, h('b', {}, t('profile')), groupName ? h('span', { style: { color: 'var(--muted)', fontSize: '12px' } }, groupName) : null),
+      sectionTitle(t('profile'), groupName || null),
       h('div', {}, svg, h('div', { class: 'mxa-leg' }, h('span', {}, h('i', { style: { background: 'var(--accent)' } }), t('athlete')),
         refVals ? h('span', {}, h('i', { style: { background: '#94a3b8' } }), t('avgOf', groupName, ref.n)) : h('span', {}, t('openRoster')))),
-      h('div', { class: 'mxa-k' },
+      h('div', { class: 'mx-tiles' },
         tile(t('tTotal'), total, refTotal != null ? t('tTotalVs', `${total - refTotal >= 0 ? '+' : ''}${fmt(total - refTotal, 1)}`) : t('tTotalS')),
         tile(t('tSpec'), fmt(specAvg, 1), spec.map((a) => a.k).join(' · ')),
         tile(t('tBest'), vals[best], best),
