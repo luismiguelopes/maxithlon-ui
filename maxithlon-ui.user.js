@@ -989,7 +989,7 @@ html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr > td:only-chil
 html.mx .markItUp{width:100%!important;max-width:760px;border:0!important;}
 html.mx .markItUpContainer{background:var(--surface2)!important;border:1px solid var(--border)!important;border-radius:10px!important;padding:6px!important;}
 html.mx textarea.markItUpEditor{background:var(--surface)!important;color:var(--text)!important;border:1px solid var(--border)!important;width:100%!important;box-sizing:border-box;}
-html.mx-dark .markItUpHeader{background:#d8dde3;border-radius:8px;padding:3px 6px;margin-bottom:6px;display:flow-root;}
+html.mx-dark .markItUpHeader{background:#d8dde3!important;border-radius:8px;padding:3px 6px;margin-bottom:6px;display:flow-root;}
 .mx-opts{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);margin:0 0 16px;overflow:hidden;}
 .mx-opt{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-top:1px solid var(--border);font:13px/1.45 var(--font);color:var(--text);}
 .mx-opt:first-child{border-top:0;}
@@ -1067,7 +1067,7 @@ html.mx #middle_section.mx-acct #messaggi tbody td:only-child{text-align:center!
     }
     return { h: hh, s, l };
   };
-  const SKIP_DARKFIX = 'input.colorwell,#picker,#picker *,svg,svg *,img,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-hero,.mx-hero *,.mx-skills,.mx-skills *,.mx-rank,.mx-rank *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,.mx-notice,.mx-notice *,#left_section,#left_section *';
+  const SKIP_DARKFIX = 'input.colorwell,#picker,#picker *,.markItUpHeader,.markItUpHeader *,svg,svg *,img,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-hero,.mx-hero *,.mx-skills,.mx-skills *,.mx-rank,.mx-rank *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,.mx-notice,.mx-notice *,#left_section,#left_section *';
 
   function darkFix(scope) {
     if (theme !== 'dark') return;
