@@ -984,7 +984,13 @@ html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr:hover > *{back
 html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr > th,html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr > td:first-child:not(:only-child){width:32%;text-align:left!important;text-transform:none!important;letter-spacing:0!important;font:600 13px/1.3 var(--font)!important;color:var(--muted)!important;}
 html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr > td:first-child:not(:only-child) *{color:inherit!important;font:inherit!important;}
 html.mx #middle_section.mx-acct table.ui4-form-table input[type=text]:not(.colorwell),html.mx #middle_section.mx-acct table.ui4-form-table input[type=password],html.mx #middle_section.mx-acct table.ui4-form-table input[type=email]{width:100%!important;max-width:380px;box-sizing:border-box;}
-html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr > td:only-child{text-align:center;}
+html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr > td:only-child{text-align:left!important;}
+html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr > td:only-child > b{display:block;margin:0 0 6px;color:var(--muted);}
+/* markItUp text editor (messages, federations) */
+html.mx .markItUp{width:100%!important;max-width:760px;border:0!important;}
+html.mx .markItUpContainer{background:var(--surface2)!important;border:1px solid var(--border)!important;border-radius:10px!important;padding:6px!important;}
+html.mx textarea.markItUpEditor{background:var(--surface)!important;color:var(--text)!important;border:1px solid var(--border)!important;width:100%!important;box-sizing:border-box;}
+html.mx-dark .markItUpHeader li a{filter:invert(.85) hue-rotate(180deg);}
 .mx-opts{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);margin:0 0 16px;overflow:hidden;}
 .mx-opt{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-top:1px solid var(--border);font:13px/1.45 var(--font);color:var(--text);}
 .mx-opt:first-child{border-top:0;}
