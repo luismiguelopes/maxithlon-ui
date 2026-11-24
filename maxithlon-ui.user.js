@@ -141,7 +141,7 @@
       formLow: 'low form', formHigh: 'top form',
       setTitle: 'UI+ settings', setTheme: 'Theme', setDark: 'Dark', setLight: 'Light', setAccent: 'Accent color',
       setDensity: 'Density', setComfortable: 'Comfortable', setCompact: 'Compact', setModules: 'Modules',
-      setMenu: 'Left menu', setMenuFull: 'Full', setMenuRail: 'Icons only', sideToggle: 'Show or hide this section', modSidebar: 'Collapsible menu sections', modHome: 'Home page dashboard',
+      setMenu: 'Left menu', setMenuFull: 'Full', setMenuRail: 'Icons only', sideToggle: 'Show or hide this section', modSidebar: 'Collapsible menu sections', modHome: 'Home page dashboard', modAccount: 'Account, options and messages pages',
       setReset: 'Reset settings', setReload: 'Reload to apply', setLive: 'Changes apply right away',
       modRoster: 'Athletes list dashboard', modMarket: 'Market dashboard', modFinances: 'Finances dashboard',
       modTransactions: 'Transactions dashboard', modAthlete: 'Athlete page cards and radar', modIcons: 'SVG icons and event pictograms',
@@ -198,7 +198,7 @@
       formLow: 'forma baixa', formHigh: 'forma ótima',
       setTitle: 'Definições do UI+', setTheme: 'Tema', setDark: 'Escuro', setLight: 'Claro', setAccent: 'Cor de destaque',
       setDensity: 'Densidade', setComfortable: 'Confortável', setCompact: 'Compacta', setModules: 'Módulos',
-      setMenu: 'Menu lateral', setMenuFull: 'Completo', setMenuRail: 'Só ícones', sideToggle: 'Mostrar ou esconder esta secção', modSidebar: 'Secções do menu recolhíveis', modHome: 'Painel da página inicial',
+      setMenu: 'Menu lateral', setMenuFull: 'Completo', setMenuRail: 'Só ícones', sideToggle: 'Mostrar ou esconder esta secção', modSidebar: 'Secções do menu recolhíveis', modHome: 'Painel da página inicial', modAccount: 'Páginas da conta, opções e mensagens',
       setReset: 'Repor definições', setReload: 'Recarregar para aplicar', setLive: 'As alterações aplicam-se logo',
       modRoster: 'Painel da lista de atletas', modMarket: 'Painel do mercado', modFinances: 'Painel das finanças',
       modTransactions: 'Painel das transações', modAthlete: 'Cartões e radar da página do atleta', modIcons: 'Ícones SVG e pictogramas das provas',
@@ -255,7 +255,7 @@
       formLow: 'forma bassa', formHigh: 'forma ottima',
       setTitle: 'Impostazioni UI+', setTheme: 'Tema', setDark: 'Scuro', setLight: 'Chiaro', setAccent: 'Colore principale',
       setDensity: 'Densità', setComfortable: 'Comoda', setCompact: 'Compatta', setModules: 'Moduli',
-      setMenu: 'Menu laterale', setMenuFull: 'Completo', setMenuRail: 'Solo icone', sideToggle: 'Mostra o nascondi questa sezione', modSidebar: 'Sezioni del menu comprimibili', modHome: 'Pannello della home',
+      setMenu: 'Menu laterale', setMenuFull: 'Completo', setMenuRail: 'Solo icone', sideToggle: 'Mostra o nascondi questa sezione', modSidebar: 'Sezioni del menu comprimibili', modHome: 'Pannello della home', modAccount: 'Pagine di account, opzioni e messaggi',
       setReset: 'Ripristina impostazioni', setReload: 'Ricarica per applicare', setLive: 'Le modifiche si applicano subito',
       modRoster: 'Pannello della lista atleti', modMarket: 'Pannello del mercato', modFinances: 'Pannello delle finanze',
       modTransactions: 'Pannello delle transazioni', modAthlete: 'Schede e radar della pagina atleta', modIcons: 'Icone SVG e pittogrammi delle gare',
@@ -312,7 +312,7 @@
       formLow: 'forma baja', formHigh: 'forma óptima',
       setTitle: 'Ajustes de UI+', setTheme: 'Tema', setDark: 'Oscuro', setLight: 'Claro', setAccent: 'Color de acento',
       setDensity: 'Densidad', setComfortable: 'Cómoda', setCompact: 'Compacta', setModules: 'Módulos',
-      setMenu: 'Menú lateral', setMenuFull: 'Completo', setMenuRail: 'Solo iconos', sideToggle: 'Mostrar u ocultar esta sección', modSidebar: 'Secciones del menú plegables', modHome: 'Panel de la página de inicio',
+      setMenu: 'Menú lateral', setMenuFull: 'Completo', setMenuRail: 'Solo iconos', sideToggle: 'Mostrar u ocultar esta sección', modSidebar: 'Secciones del menú plegables', modHome: 'Panel de la página de inicio', modAccount: 'Páginas de cuenta, opciones y mensajes',
       setReset: 'Restablecer ajustes', setReload: 'Recargar para aplicar', setLive: 'Los cambios se aplican al momento',
       modRoster: 'Panel de la lista de atletas', modMarket: 'Panel del mercado', modFinances: 'Panel de finanzas',
       modTransactions: 'Panel de transacciones', modAthlete: 'Tarjetas y radar de la página del atleta', modIcons: 'Iconos SVG y pictogramas de las pruebas',
@@ -369,7 +369,7 @@
       formLow: 'forme basse', formHigh: 'forme optimale',
       setTitle: 'Réglages UI+', setTheme: 'Thème', setDark: 'Sombre', setLight: 'Clair', setAccent: 'Couleur d\'accent',
       setDensity: 'Densité', setComfortable: 'Confortable', setCompact: 'Compacte', setModules: 'Modules',
-      setMenu: 'Menu latéral', setMenuFull: 'Complet', setMenuRail: 'Icônes seules', sideToggle: 'Afficher ou masquer cette section', modSidebar: 'Sections du menu repliables', modHome: "Tableau de bord de l'accueil",
+      setMenu: 'Menu latéral', setMenuFull: 'Complet', setMenuRail: 'Icônes seules', sideToggle: 'Afficher ou masquer cette section', modSidebar: 'Sections du menu repliables', modHome: "Tableau de bord de l'accueil", modAccount: 'Pages du compte, des options et des messages',
       setReset: 'Réinitialiser les réglages', setReload: 'Recharger pour appliquer', setLive: 'Les changements s\'appliquent tout de suite',
       modRoster: 'Tableau de bord des athlètes', modMarket: 'Tableau de bord du marché', modFinances: 'Tableau de bord des finances',
       modTransactions: 'Tableau de bord des transactions', modAthlete: 'Cartes et radar de la page athlète', modIcons: 'Icônes SVG et pictogrammes des épreuves',
@@ -426,7 +426,7 @@
       formLow: 'schwache Form', formHigh: 'Topform',
       setTitle: 'UI+-Einstellungen', setTheme: 'Design', setDark: 'Dunkel', setLight: 'Hell', setAccent: 'Akzentfarbe',
       setDensity: 'Dichte', setComfortable: 'Bequem', setCompact: 'Kompakt', setModules: 'Module',
-      setMenu: 'Seitenmenü', setMenuFull: 'Vollständig', setMenuRail: 'Nur Symbole', sideToggle: 'Diesen Bereich ein- oder ausblenden', modSidebar: 'Einklappbare Menübereiche', modHome: 'Startseiten-Dashboard',
+      setMenu: 'Seitenmenü', setMenuFull: 'Vollständig', setMenuRail: 'Nur Symbole', sideToggle: 'Diesen Bereich ein- oder ausblenden', modSidebar: 'Einklappbare Menübereiche', modHome: 'Startseiten-Dashboard', modAccount: 'Konto-, Optionen- und Nachrichtenseiten',
       setReset: 'Einstellungen zurücksetzen', setReload: 'Neu laden zum Anwenden', setLive: 'Änderungen gelten sofort',
       modRoster: 'Athletenlisten-Dashboard', modMarket: 'Markt-Dashboard', modFinances: 'Finanz-Dashboard',
       modTransactions: 'Transaktionen-Dashboard', modAthlete: 'Karten und Radar der Athletenseite', modIcons: 'SVG-Symbole und Disziplin-Piktogramme',
@@ -562,7 +562,7 @@ html.mx #middle_section table td{border-color:var(--border)!important;}
 html.mx #middle_section table.tablesorter_all,html.mx #middle_section table.tablesorter{background:var(--surface);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
 html.mx #middle_section table.tablesorter_all td,html.mx #middle_section table.tablesorter td{padding:6px!important;background:transparent!important;}
 html.mx #middle_section table.tablesorter_all tbody tr:hover td,html.mx #middle_section table.tablesorter tbody tr:hover td{background:var(--surface3)!important;}
-html.mx input[type=text],html.mx input[type=number],html.mx input:not([type]),html.mx select,html.mx textarea{background:var(--surface2)!important;color:var(--text)!important;border:1px solid var(--border)!important;border-radius:8px;padding:5px 8px;}
+html.mx input[type=text]:not(.colorwell),html.mx input[type=number],html.mx input:not([type]),html.mx input[type=password],html.mx input[type=email],html.mx input[type=url],html.mx input[type=search],html.mx input[type=tel],html.mx select,html.mx textarea{background:var(--surface2)!important;color:var(--text)!important;border:1px solid var(--border)!important;border-radius:8px;padding:5px 8px;}
 html.mx input[type=submit],html.mx input[type=button],html.mx button:not([class*="mx-"]):not(#admin_hamburger_menu){background:var(--accent)!important;color:#fff!important;border:0!important;border-radius:8px!important;padding:6px 12px!important;cursor:pointer;background-image:none!important;}
 html.mx #vtip{background:var(--surface3)!important;color:var(--text)!important;border:1px solid var(--border)!important;border-radius:10px!important;padding:8px 12px!important;box-shadow:var(--shadow);font:12px/1.4 var(--font)!important;}
 html.mx #vtip img{display:none!important;}
@@ -819,8 +819,8 @@ html.mx input[type=submit],html.mx input[type=button],html.mx button:not([class*
 html.mx input[type=submit]:hover,html.mx input[type=button]:hover,html.mx button:not([class*="mx-"]):not(#admin_hamburger_menu):hover{filter:brightness(1.08);}
 html.mx input[type=submit]:active,html.mx input[type=button]:active,html.mx button:not([class*="mx-"]):not(#admin_hamburger_menu):active{transform:translateY(1px);}
 html.mx input[type=submit]:focus-visible,html.mx input[type=button]:focus-visible,html.mx button:focus-visible{outline:2px solid var(--accent)!important;outline-offset:2px;}
-html.mx input[type=text],html.mx input[type=number],html.mx input:not([type]),html.mx select,html.mx textarea{box-shadow:none!important;outline:none;padding:7px 10px!important;border-radius:9px!important;font:13px var(--font)!important;}
-html.mx input[type=text]:focus,html.mx input[type=number]:focus,html.mx input:not([type]):focus,html.mx select:focus,html.mx textarea:focus{border-color:var(--accent)!important;box-shadow:0 0 0 3px var(--accent-soft)!important;}
+html.mx input[type=text],html.mx input[type=number],html.mx input:not([type]),html.mx input[type=password],html.mx input[type=email],html.mx input[type=url],html.mx input[type=search],html.mx input[type=tel],html.mx select,html.mx textarea{box-shadow:none!important;outline:none;padding:7px 10px!important;border-radius:9px!important;font:13px var(--font)!important;}
+html.mx input[type=text]:focus,html.mx input[type=number]:focus,html.mx input[type=password]:focus,html.mx input[type=email]:focus,html.mx input:not([type]):focus,html.mx select:focus,html.mx textarea:focus{border-color:var(--accent)!important;box-shadow:0 0 0 3px var(--accent-soft)!important;}
 html.mx .mx-athlete .head_section button.bookmark-action:not(#admin_hamburger_menu){background:var(--accent-soft)!important;color:var(--accent)!important;padding:7px 9px!important;}
 html.mx button.bookmark-action img{display:none;}
 
@@ -975,6 +975,37 @@ html.mx #middle_section .news_maxithlon .news_body_text{margin:10px 0 2px!import
 html.mx #middle_section .status_details .right_text{float:none!important;order:2;margin-left:auto;font-size:12px!important;font-weight:500!important;color:var(--muted)!important;cursor:pointer;}
 html.mx #middle_section .status_details .right_text:hover{color:var(--bad)!important;}
 html.mx #middle_section .status_details > div{color:var(--muted);font-size:13px;}
+/* ---------- account pages: options, password, symbol, profile, messages ---------- */
+html.mx input.colorwell{border:1px solid var(--border)!important;border-radius:9px!important;padding:7px 10px!important;width:110px;font:600 12px var(--font)!important;text-align:center;opacity:1!important;box-shadow:none!important;cursor:pointer;}
+html.mx .mx-acct table.ui4-form-table{width:100%!important;background:var(--surface)!important;border:1px solid var(--border)!important;border-radius:12px;box-shadow:var(--shadow);border-collapse:separate!important;border-spacing:0!important;overflow:hidden;margin:0 0 14px!important;}
+html.mx .mx-acct table.ui4-form-table > tbody > tr > *{padding:10px 14px!important;border:0!important;border-bottom:1px solid var(--border)!important;background:none!important;vertical-align:middle;}
+html.mx .mx-acct table.ui4-form-table > tbody > tr:last-child > *{border-bottom:0!important;}
+html.mx .mx-acct table.ui4-form-table > tbody > tr:hover > *{background:none!important;}
+html.mx .mx-acct table.ui4-form-table > tbody > tr > th,html.mx .mx-acct table.ui4-form-table > tbody > tr > td:first-child:not(:only-child){width:32%;text-align:left!important;text-transform:none!important;letter-spacing:0!important;font:600 13px/1.3 var(--font)!important;color:var(--muted)!important;}
+html.mx .mx-acct table.ui4-form-table > tbody > tr > td:first-child:not(:only-child) *{color:inherit!important;font:inherit!important;}
+html.mx .mx-acct table.ui4-form-table input[type=text]:not(.colorwell),html.mx .mx-acct table.ui4-form-table input[type=password],html.mx .mx-acct table.ui4-form-table input[type=email]{width:100%!important;max-width:380px;box-sizing:border-box;}
+html.mx .mx-acct table.ui4-form-table > tbody > tr > td:only-child{text-align:center;}
+.mx-opts{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);margin:0 0 16px;overflow:hidden;}
+.mx-opt{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-top:1px solid var(--border);font:13px/1.45 var(--font);color:var(--text);}
+.mx-opt:first-child{border-top:0;}
+.mx-opt:hover{background:var(--surface2);}
+.mx-opt input{margin:2px 0 0!important;accent-color:var(--accent);flex:0 0 auto;cursor:pointer;}
+.mx-opt label{cursor:pointer;flex:1;}
+html.mx .mx-acct form.ui4-form > label{display:block;margin:0 0 6px!important;font:600 13px var(--font)!important;color:var(--text)!important;}
+html.mx .mx-acct form.ui4-form > input[type=text]{width:100%!important;max-width:420px;box-sizing:border-box;margin:0 0 14px;}
+html.mx .mx-acct form.ui4-form > textarea{width:100%!important;max-width:560px;box-sizing:border-box;min-height:80px;margin:0 0 14px;}
+.mx-colors{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
+.mx-colors > table.ui4-form-table{flex:1 1 360px;width:auto!important;}
+html.mx .mx-colors #picker{float:none!important;order:2;flex:0 0 auto;}
+html.mx .mx-colors #picker:empty{display:none;}
+.mx-acts{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px;}
+.mx-acts a.mx-btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none!important;}
+html.mx .mx-acct table.ui4-profile-login-history{width:100%!important;background:var(--surface)!important;border:1px solid var(--border)!important;border-radius:12px;box-shadow:var(--shadow);border-collapse:separate!important;border-spacing:0!important;overflow:hidden;font-variant-numeric:tabular-nums;}
+html.mx .mx-acct table.ui4-profile-login-history td,html.mx .mx-acct table.ui4-profile-login-history th{padding:6px 14px!important;border:0!important;border-bottom:1px solid var(--border)!important;background:none!important;font-size:12.5px;}
+html.mx .mx-acct table.ui4-profile-login-history tr:first-child > *{font-weight:700;color:var(--muted)!important;text-transform:uppercase;font-size:11px;letter-spacing:.07em;}
+html.mx .mx-acct table.ui4-profile-login-history tr:last-child > *{border-bottom:0!important;}
+html.mx .mx-acct > h4{font:700 12px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)!important;margin:6px 0 6px!important;}
+html.mx .mx-acct #messaggi tbody td:only-child{text-align:center!important;color:var(--muted)!important;padding:30px 10px!important;font-size:13px;}
 /* narrow: the right column moves under the content, its boxes side by side */
 @media (max-width:1100px){
   html.mx #inner_body_container{flex-wrap:wrap;}
@@ -1029,7 +1060,7 @@ html.mx #middle_section .status_details > div{color:var(--muted);font-size:13px;
     }
     return { h: hh, s, l };
   };
-  const SKIP_DARKFIX = 'svg,svg *,img,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-hero,.mx-hero *,.mx-skills,.mx-skills *,.mx-rank,.mx-rank *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,.mx-notice,.mx-notice *,#left_section,#left_section *';
+  const SKIP_DARKFIX = 'input.colorwell,#picker,#picker *,svg,svg *,img,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-hero,.mx-hero *,.mx-skills,.mx-skills *,.mx-rank,.mx-rank *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,.mx-notice,.mx-notice *,#left_section,#left_section *';
 
   function darkFix(scope) {
     if (theme !== 'dark') return;
@@ -1073,7 +1104,7 @@ html.mx #middle_section .status_details > div{color:var(--muted);font-size:13px;
     [[161, 77, 67], 'var(--accent)'], // brick headings
     [[240, 73, 53], 'var(--bad)'], // red-orange: negative values, delete actions
   ];
-  const SKIP_LEGACY = 'svg,svg *,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,.mx-notice,.mx-notice *,#left_section,#left_section *,.mx-logo,.mx-logo *';
+  const SKIP_LEGACY = 'input.colorwell,#picker,#picker *,svg,svg *,script,style,.mxr,.mxr *,.mxa,.mxa *,.mx-dock,.mx-dock *,.mx-pal-bg,.mx-pal-bg *,.mx-notice,.mx-notice *,#left_section,#left_section *,.mx-logo,.mx-logo *';
   function legacyColors(scope) {
     const els = scope.nodeType === 1 ? [scope, ...scope.querySelectorAll('*')] : [];
     for (const el of els) {
@@ -2209,6 +2240,7 @@ html.mx #middle_section .status_details > div{color:var(--muted);font-size:13px;
     chevL: '<path d="m15 18-6-6 6-6"/>',
     chevR: '<path d="m9 18 6-6-6-6"/>',
     chevD: '<path d="m6 9 6 6 6-6"/>',
+    userplus: '<circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M19 8v6M16 11h6"/>',
     clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
     alert: '<path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/>',
@@ -2502,12 +2534,64 @@ html.mx #middle_section .status_details > div{color:var(--muted);font-size:13px;
     $$('.news_maxithlon h3 .title_text', mid).forEach((s) => s.classList.toggle('mx-on', !s.hasAttribute('onclick')));
   }
 
+  /* ------------------------------------------------------------------ *
+   * Account pages (options, password, symbol, profile, messages): mostly CSS
+   * scoped by .mx-acct. Elements are only regrouped inside their own form,
+   * so what the forms send does not change.
+   * ------------------------------------------------------------------ */
+  function accountPages() {
+    const host = $('.page_details') || $('#middle_section');
+    if (!host) return;
+    host.classList.add('mx-acct');
+
+    // options: loose checkbox + label + <br> lines become a list of rows
+    $$('form.ui4-form', host).forEach((form) => {
+      const boxes = $$(':scope > input[type=checkbox]', form);
+      if (boxes.length) {
+        const list = h('div', { class: 'mx-opts' });
+        form.insertBefore(list, boxes[0]);
+        boxes.forEach((cb) => {
+          const lab = cb.nextElementSibling?.tagName === 'LABEL' ? cb.nextElementSibling : null;
+          const br = (lab || cb).nextElementSibling;
+          if (lab && !lab.htmlFor && cb.id) lab.htmlFor = cb.id;
+          list.append(h('div', { class: 'mx-opt' }, cb, lab));
+          if (br && br.tagName === 'BR') br.remove();
+        });
+      }
+      // club colors: the picker sits next to its table instead of floating
+      const picker = $(':scope > #picker', form);
+      const table = picker && picker.nextElementSibling?.tagName === 'TABLE' ? picker.nextElementSibling : null;
+      if (table && $('input.colorwell', table)) {
+        const box = h('div', { class: 'mx-colors' });
+        form.insertBefore(box, picker);
+        box.append(table, picker);
+      }
+    });
+
+    // profile: legacy action images (send message, add friend) become buttons
+    const acts = $$(':scope > a', host).filter((a) => a.querySelector(':scope > img') && /(invia_messaggio|amici)\.php/.test(a.getAttribute('href') || ''));
+    if (acts.length) {
+      const bar = h('div', { class: 'mx-acts' });
+      host.insertBefore(bar, acts[0]);
+      acts.forEach((a) => {
+        const img = a.querySelector('img');
+        const label = (img.getAttribute('title') || img.alt || '').trim();
+        a.classList.add('mx-btn');
+        a.replaceChildren(svgIcon(/amici/.test(a.getAttribute('href')) ? 'userplus' : 'mail', 15), label);
+        bar.append(a);
+      });
+      // drop the <br> spacers that followed the images
+      while (bar.nextElementSibling?.tagName === 'BR') bar.nextElementSibling.remove();
+    }
+  }
+
   const MODULES = [
     { k: 'roster', label: 'modRoster', page: /lista_atleti\.php$/, run: rosterPage },
     { k: 'market', label: 'modMarket', page: /mercato\.php$/, run: marketPage },
     { k: 'finances', label: 'modFinances', page: /budget_det\.php$/, run: financePage },
     { k: 'transactions', label: 'modTransactions', page: /last_budget\.php$/, run: transactionsPage },
     { k: 'home', label: 'modHome', page: /^\/(index\.php)?$/, run: homePage },
+    { k: 'account', label: 'modAccount', page: /\/user\/(messaggi|messaggi_uscita|invia_messaggio|modifica_utente|modifica_opzioni|cambia_password|upload|dettagli_utente)\.php$/, run: accountPages },
     { k: 'athlete', label: 'modAthlete', page: /atleta_one\.php$/, run: () => { try { athleteLayout(); } catch (e) { console.warn('[UI+] athlete layout', e); } athletePage(); } },
     { k: 'icons', label: 'modIcons', run: () => { decorateIcons(); eventIcons(); } },
     { k: 'sidebar', label: 'modSidebar', run: sidebarSections },
