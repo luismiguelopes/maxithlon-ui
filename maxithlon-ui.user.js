@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Maxithlon UI+
 // @namespace    v3mpire.maxithlon.uiplus
-// @version      1.7.1
+// @version      1.8.0
 // @description  A modern interface for Maxithlon: dark/light theme, wide layout, roster dashboard with filters and heat map, athlete skill radar and a command palette (Ctrl+K). Works with any site language.
 // @description:pt  Uma interface moderna para o Maxithlon: tema escuro/claro, layout largo, painel do plantel com filtros e mapa de calor, radar de habilidades do atleta e paleta de comandos (Ctrl+K). Funciona com qualquer língua do site.
 // @description:it  Un'interfaccia moderna per Maxithlon: tema scuro/chiaro, layout ampio, pannelli per rosa, mercato e finanze, radar delle abilità e palette dei comandi (Ctrl+K). Funziona con qualsiasi lingua del sito.
@@ -78,7 +78,7 @@
   const enabled = LS.get('enabled', true);
   // User settings (dock gear): accent color, density and modules turned off
   const ACCENTS = ['#ff7a1a', '#3b82f6', '#22c55e', '#a855f7', '#ec4899', '#ef4444', '#14b8a6', '#eab308'];
-  const settings = Object.assign({ accent: ACCENTS[0], density: 'comfortable', off: [] }, LS.get('settings', {}));
+  const settings = Object.assign({ accent: ACCENTS[0], density: 'comfortable', menu: 'full', off: [] }, LS.get('settings', {}));
   const root = document.documentElement;
 
   /* ------------------------------------------------------------------ *
@@ -141,6 +141,7 @@
       formLow: 'low form', formHigh: 'top form',
       setTitle: 'UI+ settings', setTheme: 'Theme', setDark: 'Dark', setLight: 'Light', setAccent: 'Accent color',
       setDensity: 'Density', setComfortable: 'Comfortable', setCompact: 'Compact', setModules: 'Modules',
+      setMenu: 'Left menu', setMenuFull: 'Full', setMenuRail: 'Icons only', sideToggle: 'Show or hide this section', modSidebar: 'Collapsible menu sections', modHome: 'Home page dashboard',
       setReset: 'Reset settings', setReload: 'Reload to apply', setLive: 'Changes apply right away',
       modRoster: 'Athletes list dashboard', modMarket: 'Market dashboard', modFinances: 'Finances dashboard',
       modTransactions: 'Transactions dashboard', modAthlete: 'Athlete page cards and radar', modIcons: 'SVG icons and event pictograms',
@@ -197,6 +198,7 @@
       formLow: 'forma baixa', formHigh: 'forma ótima',
       setTitle: 'Definições do UI+', setTheme: 'Tema', setDark: 'Escuro', setLight: 'Claro', setAccent: 'Cor de destaque',
       setDensity: 'Densidade', setComfortable: 'Confortável', setCompact: 'Compacta', setModules: 'Módulos',
+      setMenu: 'Menu lateral', setMenuFull: 'Completo', setMenuRail: 'Só ícones', sideToggle: 'Mostrar ou esconder esta secção', modSidebar: 'Secções do menu recolhíveis', modHome: 'Painel da página inicial',
       setReset: 'Repor definições', setReload: 'Recarregar para aplicar', setLive: 'As alterações aplicam-se logo',
       modRoster: 'Painel da lista de atletas', modMarket: 'Painel do mercado', modFinances: 'Painel das finanças',
       modTransactions: 'Painel das transações', modAthlete: 'Cartões e radar da página do atleta', modIcons: 'Ícones SVG e pictogramas das provas',
@@ -253,6 +255,7 @@
       formLow: 'forma bassa', formHigh: 'forma ottima',
       setTitle: 'Impostazioni UI+', setTheme: 'Tema', setDark: 'Scuro', setLight: 'Chiaro', setAccent: 'Colore principale',
       setDensity: 'Densità', setComfortable: 'Comoda', setCompact: 'Compatta', setModules: 'Moduli',
+      setMenu: 'Menu laterale', setMenuFull: 'Completo', setMenuRail: 'Solo icone', sideToggle: 'Mostra o nascondi questa sezione', modSidebar: 'Sezioni del menu comprimibili', modHome: 'Pannello della home',
       setReset: 'Ripristina impostazioni', setReload: 'Ricarica per applicare', setLive: 'Le modifiche si applicano subito',
       modRoster: 'Pannello della lista atleti', modMarket: 'Pannello del mercato', modFinances: 'Pannello delle finanze',
       modTransactions: 'Pannello delle transazioni', modAthlete: 'Schede e radar della pagina atleta', modIcons: 'Icone SVG e pittogrammi delle gare',
@@ -309,6 +312,7 @@
       formLow: 'forma baja', formHigh: 'forma óptima',
       setTitle: 'Ajustes de UI+', setTheme: 'Tema', setDark: 'Oscuro', setLight: 'Claro', setAccent: 'Color de acento',
       setDensity: 'Densidad', setComfortable: 'Cómoda', setCompact: 'Compacta', setModules: 'Módulos',
+      setMenu: 'Menú lateral', setMenuFull: 'Completo', setMenuRail: 'Solo iconos', sideToggle: 'Mostrar u ocultar esta sección', modSidebar: 'Secciones del menú plegables', modHome: 'Panel de la página de inicio',
       setReset: 'Restablecer ajustes', setReload: 'Recargar para aplicar', setLive: 'Los cambios se aplican al momento',
       modRoster: 'Panel de la lista de atletas', modMarket: 'Panel del mercado', modFinances: 'Panel de finanzas',
       modTransactions: 'Panel de transacciones', modAthlete: 'Tarjetas y radar de la página del atleta', modIcons: 'Iconos SVG y pictogramas de las pruebas',
@@ -365,6 +369,7 @@
       formLow: 'forme basse', formHigh: 'forme optimale',
       setTitle: 'Réglages UI+', setTheme: 'Thème', setDark: 'Sombre', setLight: 'Clair', setAccent: 'Couleur d\'accent',
       setDensity: 'Densité', setComfortable: 'Confortable', setCompact: 'Compacte', setModules: 'Modules',
+      setMenu: 'Menu latéral', setMenuFull: 'Complet', setMenuRail: 'Icônes seules', sideToggle: 'Afficher ou masquer cette section', modSidebar: 'Sections du menu repliables', modHome: "Tableau de bord de l'accueil",
       setReset: 'Réinitialiser les réglages', setReload: 'Recharger pour appliquer', setLive: 'Les changements s\'appliquent tout de suite',
       modRoster: 'Tableau de bord des athlètes', modMarket: 'Tableau de bord du marché', modFinances: 'Tableau de bord des finances',
       modTransactions: 'Tableau de bord des transactions', modAthlete: 'Cartes et radar de la page athlète', modIcons: 'Icônes SVG et pictogrammes des épreuves',
@@ -421,6 +426,7 @@
       formLow: 'schwache Form', formHigh: 'Topform',
       setTitle: 'UI+-Einstellungen', setTheme: 'Design', setDark: 'Dunkel', setLight: 'Hell', setAccent: 'Akzentfarbe',
       setDensity: 'Dichte', setComfortable: 'Bequem', setCompact: 'Kompakt', setModules: 'Module',
+      setMenu: 'Seitenmenü', setMenuFull: 'Vollständig', setMenuRail: 'Nur Symbole', sideToggle: 'Diesen Bereich ein- oder ausblenden', modSidebar: 'Einklappbare Menübereiche', modHome: 'Startseiten-Dashboard',
       setReset: 'Einstellungen zurücksetzen', setReload: 'Neu laden zum Anwenden', setLive: 'Änderungen gelten sofort',
       modRoster: 'Athletenlisten-Dashboard', modMarket: 'Markt-Dashboard', modFinances: 'Finanz-Dashboard',
       modTransactions: 'Transaktionen-Dashboard', modAthlete: 'Karten und Radar der Athletenseite', modIcons: 'SVG-Symbole und Disziplin-Piktogramme',
@@ -916,6 +922,57 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
 /* ---------- responsive ---------- */
 html.mx .mx-rank{overflow-x:auto;}
 html.mx .mx-rank > .main_row{min-width:560px;}
+/* ---------- sidebar sections (collapsible) and icon rail ---------- */
+html.mx #left_section h2.mx-side-h{display:flex!important;align-items:center;justify-content:space-between;gap:6px;cursor:pointer;user-select:none;}
+html.mx #left_section .mx-side-tg{all:unset;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;color:var(--muted);transition:transform .15s;}
+html.mx #left_section .mx-side-tg:hover{background:var(--surface3);color:var(--text);}
+html.mx #left_section h2.mx-shut .mx-side-tg{transform:rotate(-90deg);}
+html.mx #left_section ul.mx-side-shut{display:none!important;}
+html.mx #left_section h2.mx-side-solo{margin-top:12px!important;padding-top:10px!important;border-top:1px solid var(--border)!important;}
+html.mx #left_section h2.mx-side-solo a{display:flex!important;align-items:center;gap:10px;padding:4px 2px!important;}
+html.mx-rail #left_section{flex:0 0 58px;width:58px!important;padding:8px 6px;}
+html.mx-rail #left_section h2.sidebar-user-heading{padding:6px!important;display:flex;justify-content:center;}
+html.mx-rail #left_section .sidebar-user-name{display:none!important;}
+html.mx-rail #left_section h2:not(.sidebar-user-heading):not(.mx-side-solo){font-size:0!important;height:1px;background:var(--border)!important;margin:8px 6px!important;overflow:hidden;}
+html.mx-rail #left_section h2.mx-side-solo a{font-size:0!important;justify-content:center;}
+html.mx-rail #left_section .mx-side-tg{display:none;}
+html.mx-rail #left_section ul.mx-side-shut{display:block!important;}
+html.mx-rail #left_section li a{justify-content:center!important;padding:8px 0!important;font-size:0!important;gap:0!important;}
+html.mx-rail #left_section li a *:not(svg):not(svg *){font-size:0!important;}
+html.mx-rail #left_section li a .mx-ic{width:18px;height:18px;}
+
+/* ---------- home page ---------- */
+html.mx #middle_section.mx-hide-orig-home > .home_details{display:none!important;}
+.mx-home{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px;align-items:start;}
+.mx-home > .mx-card{margin:0!important;}
+.mx-home .mx-tiles{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));margin:0;}
+.mx-home a.mx-tile{text-decoration:none!important;color:var(--text)!important;}
+.mx-home a.mx-tile:hover{border-color:var(--accent);}
+.mx-home .mx-tile .v{font-variant-numeric:tabular-nums;}
+.mx-home-comp{display:flex;flex-direction:column;}
+.mx-home-comp > div{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--border);font-size:13px;min-width:0;}
+.mx-home-comp > div:first-child{border-top:0;padding-top:0;}
+.mx-home-comp .mx-badge{flex:0 0 auto;min-width:76px;text-align:center;font-variant-numeric:tabular-nums;display:inline-flex;gap:4px;align-items:center;justify-content:center;}
+.mx-home-comp .mx-badge *{color:inherit!important;background:none!important;font:inherit!important;padding:0!important;}
+.mx-home-comp a{color:var(--text)!important;text-decoration:none!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mx-home-comp a:hover{color:var(--accent)!important;}
+@media (max-width:900px){.mx-home{grid-template-columns:1fr;}}
+html.mx #middle_section .news_maxithlon,html.mx #middle_section .status_details{background:var(--surface)!important;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 18px!important;margin:14px 0 0!important;width:auto!important;float:none!important;box-sizing:border-box;display:flow-root;}
+html.mx #middle_section .news_maxithlon h3,html.mx #middle_section .status_details h3{font-size:16px!important;font-weight:700!important;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 8px!important;padding:0!important;background:none!important;}
+html.mx #middle_section .news_maxithlon h3 img,html.mx #middle_section .status_details h3 img{display:none;}
+html.mx #middle_section .news_maxithlon .title_text{padding:5px 12px!important;border-radius:999px;border:1px solid var(--border)!important;background:none!important;font-size:13px!important;font-weight:600;cursor:pointer;color:var(--text)!important;}
+html.mx #middle_section .news_maxithlon .title_text:hover{border-color:var(--accent)!important;}
+html.mx #middle_section .news_maxithlon .title_text.mx-on{background:var(--accent)!important;border-color:var(--accent)!important;color:#fff!important;cursor:default;}
+html.mx #middle_section .home-news-archive{float:right;margin:2px 0 0 10px;}
+html.mx #middle_section .news_maxithlon > ul{margin:0!important;padding:0!important;list-style:none!important;}
+html.mx #middle_section .news_maxithlon > ul > li{display:block;padding:10px 0!important;margin:0!important;border-top:1px solid var(--border);background:none!important;}
+html.mx #middle_section .news_maxithlon > ul > li:first-of-type{border-top:0;}
+html.mx #middle_section .news_maxithlon li > .date{display:inline-block;margin-right:10px;padding:2px 7px;border-radius:6px;background:var(--surface3)!important;color:var(--muted)!important;font-size:11.5px;font-variant-numeric:tabular-nums;}
+html.mx #middle_section .news_maxithlon li > a strong{font-size:14px;}
+html.mx #middle_section .news_maxithlon .news_body_text{margin:10px 0 2px!important;color:var(--text)!important;line-height:1.55!important;}
+html.mx #middle_section .status_details .right_text{float:none!important;order:2;margin-left:auto;font-size:12px!important;font-weight:500!important;color:var(--muted)!important;cursor:pointer;}
+html.mx #middle_section .status_details .right_text:hover{color:var(--bad)!important;}
+html.mx #middle_section .status_details > div{color:var(--muted);font-size:13px;}
 /* narrow: the right column moves under the content, its boxes side by side */
 @media (max-width:1100px){
   html.mx #inner_body_container{flex-wrap:wrap;}
@@ -926,6 +983,8 @@ html.mx .mx-rank > .main_row{min-width:560px;}
   html.mx #footer .space_none{grid-column:1/-1;}
   html.mx #header .right_details{flex-wrap:wrap;row-gap:4px;}
   html.mx #header .top_menu{max-width:100%;overflow-x:auto;scrollbar-width:none;}
+  html.mx-rail #middle_section{flex-basis:calc(100% - 76px);}
+  html.mx-rail #right_section,html.mx-rail #right_part{margin-left:76px!important;}
 }
 @media (max-width:900px){
   html.mx #header{flex-wrap:wrap;}
@@ -1044,6 +1103,8 @@ html.mx .mx-rank > .main_row{min-width:560px;}
    * ------------------------------------------------------------------ */
   function markCurrent() {
     const here = location.pathname;
+    // the icon-only menu shows each entry's name as a tooltip
+    $$('#left_section a').forEach((a) => { if (!a.title) a.title = a.textContent.trim(); });
     $$('#left_section li a, .page_bar li a').forEach((a) => {
       try { if (new URL(a.href, location.href).pathname === here) a.classList.add('mx-current'); } catch (e) { /* */ }
     });
@@ -1153,6 +1214,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     root.style.setProperty('--accent', hex);
     root.style.setProperty('--accent-soft', `rgba(${r},${g},${b},.14)`);
     root.classList.toggle('mx-compact', settings.density === 'compact');
+    root.classList.toggle('mx-rail', settings.menu === 'rail');
   }
 
   function openSettings() {
@@ -1173,6 +1235,7 @@ html.mx .mx-rank > .main_row{min-width:560px;}
             onclick: () => { settings.accent = c; saveSettings(); applySettings(); render(); },
           })))),
           row(t('setDensity'), seg([['comfortable', t('setComfortable')], ['compact', t('setCompact')]], settings.density, (v) => { settings.density = v; saveSettings(); applySettings(); render(); })),
+          row(t('setMenu'), seg([['full', t('setMenuFull')], ['rail', t('setMenuRail')]], settings.menu, (v) => { settings.menu = v; saveSettings(); applySettings(); render(); })),
           h('div', { class: 'mx-set-sub' }, t('setModules')),
           MODULES.filter((m) => m.label).map((m) => h('label', { class: 'mx-set-mod' },
             h('input', { type: 'checkbox', checked: moduleOn(m.k), onchange: (e) => {
@@ -2143,6 +2206,8 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     power: '<path d="M12 3v8"/><path d="M6.3 7a8 8 0 1 0 11.4 0"/>',
     chevL: '<path d="m15 18-6-6 6-6"/>',
     chevR: '<path d="m9 18 6-6-6-6"/>',
+    chevD: '<path d="m6 9 6 6 6-6"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
     alert: '<path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/>',
     // event families (pictograms for the site's 16x16_<event><m|f>.png images)
@@ -2340,13 +2405,108 @@ html.mx .mx-rank > .main_row{min-width:560px;}
    * original page stays usable. Modules with a label can be turned off
    * in the settings panel.
    * ------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------ *
+   * Sidebar: each section folds under its heading. Sections are keyed by
+   * position (language-independent); the one with the current page stays open.
+   * ------------------------------------------------------------------ */
+  function sidebarSections() {
+    const side = $('#left_section');
+    if (!side) return;
+    const closed = new Set(LS.get('sideClosed', []));
+    $$(':scope > h2:not(.sidebar-user-heading)', side).forEach((h2, i) => {
+      const ul = h2.nextElementSibling;
+      if (!ul || ul.tagName !== 'UL') {
+        // a heading without a list is a single link (logout)
+        h2.classList.add('mx-side-solo');
+        const a = h2.querySelector('a');
+        if (a && !a.querySelector('.mx-ic')) a.prepend(svgIcon(iconFor(a), 16));
+        return;
+      }
+      const btn = h('button', { type: 'button', class: 'mx-side-tg', title: t('sideToggle') }, svgIcon('chevD', 14));
+      const set = (open) => { ul.classList.toggle('mx-side-shut', !open); h2.classList.toggle('mx-shut', !open); btn.setAttribute('aria-expanded', String(open)); };
+      set(!closed.has(i) || !!ul.querySelector('a.mx-current'));
+      h2.classList.add('mx-side-h');
+      h2.append(btn);
+      h2.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return; // the heading link (club page) still navigates
+        e.preventDefault();
+        const open = ul.classList.contains('mx-side-shut');
+        set(open);
+        if (open) closed.delete(i); else closed.add(i);
+        LS.set('sideClosed', [...closed]);
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------ *
+   * Home page: club summary as tiles, next competitions as a list,
+   * news and status messages as cards (CSS; the site's toggles keep working).
+   * ------------------------------------------------------------------ */
+  function homePage() {
+    const mid = $('#middle_section');
+    const hd = mid && $(':scope > .home_details', mid);
+    if (!hd) return;
+    const c1 = $('.content1', hd), c2 = $('.content2', hd);
+
+    // Summary: each line is "Label: value [Label: value]"; read text and elements in order,
+    // so it works in any language. A second pair on the same line becomes the sub-text.
+    const tiles = [];
+    $$('li', c1 || hd).forEach((li) => {
+      const box = li.querySelector('strong') || li;
+      const pairs = [];
+      let label = '';
+      box.childNodes.forEach((n) => {
+        if (n.nodeType === 3) { label += n.textContent; return; }
+        if (n.nodeType !== 1) return;
+        const k = label.replace(/[:\s ]+$/, '').trim();
+        label = '';
+        if (k) pairs.push({ k, v: n.textContent.replace(/\s+/g, ' ').trim(), href: (n.tagName === 'A' ? n : n.querySelector('a'))?.getAttribute('href') });
+        else if (pairs.length) pairs[pairs.length - 1].v += n.textContent.trim();
+      });
+      if (!pairs.length) return;
+      const [p, ...rest] = pairs;
+      const sub = rest.map((r) => `${r.k} ${r.v}`).join(' · ') || null;
+      const el = tile(p.k, p.v, sub);
+      if (p.href) { const a = h('a', { href: p.href, class: el.className }); a.append(...el.childNodes); tiles.push(a); } else tiles.push(el);
+    });
+
+    // Next competitions: the first line is the title (calendar link), the rest are date + link.
+    // The rotating slot (.innerfade) holds several competitions: each gets its own row.
+    let compTitle = null;
+    const comps = [];
+    $$('.col2', c2 || hd).forEach((col) => {
+      const a = $$('a', col).pop();
+      const date = col.querySelector('.date');
+      if (!date) { if (!compTitle && a) compTitle = a; return; }
+      if (!a) return;
+      const live = date.classList.contains('hasCountdown');
+      // the countdown element is moved, not copied, so the site's timer keeps updating it
+      const badge = h('span', { class: 'mx-badge pill' + (live ? ' warn' : '') }, live ? svgIcon('clock', 12) : null, live ? date : date.textContent.trim());
+      comps.push(h('div', {}, badge, h('a', { href: a.getAttribute('href'), title: a.textContent.trim() }, a.textContent.trim())));
+    });
+
+    const homeTitle = ($(':scope > h3', hd)?.textContent || '').trim();
+    const panel = h('div', { class: 'mxr mx-home' },
+      h('div', { class: 'mx-card' }, sectionTitle(homeTitle || '—'), h('div', { class: 'mx-tiles' }, tiles)),
+      comps.length ? h('div', { class: 'mx-card' },
+        sectionTitle(compTitle ? h('a', { href: compTitle.getAttribute('href'), style: { color: 'inherit' } }, compTitle.textContent.trim()) : '—'),
+        h('div', { class: 'mx-home-comp' }, comps)) : null);
+    mid.insertBefore(panel, hd);
+    mid.classList.add('mx-hide-orig-home');
+
+    // news tabs: the active tab is the one without a click handler
+    $$('.news_maxithlon h3 .title_text', mid).forEach((s) => s.classList.toggle('mx-on', !s.hasAttribute('onclick')));
+  }
+
   const MODULES = [
     { k: 'roster', label: 'modRoster', page: /lista_atleti\.php$/, run: rosterPage },
     { k: 'market', label: 'modMarket', page: /mercato\.php$/, run: marketPage },
     { k: 'finances', label: 'modFinances', page: /budget_det\.php$/, run: financePage },
     { k: 'transactions', label: 'modTransactions', page: /last_budget\.php$/, run: transactionsPage },
+    { k: 'home', label: 'modHome', page: /^\/(index\.php)?$/, run: homePage },
     { k: 'athlete', label: 'modAthlete', page: /atleta_one\.php$/, run: () => { try { athleteLayout(); } catch (e) { console.warn('[UI+] athlete layout', e); } athletePage(); } },
     { k: 'icons', label: 'modIcons', run: () => { decorateIcons(); eventIcons(); } },
+    { k: 'sidebar', label: 'modSidebar', run: sidebarSections },
     { k: 'clubs', run: rememberClubs },
     { k: 'rightCol', label: 'modRightCol', run: rightColumn },
     { k: 'tips', label: 'modTips', run: pageTips },
