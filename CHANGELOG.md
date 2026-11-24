@@ -2,7 +2,18 @@
 
 All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.org/): fixes bump the patch number, new features bump the minor number.
 
-## [1.8.0] — 2026-11-24
+## [1.9.0] — 2026-11-24
+
+### Added
+- League table (national league and youth championship) as a dashboard: your position, points, gap to the leader, margins to the promotion and relegation lines and total score as tiles (shown once the first meeting is held).
+- The standings with promotion and relegation zones and their cut-off lines, your club highlighted, the points gap to the club above, form (average points over the last 3 meetings, with ▲▼ against the season average) and each meeting's points as a heat map. Meetings a club missed and meetings still to come are marked apart. "Show original" brings back the site's table.
+- League pages: the second row of tabs (table, calendar, charts, statistics) as a segmented control; last and next competitions as two cards.
+- Season calendar as week cards: each competition is a chip colored by type (league, meetings, championships, international), past days fade, today and the next competition day are marked.
+- League calendar as a list with the date, weekday and time, faded once held, and the next meeting with a countdown.
+- Competition results, rankings, records and entry lists: rows of your athletes and your club are highlighted; places 1–3 in medal colors on event results.
+- Moments of glory (athlete) and honours board (club): places as badges, podiums in gold, silver and bronze.
+
+ — 2026-11-24
 
 ### Added
 - Home page as a dashboard: the club summary (athletes, fans, contracts, coaches, season and week, stadium efficiency, budget) as clickable tiles, and the next competitions as a list with dates and a live countdown.

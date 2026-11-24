@@ -2,7 +2,7 @@
 
 Planned work for Maxithlon UI+. Items are grouped by milestone, roughly in priority order. The scope rule never changes: UI+ only changes **presentation**. It does not submit forms, automate actions or work around game rules.
 
-Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**, **market search results**, **finances** and **last transactions**. Every other page gets the theme, colors, icons, collapsible intro, footer and right column styles so far.
+Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**, **market search results**, **finances**, **last transactions**, **home**, **league table** and **calendars**. Every other page gets the theme, colors, icons, collapsible intro, footer and right column styles so far.
 
 ## Done
 
@@ -12,6 +12,8 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 - **1.5:** market search results dashboard (price per MAXID, time left, fit with your roster, saved views, CSV); legacy data tables (market statistics, transfers) as cards.
 - **1.6:** finances dashboard (income vs expenses per period, category breakdown, week-over-week changes) and last transactions dashboard (daily chart, categories, filterable table).
 - **1.7:** UI in Italian, Spanish, French and German; settings panel (theme, accent, density, modules); notice and clean fallback when a panel fails; roster Form colors explained (red low, green top); checked with the game in English (roster, athlete radar, market, finances, transactions, icons, palette).
+- **1.8:** home page dashboard; collapsible and icon-only left menu; messages and account pages restyled.
+- **1.9:** league table dashboard (national and youth); season and league calendars; your athletes and club highlighted in results and rankings; moments of glory and honours board.
 
 ## 1.7 — Robustness and languages (left over)
 
@@ -28,10 +30,12 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 
 ## 1.9 — League and competitions
 
-- [ ] League table (`/varie/dettagli_serie.php`) that is easier to read: your club highlighted, promotion/relegation zones, form.
-- [ ] Competitions list, entries and upcoming events in a compact calendar view.
-- [ ] Results and rankings pages with your athletes highlighted.
-- [ ] Records and "moments of glory" pages restyled.
+- [x] League table (`/varie/dettagli_serie.php`, and the youth championship) that is easier to read: your club highlighted, promotion/relegation zones, form.
+- [x] Season and league calendars in a compact view.
+- [x] Results and rankings pages with your athletes highlighted.
+- [x] "Moments of glory" and honours board restyled (records already had the generic table style).
+- [ ] **League charts and statistics** tabs (`grafici_serie.php`, `statistiche_serie.php`): not checked yet.
+- [ ] **Competitions list** (`lista_prossima.php`): the search form as a compact filter bar.
 
 ## 1.10 — Club pages
 

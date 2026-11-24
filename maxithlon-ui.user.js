@@ -2743,7 +2743,8 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     const promoN = rows.filter((r) => r.zone === 'up').length;
     const relegAt = rows.findIndex((r) => r.zone === 'down');
     const tiles = [];
-    if (me) {
+    // before the first meeting every club has 0 points: places and zones mean nothing yet
+    if (me && held.some(Boolean)) {
       const i = rows.indexOf(me);
       tiles.push(tile(t('lgPos'), fmt(me.pos ?? i + 1) + 'º', t('lgOf', rows.length), { cls: me.zone === 'up' ? 'good' : me.zone === 'down' ? 'bad' : '' }));
       tiles.push(tile(H.pts || '—', fmt(me.pts), me === leader ? null : `${t('lgLeader')}: ${signedInt(me.pts - leader.pts)}`));

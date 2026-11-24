@@ -36,6 +36,10 @@ It only changes how pages **look**. It never submits forms, makes extra requests
 - **Market search results** as a dashboard: cheapest, average price, best value and ending-first cards; price per MAXID point; time left to the deadline; the sum of skills compared with your roster average for the same group, with a "fits my roster" filter; group and gender filters, saved views, heat map, sorting and CSV export.
 - **Finances**: income vs expenses for this week, last week and last season, a category breakdown with week-over-week changes, and the last transactions as a daily chart and a filterable table.
 - **Athlete page** as cards (profile, skills, rankings, notes) with a **skill radar**: the 8 skills (6 base + 2 specialty) compared with your roster's average for that group. Full club names instead of the site's cut ones, once seen on another page.
+- **League table** (national league and youth championship): your position, points, gap to the leader and margins to the promotion and relegation lines as tiles; the table with zone markers, your club highlighted, form over the last 3 meetings and each meeting's points as a heat map. The league tabs as a segmented control, and the last and next competitions as cards.
+- **Calendars**: the season calendar as week cards, with each competition colored by type, past days faded and the next one marked; the league calendar as a list with the next meeting and its countdown.
+- **Competition results, rankings and entry lists**: your athletes' and your club's rows highlighted; podium places in gold, silver and bronze.
+- **Moments of glory and honours board**: places as badges, podiums in medal colors.
 - **Right column**: price and coach forms on one row, the coach's training plan as bars.
 - **Event pictograms** (sprint, hurdles, jumps, throws…) in the athlete's gender color instead of the square images.
 - **Skill bars** colored from red (0) to green (20).
