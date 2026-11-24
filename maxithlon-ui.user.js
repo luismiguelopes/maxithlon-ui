@@ -945,7 +945,7 @@ html.mx-rail #left_section li a .mx-ic{width:18px;height:18px;}
 
 /* ---------- home page ---------- */
 html.mx #middle_section.mx-hide-orig-home > .home_details,html.mx #middle_section.mx-hide-orig-home > br{display:none!important;}
-.mx-home{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px;align-items:start;}
+.mx-home{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px;align-items:stretch;margin-bottom:14px;}
 .mx-home > .mx-card{margin:0!important;}
 .mx-home .mx-tiles{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));margin:0;}
 .mx-home a.mx-tile{text-decoration:none!important;color:var(--text)!important;}
@@ -959,7 +959,7 @@ html.mx #middle_section.mx-hide-orig-home > .home_details,html.mx #middle_sectio
 .mx-home-comp a{color:var(--text)!important;text-decoration:none!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .mx-home-comp a:hover{color:var(--accent)!important;}
 @media (max-width:900px){.mx-home{grid-template-columns:1fr;}}
-html.mx #middle_section .news_maxithlon,html.mx #middle_section .status_details{background:var(--surface)!important;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 18px!important;margin:14px 0 0!important;width:auto!important;float:none!important;box-sizing:border-box;display:flow-root;}
+html.mx #middle_section .news_maxithlon,html.mx #middle_section .status_details{background:var(--surface)!important;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 18px!important;margin:0 0 14px!important;width:auto!important;float:none!important;box-sizing:border-box;display:flow-root;}
 html.mx #middle_section .news_maxithlon h3,html.mx #middle_section .status_details h3{font-size:16px!important;font-weight:700!important;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 8px!important;padding:0!important;background:none!important;}
 html.mx #middle_section .news_maxithlon h3 img,html.mx #middle_section .status_details h3 img{display:none;}
 html.mx #middle_section .news_maxithlon .title_text{padding:5px 12px!important;border-radius:999px;border:1px solid var(--border)!important;background:none!important;font-size:13px!important;font-weight:600;cursor:pointer;color:var(--text)!important;}
