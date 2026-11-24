@@ -559,6 +559,13 @@ html.mx .page_bar li a{display:block;padding:7px 14px!important;border-radius:99
 html.mx .page_bar *{box-shadow:none!important;}
 html.mx .page_bar li a:hover{border-color:var(--accent)!important;}
 html.mx .page_bar li a.mx-current{background:var(--accent)!important;border-color:var(--accent)!important;color:#fff!important;}
+/* secondary tabs (league pages): a segmented control */
+html.mx .page_bar_main,html.mx .page_bar_youth{background:none!important;border:0!important;margin:0 0 14px!important;height:auto!important;text-align:left!important;}
+html.mx .page_bar_main ul,html.mx .page_bar_youth ul{display:inline-flex!important;gap:2px;padding:3px!important;margin:0!important;background:var(--surface2)!important;border:1px solid var(--border);border-radius:10px;width:auto!important;height:auto!important;}
+html.mx .page_bar_main li,html.mx .page_bar_youth li{float:none!important;background:none!important;margin:0!important;padding:0!important;width:auto!important;height:auto!important;border:0!important;}
+html.mx .page_bar_main li a,html.mx .page_bar_youth li a{display:block;padding:5px 12px!important;border-radius:7px;background:none!important;border:0!important;color:var(--muted)!important;text-decoration:none!important;font:600 12.5px/1.3 var(--font)!important;height:auto!important;box-shadow:none!important;background-image:none!important;}
+html.mx .page_bar_main li a:hover,html.mx .page_bar_youth li a:hover{color:var(--text)!important;}
+html.mx .page_bar_main li a.mx-current,html.mx .page_bar_youth li a.mx-current{background:var(--surface)!important;color:var(--text)!important;box-shadow:0 1px 2px rgba(0,0,0,.12)!important;}
 
 /* ---------- generic tables ---------- */
 html.mx #middle_section table{border-collapse:collapse;}
@@ -1044,12 +1051,20 @@ table.mx-table tr.mx-own td,html.mx #middle_section table tr.mx-own > td{backgro
 table.mx-lg-t tr.mx-own td.club a{color:var(--accent)!important;}
 table.mx-lg-t tr.mx-own td.pos span{color:var(--accent);}
 .mxr-legend .sw.up{background:var(--good);width:14px;} .mxr-legend .sw.down{background:var(--bad);width:14px;}
-.mxr-legend .sw.heat{background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 12%,transparent),var(--accent));}
+.mxr-legend .sw.heat{background:linear-gradient(90deg,color-mix(in srgb,var(--good) 12%,transparent),color-mix(in srgb,var(--good) 82%,transparent));}
 .mxr-legend .sp{flex:1;}
 html.mx #middle_section table.results tr.mx-own > td:first-child{box-shadow:inset 3px 0 0 var(--accent);}
 html.mx #middle_section table.results td.mx-place{font-weight:800;}
 html.mx #middle_section table.results td.mx-place.p1{color:#d4a017!important;} html.mx #middle_section table.results td.mx-place.p2{color:#9aa4ae!important;} html.mx #middle_section table.results td.mx-place.p3{color:#c07a3a!important;}
-html.mx .mx-league td[bgcolor="#000000"],html.mx .mx-league td[height="8"]{display:none!important;}
+html.mx .mx-league td[bgcolor="#000000"]{display:none!important;}
+html.mx .mx-league a.mx-own-a{color:var(--accent)!important;font-weight:700;}
+html.mx .mx-league > table:last-of-type{width:calc(100% + 28px)!important;margin:0 -14px!important;border-collapse:separate!important;border-spacing:14px 0!important;background:none!important;}
+html.mx .mx-league > table:last-of-type > tbody > tr > td{background:var(--surface)!important;border:1px solid var(--border)!important;border-radius:var(--radius);box-shadow:var(--shadow);padding:12px 16px!important;vertical-align:top!important;text-align:left!important;}
+html.mx .mx-league > table:last-of-type > tbody > tr > td > b{display:block;font:700 11px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)!important;margin-bottom:8px;}
+html.mx .mx-league > table:last-of-type table{width:100%!important;}
+html.mx .mx-league > table:last-of-type table td{padding:2px 0!important;font-size:12.5px;}
+html.mx .mx-league > table:last-of-type table td[colspan] a{font-weight:700;}
+html.mx .mx-league > table:last-of-type table td[height="8"]{height:8px;border-top:1px solid var(--border)!important;}
 /* calendars */
 .mx-cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-bottom:14px;}
 .mx-cal-w{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:10px 12px;}
@@ -1213,7 +1228,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     const here = location.pathname;
     // the icon-only menu shows each entry's name as a tooltip
     $$('#left_section a').forEach((a) => { if (!a.title) a.title = a.textContent.trim(); });
-    $$('#left_section li a, .page_bar li a').forEach((a) => {
+    $$('#left_section li a, .page_bar li a, .page_bar_main li a, .page_bar_youth li a').forEach((a) => {
       try { if (new URL(a.href, location.href).pathname === here) a.classList.add('mx-current'); } catch (e) { /* */ }
     });
   }
@@ -2689,6 +2704,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     const tbl = host && $(':scope > table.results_small', host);
     if (!tbl || tbl.rows.length < 3) return;
     host.classList.add('mx-league');
+    $$('a[href*="dettagli_societa"]', host).forEach((a) => { if (isOwnClub(a)) a.classList.add('mx-own-a'); });
     const head = Array.from(tbl.rows[0].cells).map((c) => c.textContent.trim());
     const own = ownClubId();
     const rows = Array.from(tbl.rows).slice(1).map((r) => {
@@ -2743,7 +2759,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
       tiles.push(tile(H.total || '—', fmt(me.total), me.avg != null ? `${t('lgAvg')}: ${fmt(me.avg, 1)}` : null));
     }
 
-    const heat = (v) => `color-mix(in srgb, var(--accent) ${Math.round(12 + (v / maxPt) * 70)}%, transparent)`;
+    const heat = (v) => `color-mix(in srgb, var(--good) ${Math.round(12 + (v / maxPt) * 70)}%, transparent)`;
     const thead = h('thead', {}, h('tr', {},
       h('th', {}, '#'), h('th', { class: 'l' }, head[ci] || ''),
       h('th', { class: 'sep' }, H.pts), h('th', {}, H.total), h('th', { title: t('lgFormT') }, t('lgForm')),
@@ -2867,7 +2883,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     const mid = $('#middle_section');
     if (!mid) return;
     const own = ownClubId();
-    $$('table.results tr, table.man_details tr, table.results_small tr', mid).forEach((tr) => {
+    $$('table.results tr, table.results_small tr', mid).forEach((tr) => {
       if (tr.classList.contains('own_athlete')) { tr.classList.add('mx-own'); return; }
       if ($$(':scope > td a[href*="dettagli_societa"]', tr).some((a) => isOwnClub(a, own))) tr.classList.add('mx-own');
     });
