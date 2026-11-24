@@ -2,6 +2,12 @@
 
 All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.org/): fixes bump the patch number, new features bump the minor number.
 
+## [1.7.1] — 2026-11-24
+
+### Fixed
+- Logged-out pages (the home page with the login form and other public pages) are left untouched: UI+ only starts once you are signed in.
+- The left menu shows the full list of links; it no longer sticks to the top with its own scroll and cuts the last entries.
+
 ## [1.7.0] — 2026-11-23
 
 ### Added

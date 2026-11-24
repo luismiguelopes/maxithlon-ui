@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Maxithlon UI+
 // @namespace    v3mpire.maxithlon.uiplus
-// @version      1.7.0
+// @version      1.7.1
 // @description  A modern interface for Maxithlon: dark/light theme, wide layout, roster dashboard with filters and heat map, athlete skill radar and a command palette (Ctrl+K). Works with any site language.
 // @description:pt  Uma interface moderna para o Maxithlon: tema escuro/claro, layout largo, painel do plantel com filtros e mapa de calor, radar de habilidades do atleta e paleta de comandos (Ctrl+K). Funciona com qualquer língua do site.
 // @description:it  Un'interfaccia moderna per Maxithlon: tema scuro/chiaro, layout ampio, pannelli per rosa, mercato e finanze, radar delle abilità e palette dei comandi (Ctrl+K). Funziona con qualsiasi lingua del sito.
@@ -467,7 +467,7 @@ html.mx #header img.logo{height:46px!important;width:auto!important;position:sta
 html.mx #header > a{display:flex;align-items:center;flex:0 0 auto;}
 html.mx #header .right_details{float:none!important;width:auto!important;flex:1 1 auto;background:none!important;position:static!important;margin:0!important;height:auto!important;}
 html.mx #inner_body_container{width:100%!important;float:none!important;display:flex!important;gap:18px;align-items:flex-start;height:auto!important;}
-html.mx #left_section{flex:0 0 212px;width:212px!important;float:none!important;position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;
+html.mx #left_section{flex:0 0 212px;width:212px!important;float:none!important;position:static;height:auto!important;max-height:none!important;overflow:visible!important;
   background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 8px;box-sizing:border-box;box-shadow:var(--shadow);scrollbar-width:thin;}
 html.mx #middle_section{flex:1 1 0;width:auto!important;min-width:0;float:none!important;margin:0!important;}
 html.mx #right_section,html.mx #right_part{flex:0 0 262px;width:262px!important;float:none!important;margin:0!important;}
@@ -2380,7 +2380,11 @@ html.mx .mx-rank > .main_row{min-width:560px;}
     }
   }
 
+  // Logged-out pages (home with the login form, public pages) have no club sidebar: leave them untouched.
+  const loggedIn = () => !!$('#left_section') && !$('#login_user');
+
   function start() {
+    if (!loggedIn()) return;
     if (!enabled) { buildDock(); return; }
     root.classList.add('mx', 'mx-' + theme);
     injectCSS();
