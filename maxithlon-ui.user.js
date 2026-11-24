@@ -990,7 +990,9 @@ html.mx .mx-acct table.ui4-form-table > tbody > tr > td:only-child{text-align:ce
 .mx-opt:first-child{border-top:0;}
 .mx-opt:hover{background:var(--surface2);}
 .mx-opt input{margin:2px 0 0!important;accent-color:var(--accent);flex:0 0 auto;cursor:pointer;}
-.mx-opt label{cursor:pointer;flex:1;}
+.mx-opt > div{flex:1;min-width:0;}
+.mx-opt label{cursor:pointer;}
+.mx-opt .hint{color:var(--muted);font-size:12px;margin-top:2px;}
 html.mx .mx-acct form.ui4-form > label{display:block;margin:0 0 6px!important;font:600 13px var(--font)!important;color:var(--text)!important;}
 html.mx .mx-acct form.ui4-form > input[type=text]{width:100%!important;max-width:420px;box-sizing:border-box;margin:0 0 14px;}
 html.mx .mx-acct form.ui4-form > textarea{width:100%!important;max-width:560px;box-sizing:border-box;min-height:80px;margin:0 0 14px;}
@@ -2551,11 +2553,16 @@ html.mx .mx-acct #messaggi tbody td:only-child{text-align:center!important;color
         const list = h('div', { class: 'mx-opts' });
         form.insertBefore(list, boxes[0]);
         boxes.forEach((cb) => {
-          const lab = cb.nextElementSibling?.tagName === 'LABEL' ? cb.nextElementSibling : null;
-          const br = (lab || cb).nextElementSibling;
+          // everything up to the next <br> belongs to this option (label, notes in plain text)
+          const parts = [];
+          let n = cb.nextSibling;
+          while (n && !(n.nodeType === 1 && (n.tagName === 'BR' || n.tagName === 'INPUT'))) { parts.push(n); n = n.nextSibling; }
+          if (n && n.tagName === 'BR') n.remove();
+          const lab = parts.find((x) => x.nodeType === 1 && x.tagName === 'LABEL');
           if (lab && !lab.htmlFor && cb.id) lab.htmlFor = cb.id;
-          list.append(h('div', { class: 'mx-opt' }, cb, lab));
-          if (br && br.tagName === 'BR') br.remove();
+          const extra = parts.filter((x) => x !== lab && x.textContent.trim());
+          parts.filter((x) => x !== lab && !extra.includes(x)).forEach((x) => x.remove());
+          list.append(h('div', { class: 'mx-opt' }, cb, h('div', {}, lab, extra.length ? h('div', { class: 'hint' }, extra) : null)));
         });
       }
       // club colors: the picker sits next to its table instead of floating
