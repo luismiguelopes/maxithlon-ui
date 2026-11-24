@@ -977,14 +977,14 @@ html.mx #middle_section .status_details .right_text:hover{color:var(--bad)!impor
 html.mx #middle_section .status_details > div{color:var(--muted);font-size:13px;}
 /* ---------- account pages: options, password, symbol, profile, messages ---------- */
 html.mx input.colorwell{border:1px solid var(--border)!important;border-radius:9px!important;padding:7px 10px!important;width:110px;font:600 12px var(--font)!important;text-align:center;opacity:1!important;box-shadow:none!important;cursor:pointer;}
-html.mx .mx-acct table.ui4-form-table{width:100%!important;background:var(--surface)!important;border:1px solid var(--border)!important;border-radius:12px;box-shadow:var(--shadow);border-collapse:separate!important;border-spacing:0!important;overflow:hidden;margin:0 0 14px!important;}
-html.mx .mx-acct table.ui4-form-table > tbody > tr > *{padding:10px 14px!important;border:0!important;border-bottom:1px solid var(--border)!important;background:none!important;vertical-align:middle;}
-html.mx .mx-acct table.ui4-form-table > tbody > tr:last-child > *{border-bottom:0!important;}
-html.mx .mx-acct table.ui4-form-table > tbody > tr:hover > *{background:none!important;}
-html.mx .mx-acct table.ui4-form-table > tbody > tr > th,html.mx .mx-acct table.ui4-form-table > tbody > tr > td:first-child:not(:only-child){width:32%;text-align:left!important;text-transform:none!important;letter-spacing:0!important;font:600 13px/1.3 var(--font)!important;color:var(--muted)!important;}
-html.mx .mx-acct table.ui4-form-table > tbody > tr > td:first-child:not(:only-child) *{color:inherit!important;font:inherit!important;}
-html.mx .mx-acct table.ui4-form-table input[type=text]:not(.colorwell),html.mx .mx-acct table.ui4-form-table input[type=password],html.mx .mx-acct table.ui4-form-table input[type=email]{width:100%!important;max-width:380px;box-sizing:border-box;}
-html.mx .mx-acct table.ui4-form-table > tbody > tr > td:only-child{text-align:center;}
+html.mx #middle_section.mx-acct table.ui4-form-table{width:100%!important;background:var(--surface)!important;border:1px solid var(--border)!important;border-radius:12px;box-shadow:var(--shadow);border-collapse:separate!important;border-spacing:0!important;overflow:hidden;margin:0 0 14px!important;}
+html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr > *{padding:10px 14px!important;border:0!important;border-bottom:1px solid var(--border)!important;background:none!important;vertical-align:middle;}
+html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr:last-child > *{border-bottom:0!important;}
+html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr:hover > *{background:none!important;}
+html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr > th,html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr > td:first-child:not(:only-child){width:32%;text-align:left!important;text-transform:none!important;letter-spacing:0!important;font:600 13px/1.3 var(--font)!important;color:var(--muted)!important;}
+html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr > td:first-child:not(:only-child) *{color:inherit!important;font:inherit!important;}
+html.mx #middle_section.mx-acct table.ui4-form-table input[type=text]:not(.colorwell),html.mx #middle_section.mx-acct table.ui4-form-table input[type=password],html.mx #middle_section.mx-acct table.ui4-form-table input[type=email]{width:100%!important;max-width:380px;box-sizing:border-box;}
+html.mx #middle_section.mx-acct table.ui4-form-table > tbody > tr > td:only-child{text-align:center;}
 .mx-opts{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);margin:0 0 16px;overflow:hidden;}
 .mx-opt{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-top:1px solid var(--border);font:13px/1.45 var(--font);color:var(--text);}
 .mx-opt:first-child{border-top:0;}
@@ -993,21 +993,21 @@ html.mx .mx-acct table.ui4-form-table > tbody > tr > td:only-child{text-align:ce
 .mx-opt > div{flex:1;min-width:0;}
 .mx-opt label{cursor:pointer;}
 .mx-opt .hint{color:var(--muted);font-size:12px;margin-top:2px;}
-html.mx .mx-acct form.ui4-form > label{display:block;margin:0 0 6px!important;font:600 13px var(--font)!important;color:var(--text)!important;}
-html.mx .mx-acct form.ui4-form > input[type=text]{width:100%!important;max-width:420px;box-sizing:border-box;margin:0 0 14px;}
-html.mx .mx-acct form.ui4-form > textarea{width:100%!important;max-width:560px;box-sizing:border-box;min-height:80px;margin:0 0 14px;}
+html.mx #middle_section.mx-acct form.ui4-form > label{display:block;margin:0 0 6px!important;font:600 13px var(--font)!important;color:var(--text)!important;}
+html.mx #middle_section.mx-acct form.ui4-form > input[type=text]{width:100%!important;max-width:420px;box-sizing:border-box;margin:0 0 14px;}
+html.mx #middle_section.mx-acct form.ui4-form > textarea{width:100%!important;max-width:560px;box-sizing:border-box;min-height:80px;margin:0 0 14px;}
 .mx-colors{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
 .mx-colors > table.ui4-form-table{flex:1 1 360px;width:auto!important;}
 html.mx .mx-colors #picker{float:none!important;order:2;flex:0 0 auto;}
 html.mx .mx-colors #picker:empty{display:none;}
 .mx-acts{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px;}
 .mx-acts a.mx-btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none!important;}
-html.mx .mx-acct table.ui4-profile-login-history{width:100%!important;background:var(--surface)!important;border:1px solid var(--border)!important;border-radius:12px;box-shadow:var(--shadow);border-collapse:separate!important;border-spacing:0!important;overflow:hidden;font-variant-numeric:tabular-nums;}
-html.mx .mx-acct table.ui4-profile-login-history td,html.mx .mx-acct table.ui4-profile-login-history th{padding:6px 14px!important;border:0!important;border-bottom:1px solid var(--border)!important;background:none!important;font-size:12.5px;}
-html.mx .mx-acct table.ui4-profile-login-history tr:first-child > *{font-weight:700;color:var(--muted)!important;text-transform:uppercase;font-size:11px;letter-spacing:.07em;}
-html.mx .mx-acct table.ui4-profile-login-history tr:last-child > *{border-bottom:0!important;}
-html.mx .mx-acct > h4{font:700 12px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)!important;margin:6px 0 6px!important;}
-html.mx .mx-acct #messaggi tbody td:only-child{text-align:center!important;color:var(--muted)!important;padding:30px 10px!important;font-size:13px;}
+html.mx #middle_section.mx-acct table.ui4-profile-login-history{width:100%!important;background:var(--surface)!important;border:1px solid var(--border)!important;border-radius:12px;box-shadow:var(--shadow);border-collapse:separate!important;border-spacing:0!important;overflow:hidden;font-variant-numeric:tabular-nums;}
+html.mx #middle_section.mx-acct table.ui4-profile-login-history td,html.mx #middle_section.mx-acct table.ui4-profile-login-history th{padding:6px 14px!important;border:0!important;border-bottom:1px solid var(--border)!important;background:none!important;font-size:12.5px;}
+html.mx #middle_section.mx-acct table.ui4-profile-login-history tr:first-child > *{font-weight:700;color:var(--muted)!important;text-transform:uppercase;font-size:11px;letter-spacing:.07em;}
+html.mx #middle_section.mx-acct table.ui4-profile-login-history tr:last-child > *{border-bottom:0!important;}
+html.mx #middle_section.mx-acct h4{font:700 12px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)!important;margin:6px 0 6px!important;}
+html.mx #middle_section.mx-acct #messaggi tbody td:only-child{text-align:center!important;color:var(--muted)!important;padding:30px 10px!important;font-size:13px;}
 /* narrow: the right column moves under the content, its boxes side by side */
 @media (max-width:1100px){
   html.mx #inner_body_container{flex-wrap:wrap;}
@@ -2544,7 +2544,9 @@ html.mx .mx-acct #messaggi tbody td:only-child{text-align:center!important;color
   function accountPages() {
     const host = $('.page_details') || $('#middle_section');
     if (!host) return;
+    // on #middle_section too, so these rules outrank the generic #middle_section table styles
     host.classList.add('mx-acct');
+    $('#middle_section')?.classList.add('mx-acct');
 
     // options: loose checkbox + label + <br> lines become a list of rows
     $$('form.ui4-form', host).forEach((form) => {
