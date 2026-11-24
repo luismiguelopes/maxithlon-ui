@@ -2,6 +2,14 @@
 
 All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.org/): fixes bump the patch number, new features bump the minor number.
 
+## [1.8.0] — 2026-11-24
+
+### Added
+- Home page as a dashboard: the club summary (athletes, fans, contracts, coaches, season and week, stadium efficiency, budget) as clickable tiles, and the next competitions as a list with dates and a live countdown.
+- News and status messages on the home page as cards, with the news tabs as chips.
+- Left menu sections fold under their heading (arrow or a click on the heading); the choice is remembered, and the section with the current page always opens.
+- Icon-only left menu (Settings → Left menu), with each entry's name as a tooltip.
+
 ## [1.7.1] — 2026-11-24
 
 ### Fixed

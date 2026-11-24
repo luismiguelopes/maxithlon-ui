@@ -16,11 +16,12 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 ## 1.7 — Robustness and languages (left over)
 
 - [ ] **Injured athlete page**: check the layout when an athlete is injured (no injured athlete was available to test 1.4 or 1.7).
+- [ ] **Athlete radar with the game in English**: reported missing; check whether the whole panel or only the roster average is missing (averages are stored by group name, in the language the Athletes list was opened in).
 
 ## 1.8 — Home and navigation
 
-- [ ] **Home page redesign**: club summary at the top (league position, budget, next competition, unread messages) and the news/feed as cards.
-- [ ] **Sidebar**: collapsible sections and a compact mode.
+- [x] **Home page redesign**: club summary as tiles, next competitions with a live countdown, news and status messages as cards.
+- [x] **Sidebar**: collapsible sections and an icon-only mode.
 - [ ] **Messages** (inbox and conversation view) restyled.
 - [ ] **Settings / user pages** restyled.
 

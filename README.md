@@ -22,8 +22,10 @@ It only changes how pages **look**. It never submits forms, makes extra requests
 - **Dark / light theme** with an adaptive dark mode that also fixes the colors of content loaded later via AJAX.
 - **Wide, flexible layout** instead of the original fixed-width columns. On narrow windows the right column moves under the content.
 - **Theme colors everywhere**: the site's legacy olive, teal, magenta and red text is mapped to the theme palette.
+- **Home page dashboard**: club summary as clickable tiles (athletes, fans, contracts, coaches, season, stadium, budget), the next competitions as a list with a live countdown, and news and status messages as cards.
+- **Left menu**: each section folds under its heading (the one with the current page stays open), and an icon-only mode in the settings.
 - **Collapsible page intros**: the long explanation at the top of each page shows one line until you expand it.
-- **Settings panel** (gear in the dock): theme, accent color, comfortable or compact density, and each module on or off. If a page changes and a panel can't load, UI+ shows a short notice and leaves the original page in place.
+- **Settings panel** (gear in the dock): theme, accent color, comfortable or compact density, full or icon-only menu, and each module on or off. If a page changes and a panel can't load, UI+ shows a short notice and leaves the original page in place.
 - **Command palette** (`Ctrl+K` or `/`): jump to any page in the menu, top bar or current page tabs. Recently used pages come first.
 - **Roster dashboard** (`Athletes` page):
   - summary cards (gender split, average age and MAXID, athletes not training, fan risk, injuries, for sale, without coach);
