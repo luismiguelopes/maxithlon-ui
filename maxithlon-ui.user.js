@@ -562,7 +562,7 @@ html.mx .page_bar li a.mx-current{background:var(--accent)!important;border-colo
 /* secondary tabs (league pages): a segmented control */
 html.mx .page_bar_main,html.mx .page_bar_youth{background:none!important;border:0!important;margin:0 0 14px!important;height:auto!important;text-align:left!important;}
 html.mx .page_bar_main ul,html.mx .page_bar_youth ul{display:inline-flex!important;gap:2px;padding:3px!important;margin:0!important;background:var(--surface2)!important;border:1px solid var(--border);border-radius:10px;width:auto!important;height:auto!important;}
-html.mx .page_bar_main li,html.mx .page_bar_youth li{float:none!important;background:none!important;margin:0!important;padding:0!important;width:auto!important;height:auto!important;border:0!important;}
+html.mx .page_bar_main li,html.mx .page_bar_youth li{float:none!important;background:none!important;margin:0!important;padding:0!important;width:auto!important;height:auto!important;border:0!important;box-shadow:none!important;}
 html.mx .page_bar_main li a,html.mx .page_bar_youth li a{display:block;padding:5px 12px!important;border-radius:7px;background:none!important;border:0!important;color:var(--muted)!important;text-decoration:none!important;font:600 12.5px/1.3 var(--font)!important;height:auto!important;box-shadow:none!important;background-image:none!important;}
 html.mx .page_bar_main li a:hover,html.mx .page_bar_youth li a:hover{color:var(--text)!important;}
 html.mx .page_bar_main li a.mx-current,html.mx .page_bar_youth li a.mx-current{background:var(--surface)!important;color:var(--text)!important;box-shadow:0 1px 2px rgba(0,0,0,.12)!important;}
@@ -1064,7 +1064,8 @@ html.mx .mx-league > table:last-of-type > tbody > tr > td > b{display:block;font
 html.mx .mx-league > table:last-of-type table{width:100%!important;}
 html.mx .mx-league > table:last-of-type table td{padding:2px 0!important;font-size:12.5px;}
 html.mx .mx-league > table:last-of-type table td[colspan] a{font-weight:700;}
-html.mx .mx-league > table:last-of-type table td[height="8"]{height:8px;border-top:1px solid var(--border)!important;}
+html.mx .mx-league > table:last-of-type table td[height="8"]{height:4px!important;padding:0!important;}
+html.mx .mx-league > table:last-of-type table tr:not(:nth-child(2)) > td[colspan]{border-top:1px solid var(--border)!important;padding-top:8px!important;}
 /* calendars */
 .mx-cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-bottom:14px;}
 .mx-cal-w{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:10px 12px;}
