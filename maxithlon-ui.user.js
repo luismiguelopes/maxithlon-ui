@@ -923,6 +923,8 @@ html.mx #middle_section .mx-card:not(.mx-skills) h4.heading{font:700 12px/1.2 va
 html.mx .mx-rank{overflow-x:auto;}
 html.mx .mx-rank > .main_row{min-width:560px;}
 /* ---------- sidebar sections (collapsible) and icon rail ---------- */
+html.mx #left_section ul{float:none!important;}
+html.mx #left_section h2{float:none!important;clear:both;}
 html.mx #left_section h2.mx-side-h{display:flex!important;align-items:center;justify-content:space-between;gap:6px;cursor:pointer;user-select:none;}
 html.mx #left_section .mx-side-tg{all:unset;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;color:var(--muted);transition:transform .15s;}
 html.mx #left_section .mx-side-tg:hover{background:var(--surface3);color:var(--text);}
@@ -942,7 +944,7 @@ html.mx-rail #left_section li a *:not(svg):not(svg *){font-size:0!important;}
 html.mx-rail #left_section li a .mx-ic{width:18px;height:18px;}
 
 /* ---------- home page ---------- */
-html.mx #middle_section.mx-hide-orig-home > .home_details{display:none!important;}
+html.mx #middle_section.mx-hide-orig-home > .home_details,html.mx #middle_section.mx-hide-orig-home > br{display:none!important;}
 .mx-home{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px;align-items:start;}
 .mx-home > .mx-card{margin:0!important;}
 .mx-home .mx-tiles{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));margin:0;}
@@ -2480,8 +2482,10 @@ html.mx #middle_section .status_details > div{color:var(--muted);font-size:13px;
       if (!date) { if (!compTitle && a) compTitle = a; return; }
       if (!a) return;
       const live = date.classList.contains('hasCountdown');
-      // the countdown element is moved, not copied, so the site's timer keeps updating it
-      const badge = h('span', { class: 'mx-badge pill' + (live ? ' warn' : '') }, live ? svgIcon('clock', 12) : null, live ? date : date.textContent.trim());
+      const txt = h('span', {}, date.textContent.trim());
+      // the site's countdown keeps ticking in the hidden original: mirror its text
+      if (live) { const tick = setInterval(() => { if (!txt.isConnected) clearInterval(tick); else txt.textContent = date.textContent.trim(); }, 1000); }
+      const badge = h('span', { class: 'mx-badge pill' + (live ? ' warn' : '') }, live ? svgIcon('clock', 12) : null, txt);
       comps.push(h('div', {}, badge, h('a', { href: a.getAttribute('href'), title: a.textContent.trim() }, a.textContent.trim())));
     });
 
