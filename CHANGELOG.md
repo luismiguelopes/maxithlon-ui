@@ -9,6 +9,14 @@ All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.or
 - News and status messages on the home page as cards, with the news tabs as chips.
 - Left menu sections fold under their heading (arrow or a click on the heading); the choice is remembered, and the section with the current page always opens.
 - Icon-only left menu (Settings → Left menu), with each entry's name as a tooltip.
+- Account pages restyled: forms as cards with labels in their own column (user details, password, send message); the game options as a list of rows with their notes; club colors next to the color picker.
+- User profile: details as label/value rows, "send message" and "add friend" as buttons with icons, login history as a card.
+- Messages: an empty inbox, sent or archive list shows a centered empty state.
+
+### Fixed
+- Club colors (Options): the color fields show their color again (the theme was painting over them).
+- Password and email fields follow the theme (they stayed white in the dark theme).
+- The text editor used in messages follows the theme, with its toolbar readable in the dark theme.
 
 ## [1.7.1] — 2026-11-24
 

@@ -22,8 +22,9 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 
 - [x] **Home page redesign**: club summary as tiles, next competitions with a live countdown, news and status messages as cards.
 - [x] **Sidebar**: collapsible sections and an icon-only mode.
-- [ ] **Messages** (inbox and conversation view) restyled.
-- [ ] **Settings / user pages** restyled.
+- [x] **Messages** restyled (lists, empty state, send form and editor).
+- [x] **Settings / user pages** restyled (user details, options, password, symbol, profile).
+- [ ] **Messages with content**: check unread rows and the conversation view once there are messages (the inbox, sent and archive were empty when 1.8 was built).
 
 ## 1.9 — League and competitions
 
