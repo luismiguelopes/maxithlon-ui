@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Maxithlon UI+
 // @namespace    v3mpire.maxithlon.uiplus
-// @version      1.10.0
+// @version      1.11.0
 // @description  A modern interface for Maxithlon: dark/light theme, wide layout, roster dashboard with filters and heat map, athlete skill radar and a command palette (Ctrl+K). Works with any site language.
 // @description:pt  Uma interface moderna para o Maxithlon: tema escuro/claro, layout largo, painel do plantel com filtros e mapa de calor, radar de habilidades do atleta e paleta de comandos (Ctrl+K). Funciona com qualquer língua do site.
 // @description:it  Un'interfaccia moderna per Maxithlon: tema scuro/chiaro, layout ampio, pannelli per rosa, mercato e finanze, radar delle abilità e palette dei comandi (Ctrl+K). Funziona con qualsiasi lingua del sito.
@@ -148,6 +148,7 @@
       modRightCol: 'Right column forms', modTips: 'Collapsible page intros', modBars: 'Colored skill bars', modPalette: 'Command palette (Ctrl+K)',
       failPanel: (n) => `UI+ could not load this panel (${n}). The original page is shown instead.`, failDetails: 'Details in the console',
       lgPos: 'Position', lgOf: (n) => `of ${n}`, lgLeader: 'Gap to leader', lgPromo: 'Promotion zone', lgReleg: 'Relegation zone', lgAvg: 'Points per meeting', lgForm: 'Form', lgFormT: 'Average points in the last 3 meetings (▲▼ against the season average)', lgPromoZ: 'Promotion', lgRelegZ: 'Relegation', lgMissed: 'Did not take part', lgAbove: 'points above the line', lgBelow: 'points below the line', lgNotRun: 'Still to be held', calToday: 'Today', calNext: 'Next', modLeague: 'League table', modCalendar: 'Calendars', modComp: 'Highlights in competition results', modGlory: 'Moments of glory and honours', modCharts: 'League charts', modCompList: 'Competition search as a filter bar',
+      modCoaches: 'Coaches', tcNoCoach: 'No coach', tcCovered: (a, b) => `${a} of ${b} with a coach`, tcAvgT: 'Average of your athletes in this group', tcFrom: (d) => `Athletes from the Training page (${d})`, tcVisit: 'Open the Training page once to see the athletes of each coach.', tcPerCoach: 'Athletes per coach', tcRoster: 'Open the Athletes list once to compare the coaches with your groups.',
     },
     pt: {
       palette: 'Paleta de comandos (Ctrl+K ou /)', toLight: 'Mudar para tema claro', toDark: 'Mudar para tema escuro',
@@ -206,6 +207,7 @@
       modRightCol: 'Formulários da coluna direita', modTips: 'Introduções das páginas recolhíveis', modBars: 'Barras de habilidade coloridas', modPalette: 'Paleta de comandos (Ctrl+K)',
       failPanel: (n) => `O UI+ não conseguiu carregar este painel (${n}). Está a ser mostrada a página original.`, failDetails: 'Detalhes na consola',
       lgPos: 'Posição', lgOf: (n) => `de ${n}`, lgLeader: 'Distância ao líder', lgPromo: 'Zona de subida', lgReleg: 'Zona de descida', lgAvg: 'Pontos por jornada', lgForm: 'Forma', lgFormT: 'Média de pontos nas 3 últimas jornadas (▲▼ face à média da época)', lgPromoZ: 'Subida', lgRelegZ: 'Descida', lgMissed: 'Não participou', lgAbove: 'pontos acima da linha', lgBelow: 'pontos abaixo da linha', lgNotRun: 'Ainda por disputar', calToday: 'Hoje', calNext: 'Próxima', modLeague: 'Classificação da liga', modCalendar: 'Calendários', modComp: 'Destaques nos resultados das competições', modGlory: 'Momentos de glória e quadro de honra', modCharts: 'Gráficos da liga', modCompList: 'Pesquisa de competições em barra de filtros',
+      modCoaches: 'Treinadores', tcNoCoach: 'Sem treinador', tcCovered: (a, b) => `${a} de ${b} com treinador`, tcAvgT: 'Média dos teus atletas neste grupo', tcFrom: (d) => `Atletas da página de Treino (${d})`, tcVisit: 'Abre a página de Treino uma vez para ver os atletas de cada treinador.', tcPerCoach: 'Atletas por treinador', tcRoster: 'Abre a lista de Atletas uma vez para comparar os treinadores com os teus grupos.',
     },
     it: {
       palette: 'Palette dei comandi (Ctrl+K o /)', toLight: 'Passa al tema chiaro', toDark: 'Passa al tema scuro',
@@ -264,6 +266,7 @@
       modRightCol: 'Moduli della colonna destra', modTips: 'Introduzioni delle pagine comprimibili', modBars: 'Barre delle abilità colorate', modPalette: 'Palette dei comandi (Ctrl+K)',
       failPanel: (n) => `UI+ non è riuscito a caricare questo pannello (${n}). Viene mostrata la pagina originale.`, failDetails: 'Dettagli nella console',
       lgPos: 'Posizione', lgOf: (n) => `di ${n}`, lgLeader: 'Distacco dalla vetta', lgPromo: 'Zona promozione', lgReleg: 'Zona retrocessione', lgAvg: 'Punti per giornata', lgForm: 'Forma', lgFormT: 'Media punti nelle ultime 3 giornate (▲▼ rispetto alla media stagionale)', lgPromoZ: 'Promozione', lgRelegZ: 'Retrocessione', lgMissed: 'Non ha partecipato', lgAbove: 'punti sopra la linea', lgBelow: 'punti sotto la linea', lgNotRun: 'Ancora da disputare', calToday: 'Oggi', calNext: 'Prossima', modLeague: 'Classifica del campionato', modCalendar: 'Calendari', modComp: 'Evidenziazioni nei risultati delle competizioni', modGlory: "Momenti di gloria e albo d'oro", modCharts: 'Grafici del campionato', modCompList: 'Ricerca competizioni come barra di filtri',
+      modCoaches: 'Allenatori', tcNoCoach: 'Nessun allenatore', tcCovered: (a, b) => `${a} su ${b} con allenatore`, tcAvgT: 'Media dei tuoi atleti in questo gruppo', tcFrom: (d) => `Atleti dalla pagina Allenamento (${d})`, tcVisit: "Apri una volta la pagina Allenamento per vedere gli atleti di ogni allenatore.", tcPerCoach: 'Atleti per allenatore', tcRoster: 'Apri una volta la lista Atleti per confrontare gli allenatori con i tuoi gruppi.',
     },
     es: {
       palette: 'Paleta de comandos (Ctrl+K o /)', toLight: 'Cambiar a tema claro', toDark: 'Cambiar a tema oscuro',
@@ -322,6 +325,7 @@
       modRightCol: 'Formularios de la columna derecha', modTips: 'Introducciones de página plegables', modBars: 'Barras de habilidad de colores', modPalette: 'Paleta de comandos (Ctrl+K)',
       failPanel: (n) => `UI+ no pudo cargar este panel (${n}). Se muestra la página original.`, failDetails: 'Detalles en la consola',
       lgPos: 'Posición', lgOf: (n) => `de ${n}`, lgLeader: 'Distancia al líder', lgPromo: 'Zona de ascenso', lgReleg: 'Zona de descenso', lgAvg: 'Puntos por jornada', lgForm: 'Forma', lgFormT: 'Media de puntos en las 3 últimas jornadas (▲▼ frente a la media de la temporada)', lgPromoZ: 'Ascenso', lgRelegZ: 'Descenso', lgMissed: 'No participó', lgAbove: 'puntos por encima de la línea', lgBelow: 'puntos por debajo de la línea', lgNotRun: 'Por disputar', calToday: 'Hoy', calNext: 'Próxima', modLeague: 'Clasificación de la liga', modCalendar: 'Calendarios', modComp: 'Destacados en los resultados de competiciones', modGlory: 'Momentos de gloria y palmarés', modCharts: 'Gráficos de la liga', modCompList: 'Búsqueda de competiciones como barra de filtros',
+      modCoaches: 'Entrenadores', tcNoCoach: 'Sin entrenador', tcCovered: (a, b) => `${a} de ${b} con entrenador`, tcAvgT: 'Media de tus atletas en este grupo', tcFrom: (d) => `Atletas de la página de Entrenamiento (${d})`, tcVisit: 'Abre una vez la página de Entrenamiento para ver los atletas de cada entrenador.', tcPerCoach: 'Atletas por entrenador', tcRoster: 'Abre una vez la lista de Atletas para comparar los entrenadores con tus grupos.',
     },
     fr: {
       palette: 'Palette de commandes (Ctrl+K ou /)', toLight: 'Passer au thème clair', toDark: 'Passer au thème sombre',
@@ -380,6 +384,7 @@
       modRightCol: 'Formulaires de la colonne de droite', modTips: 'Introductions de page repliables', modBars: 'Barres de compétences colorées', modPalette: 'Palette de commandes (Ctrl+K)',
       failPanel: (n) => `UI+ n'a pas pu charger ce panneau (${n}). La page d'origine est affichée.`, failDetails: 'Détails dans la console',
       lgPos: 'Position', lgOf: (n) => `sur ${n}`, lgLeader: 'Écart avec le leader', lgPromo: 'Zone de promotion', lgReleg: 'Zone de relégation', lgAvg: 'Points par journée', lgForm: 'Forme', lgFormT: 'Moyenne de points sur les 3 dernières journées (▲▼ par rapport à la moyenne de la saison)', lgPromoZ: 'Promotion', lgRelegZ: 'Relégation', lgMissed: "N'a pas participé", lgAbove: 'points au-dessus de la ligne', lgBelow: 'points sous la ligne', lgNotRun: 'À disputer', calToday: "Aujourd'hui", calNext: 'Prochaine', modLeague: 'Classement de la ligue', modCalendar: 'Calendriers', modComp: 'Mise en avant dans les résultats des compétitions', modGlory: 'Moments de gloire et palmarès', modCharts: 'Graphiques de la ligue', modCompList: 'Recherche de compétitions en barre de filtres',
+      modCoaches: 'Entraîneurs', tcNoCoach: "Pas d'entraîneur", tcCovered: (a, b) => `${a} sur ${b} avec entraîneur`, tcAvgT: 'Moyenne de vos athlètes dans ce groupe', tcFrom: (d) => `Athlètes de la page Entraînement (${d})`, tcVisit: "Ouvrez une fois la page Entraînement pour voir les athlètes de chaque entraîneur.", tcPerCoach: 'Athlètes par entraîneur', tcRoster: 'Ouvrez une fois la liste des Athlètes pour comparer les entraîneurs à vos groupes.',
     },
     de: {
       palette: 'Befehlspalette (Strg+K oder /)', toLight: 'Zum hellen Design wechseln', toDark: 'Zum dunklen Design wechseln',
@@ -438,6 +443,7 @@
       modRightCol: 'Formulare der rechten Spalte', modTips: 'Einklappbare Seitenerklärungen', modBars: 'Farbige Fähigkeitsbalken', modPalette: 'Befehlspalette (Strg+K)',
       failPanel: (n) => `UI+ konnte dieses Panel nicht laden (${n}). Die Originalseite wird angezeigt.`, failDetails: 'Details in der Konsole',
       lgPos: 'Platz', lgOf: (n) => `von ${n}`, lgLeader: 'Rückstand auf Platz 1', lgPromo: 'Aufstiegszone', lgReleg: 'Abstiegszone', lgAvg: 'Punkte pro Spieltag', lgForm: 'Form', lgFormT: 'Durchschnittspunkte der letzten 3 Spieltage (▲▼ gegenüber dem Saisonschnitt)', lgPromoZ: 'Aufstieg', lgRelegZ: 'Abstieg', lgMissed: 'Nicht teilgenommen', lgAbove: 'Punkte über der Linie', lgBelow: 'Punkte unter der Linie', lgNotRun: 'Noch auszutragen', calToday: 'Heute', calNext: 'Nächster', modLeague: 'Ligatabelle', modCalendar: 'Kalender', modComp: 'Hervorhebungen in Wettkampfergebnissen', modGlory: 'Glanzmomente und Ehrentafel', modCharts: 'Ligadiagramme', modCompList: 'Wettkampfsuche als Filterleiste',
+      modCoaches: 'Trainer', tcNoCoach: 'Kein Trainer', tcCovered: (a, b) => `${a} von ${b} mit Trainer`, tcAvgT: 'Durchschnitt deiner Athleten in dieser Gruppe', tcFrom: (d) => `Athleten von der Trainingsseite (${d})`, tcVisit: 'Öffne einmal die Trainingsseite, um die Athleten jedes Trainers zu sehen.', tcPerCoach: 'Athleten pro Trainer', tcRoster: 'Öffne einmal die Athletenliste, um die Trainer mit deinen Gruppen zu vergleichen.',
     },
   };
   const LOCALE = root.lang || navigator.language || 'en';
@@ -1048,6 +1054,36 @@ html.mx-dark .mx-gr .ln{stroke:var(--c2);} html.mx-dark .mx-gr-key i{background:
 .mx-gr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-bottom:16px;}
 .mx-gr-grid .mx-card{margin:0!important;padding:12px 14px!important;}
 .mx-gr-grid .mx-card.own{border-color:var(--accent)!important;box-shadow:0 0 0 1px var(--accent),var(--shadow)!important;}
+/* ---------- coaches (1.11) ---------- */
+.mx-hide-orig-tc > table.tablesorter,.mx-hide-orig-tc > p,.mx-hide-orig-tc > .mx-tc-src{display:none!important;}
+.mx-tc-sec{margin-bottom:18px;}
+.mx-tc-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:700 12px/1.2 var(--font);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:4px 0 8px;}
+.mx-tc-grp{margin-bottom:14px;}
+.mx-tc-gh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 8px;font-size:13.5px;font-weight:700;}
+.mx-tc-gh .mxr-g{width:9px;height:9px;flex:0 0 9px;}
+.mx-tc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;}
+.mx-tc-grid > .mx-card{margin:0!important;padding:12px 14px!important;display:flex!important;flex-direction:column;gap:8px;}
+.mx-tc-name{display:flex;align-items:center;gap:7px;min-width:0;}
+.mx-tc-name a{color:var(--text)!important;text-decoration:none!important;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mx-tc-name a:hover{color:var(--accent)!important;}
+.mx-tc-name img{width:16px;height:11px;border-radius:2px;object-fit:cover;}
+.mx-tc-name .mx-badge{margin-left:auto;}
+.mx-tc-load{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);}
+.mx-tc-load b{color:var(--text);font-size:15px;font-variant-numeric:tabular-nums;}
+.mx-tc-load .trk{flex:1;height:5px;border-radius:9px;background:var(--surface3);overflow:hidden;}
+.mx-tc-load .trk i{display:block;height:100%;border-radius:9px;background:var(--accent);}
+.mx-tc-sk{display:grid;grid-template-columns:auto 1fr 22px;gap:4px 8px;align-items:center;font-size:12px;}
+.mx-tc-sk > span{color:var(--muted);white-space:nowrap;}
+.mx-tc-sk > b{text-align:right;font-variant-numeric:tabular-nums;}
+.mx-tc-sk .trk{position:relative;height:6px;border-radius:9px;background:var(--surface3);}
+.mx-tc-sk .trk i{display:block;height:100%;border-radius:9px;}
+.mx-tc-sk .trk u{position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;border-radius:2px;background:var(--text);opacity:.55;}
+.mx-tc-ath{display:flex;flex-wrap:wrap;gap:4px;}
+.mx-tc-ath a{font-size:11.5px;padding:1px 7px;border-radius:999px;background:var(--surface2);color:var(--text)!important;text-decoration:none!important;white-space:nowrap;}
+.mx-tc-ath a:hover{background:var(--accent-soft);color:var(--accent)!important;}
+.mx-tc-none{border-style:dashed!important;color:var(--muted);font-size:12.5px;justify-content:center;}
+.mxr-legend .mk{display:inline-block;width:2px;height:12px;background:var(--text);opacity:.55;vertical-align:middle;margin-right:4px;}
+
 .mx-gr-grid h5{margin:0 0 6px!important;font:700 12.5px/1.3 var(--font)!important;color:var(--text)!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .mx-gr .b0{fill:var(--accent);} .mx-gr .b1{fill:color-mix(in srgb,var(--muted) 38%,transparent);}
 .mx-gr .b2{fill:var(--good);} .mx-gr .b3{fill:var(--warn);}
@@ -1539,7 +1575,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
       alias[g.name.toLowerCase()] = g.gi;
       const rs = rows.filter((r) => r.gi === g.gi);
       if (!rs.length) return;
-      const o = { n: rs.length, spec: g.spec };
+      const o = { n: rs.length, spec: g.spec, name: g.name };
       BASE.forEach((b) => { o[b.k] = avg(rs.map((r) => r[b.k].v)); });
       o.s1 = avg(rs.map((r) => r.s1.v)); o.s2 = avg(rs.map((r) => r.s2.v));
       o.maxid = avg(rs.map((r) => r.maxid));
@@ -3146,6 +3182,153 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     $$('table.results td > img[src*="medal_"]:first-child', mid).forEach((img) => img.closest('tr')?.classList.add('mx-podium'));
   }
 
+  /* ------------------------------------------------------------------ *
+   * Coaches (lista_tecnici.php): cards per group with each coach's load
+   * and skills against the group's average. The Training page
+   * (allenamento_new.php) is only read, to remember which athletes each
+   * coach has; nothing on it is changed or sent.
+   * ------------------------------------------------------------------ */
+  const tidOf = (href) => { try { return new URL(href, location.href).searchParams.get('tid'); } catch (e) { return null; } };
+  function rememberTraining() {
+    const c = {};
+    $$('table[id^="atleti"]').forEach((tbl) => {
+      const gi = toNum(tbl.id.replace('atleti', '')) - 1;
+      $$('select[name^="tecnico["]', tbl).forEach((sel) => {
+        // the option marked selected in the HTML is the saved coach, whatever is picked now
+        const opt = sel.querySelector('option[selected]');
+        const tid = opt && opt.value;
+        if (!tid || tid === '0') return;
+        const a = sel.closest('tr')?.querySelector('a[href*="aid="]');
+        if (!a) return;
+        (c[tid] = c[tid] || []).push([aidOf(a.href), a.textContent.trim(), gi]);
+      });
+    });
+    if (Object.keys(c).length) LS.set('coachAssign', { at: Date.now(), c });
+  }
+
+  function coachesPage() {
+    const host = $('.page_details');
+    const tbls = host ? $$(':scope > table.tablesorter', host) : [];
+    if (!tbls.length) return;
+    const ra = rosterAvgData();
+    const assign = LS.get('coachAssign', null);
+    const SK = [...BASE.map((b) => b.k), 's1', 's2'];
+    const GIS = [0, 1, 2, 3, 4, 5, 6];
+
+    const sections = tbls.map((tbl) => {
+      const hr = Array.from(tbl.tHead?.rows || []);
+      const title = hr.length > 1 ? hr[0].textContent.trim() : '';
+      const head = Array.from((hr[hr.length - 1] || tbl.rows[0]).cells).map((c) => c.textContent.trim());
+      // the second table is the youth academy's (no specialty columns)
+      const youth = tbls.length > 1 && tbl === tbls[tbls.length - 1];
+      const coaches = Array.from(tbl.tBodies[0]?.rows || []).map((tr) => {
+        const c = tr.cells;
+        if (c.length < 7) return null;
+        const a = c[1].querySelector('a');
+        const spec = c[3].textContent.trim();
+        return {
+          a, name: c[1].textContent.trim(), flag: c[0].querySelector('img'), tid: a && tidOf(a.href),
+          maxid: toNum(c[2].textContent), spec, gi: youth ? 7 : ra.idxOf(spec), n: toNum(c[4].textContent) || 0, exp: toNum(c[5].textContent),
+          sk: Array.from(c).slice(6).map((td) => toNum(td.textContent) || 0),
+        };
+      }).filter(Boolean);
+      const foot = tbl.tFoot?.rows[0];
+      const total = foot && foot.cells.length > 1 ? { k: foot.cells[0].textContent.trim(), v: toNum(foot.cells[1].textContent) } : null;
+      return { title, head, youth, coaches, total };
+    });
+
+    // "Coaches in the club: 9 (Maximum: 11)" under the tables: <b>label</b> number <i>(max)</i>
+    const counts = $$(':scope > b', host).map((b) => {
+      const n = b.nextSibling && b.nextSibling.nodeType === 3 ? toNum(b.nextSibling.textContent) : null;
+      const i = b.nextSibling?.nextSibling;
+      const max = i && i.nodeName === 'I' ? toNum(i.textContent) : null;
+      return n == null ? null : { k: b.textContent.trim().replace(/:\s*$/, ''), n, max };
+    }).filter(Boolean);
+    // the lines under the tables go into a wrapper, so "show original" can hide them
+    const last = tbls[tbls.length - 1];
+    const src = h('div', { class: 'mx-tc-src' });
+    while (last.nextSibling) src.append(last.nextSibling);
+    host.append(src);
+
+    const tiles = [];
+    counts.forEach((c) => tiles.push(tile(c.k, c.max != null ? `${fmt(c.n)}/${fmt(c.max)}` : fmt(c.n), null)));
+    sections.forEach((s) => {
+      if (!s.total || s.total.v == null) return;
+      const inRoster = ra.has ? (s.youth ? [7] : GIS).reduce((x, gi) => x + (ra.groups[gi]?.n || 0), 0) : 0;
+      tiles.push(tile(s.total.k, fmt(s.total.v), inRoster ? t('tcCovered', fmt(Math.min(s.total.v, inRoster)), fmt(inRoster)) : null,
+        { cls: inRoster && s.total.v < inRoster ? 'warn' : '' }));
+    });
+    const all = sections.flatMap((s) => s.coaches);
+    const maxLoad = Math.max(1, ...all.map((c) => c.n));
+    if (all.length) tiles.push(tile(t('tcPerCoach'), fmt(avg(all.map((c) => c.n)), 1), `max ${fmt(maxLoad)}`));
+
+    // the name saved by the Athletes list, else the coach's specialty (not for youth coaches, who have none), else a known alias
+    const grpName = (gi, spec) => {
+      const al = Object.keys(ra.alias).find((k) => ra.alias[k] === gi);
+      return ra.groups[gi]?.name || (gi < 7 && spec) || (al && al[0].toUpperCase() + al.slice(1)) || t('group', gi + 1);
+    };
+    const coachCard = (c, s, g) => {
+      // the specialty columns are "Es1/Es2" here: use the group's own names when known
+      const lab = s.head.slice(6).map((x, i) => (g?.spec && SK[i] === 's1' ? g.spec[0] : g?.spec && SK[i] === 's2' ? g.spec[1] : x));
+      // a coach has 0 in the skills it does not train
+      const rows = c.sk.map((v, i) => ({ v, lab: lab[i], ref: g ? g[SK[i]] : null })).filter((r) => r.v > 0);
+      const ath = assign?.c?.[c.tid] || null;
+      const bar = (v, ref, tip) => h('span', { class: 'trk', title: tip || null },
+        h('i', { style: { width: (v / 20) * 100 + '%', background: barColor(v) } }),
+        ref != null ? h('u', { style: { left: Math.min(100, (ref / 20) * 100) + '%' } }) : null);
+      return h('div', { class: 'mx-card' },
+        h('div', { class: 'mx-tc-name' }, c.flag ? c.flag.cloneNode() : null,
+          c.a ? h('a', { href: c.a.getAttribute('href'), title: c.name }, c.name) : h('b', {}, c.name),
+          c.maxid != null ? h('span', { class: 'mx-badge pill', title: s.head[2] }, fmt(c.maxid)) : null),
+        h('div', { class: 'mx-tc-load' },
+          h('b', {}, fmt(c.n)), h('span', {}, s.head[4]),
+          h('span', { class: 'trk' }, h('i', { style: { width: Math.round((c.n / maxLoad) * 100) + '%' } }))),
+        h('div', { class: 'mx-tc-sk' },
+          c.exp != null ? [h('span', {}, s.head[5]), bar(c.exp), h('b', {}, fmt(c.exp))] : null,
+          rows.map((r) => [h('span', {}, r.lab), bar(r.v, r.ref, r.ref != null ? `${t('tcAvgT')}: ${fmt(r.ref, 1)}` : null), h('b', {}, fmt(r.v))])),
+        ath ? h('div', { class: 'mx-tc-ath' }, ath.map(([aid, name]) => h('a', { href: '/user/atleta_one.php?tipo=aid&aid=' + encodeURIComponent(aid) }, name))) : null);
+    };
+
+    const sectionUi = (s) => {
+      const byGroup = new Map();
+      s.coaches.forEach((c) => { const key = c.gi >= 0 ? c.gi : 'x' + c.spec; if (!byGroup.has(key)) byGroup.set(key, []); byGroup.get(key).push(c); });
+      // groups with athletes but no coach get an empty slot
+      if (ra.has) (s.youth ? [7] : GIS).forEach((gi) => { if (ra.groups[gi]?.n && !byGroup.has(gi)) byGroup.set(gi, []); });
+      const keys = [...byGroup.keys()].sort((a, b) => (typeof a === 'number' ? a : 99) - (typeof b === 'number' ? b : 99));
+      return h('div', { class: 'mx-tc-sec' },
+        s.title ? h('div', { class: 'mx-tc-h' }, s.title) : null,
+        keys.map((key) => {
+          const cs = byGroup.get(key);
+          const gi = typeof key === 'number' ? key : -1;
+          const g = gi >= 0 ? ra.groups[gi] || null : null;
+          const load = cs.reduce((x, c) => x + c.n, 0);
+          const badge = !g?.n ? null : cs.length
+            ? h('span', { class: 'mx-badge ' + (load >= g.n ? 'good' : 'warn') }, t('tcCovered', fmt(Math.min(load, g.n)), fmt(g.n)))
+            : h('span', { class: 'mx-badge bad' }, t('tcNoCoach'));
+          return h('div', { class: 'mx-tc-grp' },
+            h('div', { class: 'mx-tc-gh' },
+              h('span', { class: 'mxr-g', style: { background: gi >= 0 ? GROUP_COLORS[gi % GROUP_COLORS.length] : 'var(--muted)' } }),
+              h('span', {}, gi >= 0 ? grpName(gi, cs[0]?.spec) : cs[0].spec), badge),
+            h('div', { class: 'mx-tc-grid' }, cs.length ? cs.map((c) => coachCard(c, s, g)) : h('div', { class: 'mx-card mx-tc-none' }, t('tcNoCoach'))));
+        }));
+    };
+
+    const st = { orig: false };
+    const ui = h('div', { class: 'mxr mx-tc' });
+    host.insertBefore(ui, tbls[0]);
+    const applyOrig = () => host.classList.toggle('mx-hide-orig-tc', !st.orig);
+    const render = () => ui.replaceChildren(
+      tiles.length ? h('div', { class: 'mx-tiles' }, tiles) : null,
+      sections.map(sectionUi),
+      h('div', { class: 'mxr-legend' },
+        ra.has ? h('span', {}, h('i', { class: 'mk' }), t('tcAvgT')) : h('span', {}, t('tcRoster')),
+        h('span', {}, assign ? t('tcFrom', new Date(assign.at).toLocaleDateString(LOCALE)) : t('tcVisit')),
+        h('span', { class: 'sp' }),
+        h('button', { class: 'mx-btn', title: t('origT'), onclick: () => { st.orig = !st.orig; applyOrig(); render(); } }, st.orig ? t('origHide') : t('origShow'))));
+    applyOrig();
+    render();
+  }
+
   const MODULES = [
     { k: 'roster', label: 'modRoster', page: /lista_atleti\.php$/, run: rosterPage },
     { k: 'market', label: 'modMarket', page: /mercato\.php$/, run: marketPage },
@@ -3157,6 +3340,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     { k: 'charts', label: 'modCharts', page: /grafici_serie\.php$/, run: leagueCharts },
     { k: 'compList', label: 'modCompList', page: /lista_prossima\.php$/, run: compSearchPage },
     { k: 'calendar', label: 'modCalendar', page: /calendario(_serie)?\.php$/, run: calendarPage },
+    { k: 'coaches', label: 'modCoaches', page: /\/user\/(lista_tecnici|allenamento_new)\.php$/, run: () => (/allenamento_new/.test(path) ? rememberTraining() : coachesPage()) },
     { k: 'glory', label: 'modGlory', page: /(momenti_gloria|albo_oro)\.php$/, run: gloryPages },
     { k: 'athlete', label: 'modAthlete', page: /atleta_one\.php$/, run: () => { try { athleteLayout(); } catch (e) { console.warn('[UI+] athlete layout', e); } athletePage(); } },
     { k: 'comp', label: 'modComp', run: () => { if (/\/manifestazioni\/|graduatorie|record|dettagli_serie/.test(path)) compHighlights(); } },
