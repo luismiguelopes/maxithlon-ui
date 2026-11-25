@@ -3266,8 +3266,11 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
 
     // the name saved by the Athletes list, else the coach's specialty (not for youth coaches, who have none), else a known alias
     const grpName = (gi, spec) => {
+      const cap = (x) => x[0].toUpperCase() + x.slice(1).toLowerCase();
+      const own = ra.groups[gi]?.name;
       const al = Object.keys(ra.alias).find((k) => ra.alias[k] === gi);
-      return ra.groups[gi]?.name || (gi < 7 && spec) || (al && al[0].toUpperCase() + al.slice(1)) || t('group', gi + 1);
+      // the youth table's title is in capitals ("ACADEMY")
+      return (own && (own === own.toUpperCase() ? cap(own) : own)) || (gi < 7 && spec) || (al && cap(al)) || t('group', gi + 1);
     };
     const coachCard = (c, s, g) => {
       // the specialty columns are "Es1/Es2" here: use the group's own names when known
