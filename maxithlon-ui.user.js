@@ -1058,10 +1058,12 @@ html.mx-dark .mx-gr .ln{stroke:var(--c2);} html.mx-dark .mx-gr-key i{background:
 .mx-hide-orig-tc > table.tablesorter,.mx-hide-orig-tc > p,.mx-hide-orig-tc > .mx-tc-src{display:none!important;}
 .mx-tc-sec{margin-bottom:18px;}
 .mx-tc-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:700 12px/1.2 var(--font);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:4px 0 8px;}
-.mx-tc-grp{margin-bottom:14px;}
+.mx-tc-groups{display:flex;flex-wrap:wrap;gap:16px 14px;align-items:flex-start;}
+.mx-tc-grp{flex:0 1 auto;min-width:0;max-width:100%;}
 .mx-tc-gh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 8px;font-size:13.5px;font-weight:700;}
 .mx-tc-gh .mxr-g{width:9px;height:9px;flex:0 0 9px;}
-.mx-tc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;}
+.mx-tc-grid{display:grid;grid-template-columns:repeat(var(--n,1),minmax(0,250px));gap:10px;}
+@media (max-width:760px){.mx-tc-grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));}.mx-tc-grp{flex-basis:100%;}}
 .mx-tc-grid > .mx-card{margin:0!important;padding:12px 14px!important;display:flex!important;flex-direction:column;gap:8px;}
 .mx-tc-name{display:flex;align-items:center;gap:7px;min-width:0;}
 .mx-tc-name a{color:var(--text)!important;text-decoration:none!important;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -3297,7 +3299,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
       const keys = [...byGroup.keys()].sort((a, b) => (typeof a === 'number' ? a : 99) - (typeof b === 'number' ? b : 99));
       return h('div', { class: 'mx-tc-sec' },
         s.title ? h('div', { class: 'mx-tc-h' }, s.title) : null,
-        keys.map((key) => {
+        h('div', { class: 'mx-tc-groups' }, keys.map((key) => {
           const cs = byGroup.get(key);
           const gi = typeof key === 'number' ? key : -1;
           const g = gi >= 0 ? ra.groups[gi] || null : null;
@@ -3309,8 +3311,8 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
             h('div', { class: 'mx-tc-gh' },
               h('span', { class: 'mxr-g', style: { background: gi >= 0 ? GROUP_COLORS[gi % GROUP_COLORS.length] : 'var(--muted)' } }),
               h('span', {}, gi >= 0 ? grpName(gi, cs[0]?.spec) : cs[0].spec), badge),
-            h('div', { class: 'mx-tc-grid' }, cs.length ? cs.map((c) => coachCard(c, s, g)) : h('div', { class: 'mx-card mx-tc-none' }, t('tcNoCoach'))));
-        }));
+            h('div', { class: 'mx-tc-grid', style: '--n:' + Math.max(1, cs.length) }, cs.length ? cs.map((c) => coachCard(c, s, g)) : h('div', { class: 'mx-card mx-tc-none' }, t('tcNoCoach'))));
+        })));
     };
 
     const st = { orig: false };
