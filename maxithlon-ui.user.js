@@ -1083,7 +1083,7 @@ html.mx-dark .mx-gr .ln{stroke:var(--c2);} html.mx-dark .mx-gr-key i{background:
 .mx-tc-ath{display:flex;flex-wrap:wrap;gap:4px;}
 .mx-tc-ath a{font-size:11.5px;padding:1px 7px;border-radius:999px;background:var(--surface2);color:var(--text)!important;text-decoration:none!important;white-space:nowrap;}
 .mx-tc-ath a:hover{background:var(--accent-soft);color:var(--accent)!important;}
-.mx-tc-none{border-style:dashed!important;color:var(--muted);font-size:12.5px;justify-content:center;align-items:flex-start;}
+.mx-tc-none{border-style:dashed!important;color:var(--muted);font-size:12.5px;justify-content:flex-start;align-items:flex-start;}
 .mxr-legend .mk{display:inline-block;width:2px;height:12px;background:var(--text);opacity:.55;vertical-align:middle;margin-right:4px;}
 
 .mx-gr-grid h5{margin:0 0 6px!important;font:700 12.5px/1.3 var(--font)!important;color:var(--text)!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
