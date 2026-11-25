@@ -2,7 +2,7 @@
 
 Planned work for Maxithlon UI+. Items are grouped by milestone, roughly in priority order. The scope rule never changes: UI+ only changes **presentation**. It does not submit forms, automate actions or work around game rules.
 
-Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**, **market search results**, **finances**, **last transactions**, **home**, **league table** and **calendars**. Every other page gets the theme, colors, icons, collapsible intro, footer and right column styles so far.
+Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**, **market search results**, **finances**, **last transactions**, **home**, **league table**, **league charts**, **calendars** and **competition search**. Every other page gets the theme, colors, icons, collapsible intro, footer and right column styles so far.
 
 ## Done
 
@@ -14,11 +14,12 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 - **1.7:** UI in Italian, Spanish, French and German; settings panel (theme, accent, density, modules); notice and clean fallback when a panel fails; roster Form colors explained (red low, green top); checked with the game in English (roster, athlete radar, market, finances, transactions, icons, palette).
 - **1.8:** home page dashboard; collapsible and icon-only left menu; messages and account pages restyled.
 - **1.9:** league table dashboard (national and youth); season and league calendars; your athletes and club highlighted in results and rankings; moments of glory and honours board.
+- **1.10:** league charts redrawn in the theme; competition search as a filter bar; athlete radar average in any site language.
 
 ## 1.7 — Robustness and languages (left over)
 
 - [ ] **Injured athlete page**: check the layout when an athlete is injured (no injured athlete was available to test 1.4 or 1.7).
-- [ ] **Athlete radar with the game in English**: reported missing; check whether the whole panel or only the roster average is missing (averages are stored by group name, in the language the Athletes list was opened in).
+- [x] **Athlete radar with the game in English**: only the roster average was missing (it was stored by group name); fixed in 1.10.
 
 ## 1.8 — Home and navigation
 
@@ -34,17 +35,18 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 - [x] Season and league calendars in a compact view.
 - [x] Results and rankings pages with your athletes highlighted.
 - [x] "Moments of glory" and honours board restyled (records already had the generic table style).
-- [ ] **League charts and statistics** tabs (`grafici_serie.php`, `statistiche_serie.php`): not checked yet.
-- [ ] **Competitions list** (`lista_prossima.php`): the search form as a compact filter bar.
+- [x] **League charts** (`grafici_serie.php`) redrawn as themed SVG in 1.10.
+- [ ] **League statistics** (`statistiche_serie.php`): fine while empty; check again once athletes have competed this season.
+- [x] **Competitions list** (`lista_prossima.php`): the search form as a compact filter bar (1.10).
 
-## 1.10 — Club pages
+## 1.11 — Club pages
 
 - [ ] **Coaches**: list as cards with specialty, training plan and assigned athletes.
 - [ ] **Staff, stadium and relays** pages redesigned.
 - [ ] **Youth academy and youth championship** pages redesigned.
 - [ ] **Weekly tests and training results** as tables with highlights.
 
-## 1.11 — Athlete insights
+## 1.12 — Athlete insights
 
 - [ ] Skill history chart from the athlete development page (`atleta_sviluppo.php`), if the data is on the page.
 - [ ] Side-by-side comparison of two or more athletes (radar overlay).

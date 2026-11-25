@@ -2,6 +2,17 @@
 
 All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.org/): fixes bump the patch number, new features bump the minor number.
 
+## [1.10.0] — 2026-11-25
+
+### Added
+- League charts as themed SVG charts, drawn from the data the site puts in its chart images (nothing extra is loaded). The lines and axes stay readable in the dark theme; your club's line, legend chip and card are highlighted and your card comes first. Hover or click a club in the legend to pick out its line. "Show original" brings back the site's images.
+- Competition search: the search form as a compact filter bar, with labels above their fields and the buttons on the right. The form's own fields are moved, so the search sends exactly the same data.
+
+### Fixed
+- Athlete radar: the roster average is shown whatever language the site is in. Averages are now stored by group position instead of group name; your own athletes are matched by their id, and other athletes by the group names seen on the Athletes list in any language. Open the Athletes list once after updating.
+- The market's "fits your roster" check uses the same language-independent averages.
+- Changelog: the 1.8.0 entry had lost its heading.
+
 ## [1.9.0] — 2026-11-24
 
 ### Added
@@ -13,7 +24,7 @@ All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.or
 - Competition results, rankings, records and entry lists: rows of your athletes and your club are highlighted; places 1–3 in medal colors on event results.
 - Moments of glory (athlete) and honours board (club): places as badges, podiums in gold, silver and bronze.
 
- — 2026-11-24
+## [1.8.0] — 2026-11-24
 
 ### Added
 - Home page as a dashboard: the club summary (athletes, fans, contracts, coaches, season and week, stadium efficiency, budget) as clickable tiles, and the next competitions as a list with dates and a live countdown.
