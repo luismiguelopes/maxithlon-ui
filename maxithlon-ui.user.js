@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Maxithlon UI+
 // @namespace    v3mpire.maxithlon.uiplus
-// @version      1.9.0
+// @version      1.10.0
 // @description  A modern interface for Maxithlon: dark/light theme, wide layout, roster dashboard with filters and heat map, athlete skill radar and a command palette (Ctrl+K). Works with any site language.
 // @description:pt  Uma interface moderna para o Maxithlon: tema escuro/claro, layout largo, painel do plantel com filtros e mapa de calor, radar de habilidades do atleta e paleta de comandos (Ctrl+K). Funciona com qualquer língua do site.
 // @description:it  Un'interfaccia moderna per Maxithlon: tema scuro/chiaro, layout ampio, pannelli per rosa, mercato e finanze, radar delle abilità e palette dei comandi (Ctrl+K). Funziona con qualsiasi lingua del sito.
@@ -147,7 +147,7 @@
       modTransactions: 'Transactions dashboard', modAthlete: 'Athlete page cards and radar', modIcons: 'SVG icons and event pictograms',
       modRightCol: 'Right column forms', modTips: 'Collapsible page intros', modBars: 'Colored skill bars', modPalette: 'Command palette (Ctrl+K)',
       failPanel: (n) => `UI+ could not load this panel (${n}). The original page is shown instead.`, failDetails: 'Details in the console',
-      lgPos: 'Position', lgOf: (n) => `of ${n}`, lgLeader: 'Gap to leader', lgPromo: 'Promotion zone', lgReleg: 'Relegation zone', lgAvg: 'Points per meeting', lgForm: 'Form', lgFormT: 'Average points in the last 3 meetings (▲▼ against the season average)', lgPromoZ: 'Promotion', lgRelegZ: 'Relegation', lgMissed: 'Did not take part', lgAbove: 'points above the line', lgBelow: 'points below the line', lgNotRun: 'Still to be held', calToday: 'Today', calNext: 'Next', modLeague: 'League table', modCalendar: 'Calendars', modComp: 'Highlights in competition results', modGlory: 'Moments of glory and honours',
+      lgPos: 'Position', lgOf: (n) => `of ${n}`, lgLeader: 'Gap to leader', lgPromo: 'Promotion zone', lgReleg: 'Relegation zone', lgAvg: 'Points per meeting', lgForm: 'Form', lgFormT: 'Average points in the last 3 meetings (▲▼ against the season average)', lgPromoZ: 'Promotion', lgRelegZ: 'Relegation', lgMissed: 'Did not take part', lgAbove: 'points above the line', lgBelow: 'points below the line', lgNotRun: 'Still to be held', calToday: 'Today', calNext: 'Next', modLeague: 'League table', modCalendar: 'Calendars', modComp: 'Highlights in competition results', modGlory: 'Moments of glory and honours', modCharts: 'League charts', modCompList: 'Competition search as a filter bar',
     },
     pt: {
       palette: 'Paleta de comandos (Ctrl+K ou /)', toLight: 'Mudar para tema claro', toDark: 'Mudar para tema escuro',
@@ -205,7 +205,7 @@
       modTransactions: 'Painel das transações', modAthlete: 'Cartões e radar da página do atleta', modIcons: 'Ícones SVG e pictogramas das provas',
       modRightCol: 'Formulários da coluna direita', modTips: 'Introduções das páginas recolhíveis', modBars: 'Barras de habilidade coloridas', modPalette: 'Paleta de comandos (Ctrl+K)',
       failPanel: (n) => `O UI+ não conseguiu carregar este painel (${n}). Está a ser mostrada a página original.`, failDetails: 'Detalhes na consola',
-      lgPos: 'Posição', lgOf: (n) => `de ${n}`, lgLeader: 'Distância ao líder', lgPromo: 'Zona de subida', lgReleg: 'Zona de descida', lgAvg: 'Pontos por jornada', lgForm: 'Forma', lgFormT: 'Média de pontos nas 3 últimas jornadas (▲▼ face à média da época)', lgPromoZ: 'Subida', lgRelegZ: 'Descida', lgMissed: 'Não participou', lgAbove: 'pontos acima da linha', lgBelow: 'pontos abaixo da linha', lgNotRun: 'Ainda por disputar', calToday: 'Hoje', calNext: 'Próxima', modLeague: 'Classificação da liga', modCalendar: 'Calendários', modComp: 'Destaques nos resultados das competições', modGlory: 'Momentos de glória e quadro de honra',
+      lgPos: 'Posição', lgOf: (n) => `de ${n}`, lgLeader: 'Distância ao líder', lgPromo: 'Zona de subida', lgReleg: 'Zona de descida', lgAvg: 'Pontos por jornada', lgForm: 'Forma', lgFormT: 'Média de pontos nas 3 últimas jornadas (▲▼ face à média da época)', lgPromoZ: 'Subida', lgRelegZ: 'Descida', lgMissed: 'Não participou', lgAbove: 'pontos acima da linha', lgBelow: 'pontos abaixo da linha', lgNotRun: 'Ainda por disputar', calToday: 'Hoje', calNext: 'Próxima', modLeague: 'Classificação da liga', modCalendar: 'Calendários', modComp: 'Destaques nos resultados das competições', modGlory: 'Momentos de glória e quadro de honra', modCharts: 'Gráficos da liga', modCompList: 'Pesquisa de competições em barra de filtros',
     },
     it: {
       palette: 'Palette dei comandi (Ctrl+K o /)', toLight: 'Passa al tema chiaro', toDark: 'Passa al tema scuro',
@@ -263,7 +263,7 @@
       modTransactions: 'Pannello delle transazioni', modAthlete: 'Schede e radar della pagina atleta', modIcons: 'Icone SVG e pittogrammi delle gare',
       modRightCol: 'Moduli della colonna destra', modTips: 'Introduzioni delle pagine comprimibili', modBars: 'Barre delle abilità colorate', modPalette: 'Palette dei comandi (Ctrl+K)',
       failPanel: (n) => `UI+ non è riuscito a caricare questo pannello (${n}). Viene mostrata la pagina originale.`, failDetails: 'Dettagli nella console',
-      lgPos: 'Posizione', lgOf: (n) => `di ${n}`, lgLeader: 'Distacco dalla vetta', lgPromo: 'Zona promozione', lgReleg: 'Zona retrocessione', lgAvg: 'Punti per giornata', lgForm: 'Forma', lgFormT: 'Media punti nelle ultime 3 giornate (▲▼ rispetto alla media stagionale)', lgPromoZ: 'Promozione', lgRelegZ: 'Retrocessione', lgMissed: 'Non ha partecipato', lgAbove: 'punti sopra la linea', lgBelow: 'punti sotto la linea', lgNotRun: 'Ancora da disputare', calToday: 'Oggi', calNext: 'Prossima', modLeague: 'Classifica del campionato', modCalendar: 'Calendari', modComp: 'Evidenziazioni nei risultati delle competizioni', modGlory: "Momenti di gloria e albo d'oro",
+      lgPos: 'Posizione', lgOf: (n) => `di ${n}`, lgLeader: 'Distacco dalla vetta', lgPromo: 'Zona promozione', lgReleg: 'Zona retrocessione', lgAvg: 'Punti per giornata', lgForm: 'Forma', lgFormT: 'Media punti nelle ultime 3 giornate (▲▼ rispetto alla media stagionale)', lgPromoZ: 'Promozione', lgRelegZ: 'Retrocessione', lgMissed: 'Non ha partecipato', lgAbove: 'punti sopra la linea', lgBelow: 'punti sotto la linea', lgNotRun: 'Ancora da disputare', calToday: 'Oggi', calNext: 'Prossima', modLeague: 'Classifica del campionato', modCalendar: 'Calendari', modComp: 'Evidenziazioni nei risultati delle competizioni', modGlory: "Momenti di gloria e albo d'oro", modCharts: 'Grafici del campionato', modCompList: 'Ricerca competizioni come barra di filtri',
     },
     es: {
       palette: 'Paleta de comandos (Ctrl+K o /)', toLight: 'Cambiar a tema claro', toDark: 'Cambiar a tema oscuro',
@@ -321,7 +321,7 @@
       modTransactions: 'Panel de transacciones', modAthlete: 'Tarjetas y radar de la página del atleta', modIcons: 'Iconos SVG y pictogramas de las pruebas',
       modRightCol: 'Formularios de la columna derecha', modTips: 'Introducciones de página plegables', modBars: 'Barras de habilidad de colores', modPalette: 'Paleta de comandos (Ctrl+K)',
       failPanel: (n) => `UI+ no pudo cargar este panel (${n}). Se muestra la página original.`, failDetails: 'Detalles en la consola',
-      lgPos: 'Posición', lgOf: (n) => `de ${n}`, lgLeader: 'Distancia al líder', lgPromo: 'Zona de ascenso', lgReleg: 'Zona de descenso', lgAvg: 'Puntos por jornada', lgForm: 'Forma', lgFormT: 'Media de puntos en las 3 últimas jornadas (▲▼ frente a la media de la temporada)', lgPromoZ: 'Ascenso', lgRelegZ: 'Descenso', lgMissed: 'No participó', lgAbove: 'puntos por encima de la línea', lgBelow: 'puntos por debajo de la línea', lgNotRun: 'Por disputar', calToday: 'Hoy', calNext: 'Próxima', modLeague: 'Clasificación de la liga', modCalendar: 'Calendarios', modComp: 'Destacados en los resultados de competiciones', modGlory: 'Momentos de gloria y palmarés',
+      lgPos: 'Posición', lgOf: (n) => `de ${n}`, lgLeader: 'Distancia al líder', lgPromo: 'Zona de ascenso', lgReleg: 'Zona de descenso', lgAvg: 'Puntos por jornada', lgForm: 'Forma', lgFormT: 'Media de puntos en las 3 últimas jornadas (▲▼ frente a la media de la temporada)', lgPromoZ: 'Ascenso', lgRelegZ: 'Descenso', lgMissed: 'No participó', lgAbove: 'puntos por encima de la línea', lgBelow: 'puntos por debajo de la línea', lgNotRun: 'Por disputar', calToday: 'Hoy', calNext: 'Próxima', modLeague: 'Clasificación de la liga', modCalendar: 'Calendarios', modComp: 'Destacados en los resultados de competiciones', modGlory: 'Momentos de gloria y palmarés', modCharts: 'Gráficos de la liga', modCompList: 'Búsqueda de competiciones como barra de filtros',
     },
     fr: {
       palette: 'Palette de commandes (Ctrl+K ou /)', toLight: 'Passer au thème clair', toDark: 'Passer au thème sombre',
@@ -379,7 +379,7 @@
       modTransactions: 'Tableau de bord des transactions', modAthlete: 'Cartes et radar de la page athlète', modIcons: 'Icônes SVG et pictogrammes des épreuves',
       modRightCol: 'Formulaires de la colonne de droite', modTips: 'Introductions de page repliables', modBars: 'Barres de compétences colorées', modPalette: 'Palette de commandes (Ctrl+K)',
       failPanel: (n) => `UI+ n'a pas pu charger ce panneau (${n}). La page d'origine est affichée.`, failDetails: 'Détails dans la console',
-      lgPos: 'Position', lgOf: (n) => `sur ${n}`, lgLeader: 'Écart avec le leader', lgPromo: 'Zone de promotion', lgReleg: 'Zone de relégation', lgAvg: 'Points par journée', lgForm: 'Forme', lgFormT: 'Moyenne de points sur les 3 dernières journées (▲▼ par rapport à la moyenne de la saison)', lgPromoZ: 'Promotion', lgRelegZ: 'Relégation', lgMissed: "N'a pas participé", lgAbove: 'points au-dessus de la ligne', lgBelow: 'points sous la ligne', lgNotRun: 'À disputer', calToday: "Aujourd'hui", calNext: 'Prochaine', modLeague: 'Classement de la ligue', modCalendar: 'Calendriers', modComp: 'Mise en avant dans les résultats des compétitions', modGlory: 'Moments de gloire et palmarès',
+      lgPos: 'Position', lgOf: (n) => `sur ${n}`, lgLeader: 'Écart avec le leader', lgPromo: 'Zone de promotion', lgReleg: 'Zone de relégation', lgAvg: 'Points par journée', lgForm: 'Forme', lgFormT: 'Moyenne de points sur les 3 dernières journées (▲▼ par rapport à la moyenne de la saison)', lgPromoZ: 'Promotion', lgRelegZ: 'Relégation', lgMissed: "N'a pas participé", lgAbove: 'points au-dessus de la ligne', lgBelow: 'points sous la ligne', lgNotRun: 'À disputer', calToday: "Aujourd'hui", calNext: 'Prochaine', modLeague: 'Classement de la ligue', modCalendar: 'Calendriers', modComp: 'Mise en avant dans les résultats des compétitions', modGlory: 'Moments de gloire et palmarès', modCharts: 'Graphiques de la ligue', modCompList: 'Recherche de compétitions en barre de filtres',
     },
     de: {
       palette: 'Befehlspalette (Strg+K oder /)', toLight: 'Zum hellen Design wechseln', toDark: 'Zum dunklen Design wechseln',
@@ -437,7 +437,7 @@
       modTransactions: 'Transaktionen-Dashboard', modAthlete: 'Karten und Radar der Athletenseite', modIcons: 'SVG-Symbole und Disziplin-Piktogramme',
       modRightCol: 'Formulare der rechten Spalte', modTips: 'Einklappbare Seitenerklärungen', modBars: 'Farbige Fähigkeitsbalken', modPalette: 'Befehlspalette (Strg+K)',
       failPanel: (n) => `UI+ konnte dieses Panel nicht laden (${n}). Die Originalseite wird angezeigt.`, failDetails: 'Details in der Konsole',
-      lgPos: 'Platz', lgOf: (n) => `von ${n}`, lgLeader: 'Rückstand auf Platz 1', lgPromo: 'Aufstiegszone', lgReleg: 'Abstiegszone', lgAvg: 'Punkte pro Spieltag', lgForm: 'Form', lgFormT: 'Durchschnittspunkte der letzten 3 Spieltage (▲▼ gegenüber dem Saisonschnitt)', lgPromoZ: 'Aufstieg', lgRelegZ: 'Abstieg', lgMissed: 'Nicht teilgenommen', lgAbove: 'Punkte über der Linie', lgBelow: 'Punkte unter der Linie', lgNotRun: 'Noch auszutragen', calToday: 'Heute', calNext: 'Nächster', modLeague: 'Ligatabelle', modCalendar: 'Kalender', modComp: 'Hervorhebungen in Wettkampfergebnissen', modGlory: 'Glanzmomente und Ehrentafel',
+      lgPos: 'Platz', lgOf: (n) => `von ${n}`, lgLeader: 'Rückstand auf Platz 1', lgPromo: 'Aufstiegszone', lgReleg: 'Abstiegszone', lgAvg: 'Punkte pro Spieltag', lgForm: 'Form', lgFormT: 'Durchschnittspunkte der letzten 3 Spieltage (▲▼ gegenüber dem Saisonschnitt)', lgPromoZ: 'Aufstieg', lgRelegZ: 'Abstieg', lgMissed: 'Nicht teilgenommen', lgAbove: 'Punkte über der Linie', lgBelow: 'Punkte unter der Linie', lgNotRun: 'Noch auszutragen', calToday: 'Heute', calNext: 'Nächster', modLeague: 'Ligatabelle', modCalendar: 'Kalender', modComp: 'Hervorhebungen in Wettkampfergebnissen', modGlory: 'Glanzmomente und Ehrentafel', modCharts: 'Ligadiagramme', modCompList: 'Wettkampfsuche als Filterleiste',
     },
   };
   const LOCALE = root.lang || navigator.language || 'en';
@@ -1029,6 +1029,40 @@ html.mx #middle_section.mx-acct #messaggi tbody td:only-child{text-align:center!
 /* ---------- league table, calendars, competitions (1.9) ---------- */
 .mx-hide-orig-lg > table.results_small{display:none!important;}
 .mx-hide-orig-cal > .mx-cal-src{display:none!important;}
+/* league charts: drawn from the chart configs in the site's chart images */
+.mx-hide-orig-gr > img,.mx-hide-orig-gr > br,.mx-hide-orig-gr > div[style],.mx-hide-orig-gr > table{display:none!important;}
+.mx-gr svg{display:block;width:100%;height:auto;overflow:visible;}
+.mx-gr svg text{fill:var(--muted);font:10.5px var(--font);}
+.mx-gr svg .grid{stroke:var(--border);stroke-width:1;}
+.mx-gr .ln{fill:none;stroke:var(--c);stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round;transition:opacity .15s,stroke-width .15s;}
+.mx-gr .ln.own{stroke-width:3.4;}
+.mx-gr svg.focus .ln{opacity:.12;} .mx-gr svg.focus .ln.on{opacity:1;stroke-width:3.4;}
+html.mx-dark .mx-gr .ln,html.mx-dark .mx-gr-key i{--c2:color-mix(in srgb,var(--c) 62%,#fff);}
+html.mx-dark .mx-gr .ln{stroke:var(--c2);} html.mx-dark .mx-gr-key i{background:var(--c2)!important;}
+.mx-gr-key{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.mx-gr-key button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;border:1px solid var(--border);font-size:12px;color:var(--text);max-width:220px;}
+.mx-gr-key button span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mx-gr-key button:hover,.mx-gr-key button.on{background:var(--surface2);border-color:var(--muted);}
+.mx-gr-key button.own{font-weight:700;border-color:var(--accent);}
+.mx-gr-key i{width:9px;height:9px;border-radius:50%;background:var(--c);flex:0 0 9px;}
+.mx-gr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-bottom:16px;}
+.mx-gr-grid .mx-card{margin:0!important;padding:12px 14px!important;}
+.mx-gr-grid .mx-card.own{border-color:var(--accent)!important;box-shadow:0 0 0 1px var(--accent),var(--shadow)!important;}
+.mx-gr-grid h5{margin:0 0 6px!important;font:700 12.5px/1.3 var(--font)!important;color:var(--text)!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mx-gr .b0{fill:var(--accent);} .mx-gr .b1{fill:color-mix(in srgb,var(--muted) 38%,transparent);}
+.mx-gr .b2{fill:var(--good);} .mx-gr .b3{fill:var(--warn);}
+/* competition search: the form as a compact filter bar */
+.mx-filters{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px 14px;text-align:left;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;margin:0 0 16px;}
+.mx-filters .fld{display:flex;flex-direction:column;gap:4px;min-width:0;}
+.mx-filters .fld > b{font:700 11px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)!important;}
+.mx-filters .ctl{display:flex;align-items:center;gap:6px;min-width:0;}
+.mx-filters .ctl > select,.mx-filters .ctl > .select2-container{flex:1 1 auto;width:auto!important;min-width:0;max-width:100%;}
+.mx-filters .ctl > select + input,.mx-filters .ctl > select + input + *{flex:0 0 auto;}
+.mx-filters .ctl > input[type="text"]{width:64px!important;min-width:0;}
+.mx-filters .ctl > select:only-child,.mx-filters .ctl > .select2-container:last-child{flex:1 1 100%;}
+.mx-filters .foot{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:10px;}
+.mx-filters .foot label{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--text);}
+.mx-filters .foot .btns{margin-left:auto;display:flex;gap:8px;}
 .mx-lg .mx-table-wrap{max-height:none;margin-bottom:8px;}
 table.mx-lg-t td.pos span{display:inline-block;min-width:22px;font-weight:700;color:var(--muted);}
 table.mx-lg-t td.club{display:flex;align-items:center;gap:8px;max-width:320px;}
@@ -2765,6 +2799,8 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
 
     const leader = rows[0];
     const me = rows.find((r) => r.own);
+    // the charts page has no club links: it finds our club by this name
+    if (me) LS.set('ownClub', me.name);
     const promoN = rows.filter((r) => r.zone === 'up').length;
     const relegAt = rows.findIndex((r) => r.zone === 'down');
     const tiles = [];
@@ -2824,6 +2860,167 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
         h('button', { class: 'mx-btn', title: t('origT'), onclick: () => { st.orig = !st.orig; applyOrig(); render(); } }, st.orig ? t('origHide') : t('origShow'))));
     applyOrig();
     render();
+  }
+
+  /* ------------------------------------------------------------------ *
+   * League charts (grafici_serie.php). The site draws them as quickchart.io
+   * images whose Chart.js config, data included, is in the image URL (?c=).
+   * Each config is read from the page and drawn again as SVG in the theme;
+   * nothing is fetched and the data is not interpreted.
+   * ------------------------------------------------------------------ */
+  const svgEl = (tag, attrs = {}) => { const e = document.createElementNS('http://www.w3.org/2000/svg', tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); return e; };
+  const chartCfg = (img) => {
+    try {
+      const u = new URL(img.getAttribute('src') || '', location.href);
+      if (!/quickchart\.io$/.test(u.hostname)) return null;
+      const c = JSON.parse(u.searchParams.get('c') || 'null');
+      return c && c.data && Array.isArray(c.data.datasets) ? c : null;
+    } catch (e) { return null; }
+  };
+  const chartTitle = (c) => { const x = c.options?.plugins?.title?.text ?? c.options?.title?.text ?? ''; return Array.isArray(x) ? x.join(' ') : String(x); };
+  const chartY = (c, vals) => {
+    const y = c.options?.scales?.y || c.options?.scales?.yAxes?.[0]?.ticks || {};
+    const lo = y.min ?? Math.min(0, ...vals), hi = y.max ?? Math.max(1, ...vals);
+    return [lo, hi > lo ? hi : lo + 1];
+  };
+  const niceTicks = (lo, hi, n = 4) => { const step = (hi - lo) / n; return Array.from({ length: n + 1 }, (_, i) => lo + step * i); };
+  const numLabel = (v) => fmt(v, Number.isInteger(v) ? 0 : Math.abs(v) < 10 ? 2 : 1);
+  // our club, from the name saved by the league table (labels may be cut with "...")
+  const isOwnLabel = (label) => {
+    const own = LS.get('ownClub', '');
+    const l = (label || '').trim();
+    if (!own || !l) return false;
+    if (l === own) return true;
+    const cut = l.replace(/(\.\.\.|…)$/, '');
+    return cut !== l && cut.length >= 6 && own.startsWith(cut);
+  };
+
+  function lineChartSvg(c) {
+    const S = svgEl;
+    const labels = c.data.labels || [];
+    const sets = c.data.datasets.filter((d) => Array.isArray(d.data));
+    const all = sets.flatMap((d) => d.data.filter((v) => typeof v === 'number'));
+    const [lo, hi] = chartY(c, all);
+    const W = 900, H = 300, L = 36, R = 12, T = 10, B = 24;
+    const n = Math.max(labels.length, ...sets.map((d) => d.data.length));
+    const x = (i) => L + (n > 1 ? (i * (W - L - R)) / (n - 1) : (W - L - R) / 2);
+    const y = (v) => T + (H - T - B) * (1 - (v - lo) / (hi - lo));
+    const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img' });
+    niceTicks(lo, hi).forEach((v) => {
+      svg.append(S('line', { class: 'grid', x1: L, x2: W - R, y1: y(v), y2: y(v) }));
+      const tx = S('text', { x: L - 6, y: y(v) + 3.5, 'text-anchor': 'end' }); tx.textContent = numLabel(v); svg.append(tx);
+    });
+    labels.forEach((lb, i) => { const tx = S('text', { x: x(i), y: H - 6, 'text-anchor': 'middle' }); tx.textContent = lb; svg.append(tx); });
+    const paths = sets.map((d) => {
+      const pts = d.data.map((v, i) => (typeof v === 'number' ? `${x(i).toFixed(1)},${y(v).toFixed(1)}` : null));
+      const dd = pts.reduce((s, p, i) => (p ? s + (s && pts[i - 1] ? 'L' : 'M') + p : s), '');
+      const p = S('path', { d: dd, class: 'ln' + (isOwnLabel(d.label) ? ' own' : ''), style: `--c:${d.borderColor || d.backgroundColor || 'var(--muted)'}` });
+      const tt = S('title', {}); tt.textContent = `${d.label || ''}: ${d.data.map((v) => (v == null ? '–' : numLabel(v))).join(' · ')}`; p.append(tt);
+      svg.append(p);
+      return p;
+    });
+    // our club's line on top
+    paths.forEach((p) => { if (p.classList.contains('own')) svg.append(p); });
+    let pinned = -1;
+    const focus = (i) => { svg.classList.toggle('focus', i >= 0); paths.forEach((p, k) => p.classList.toggle('on', k === i)); if (i >= 0) svg.append(paths[i]); };
+    const key = h('div', { class: 'mx-gr-key' }, sets.map((d, i) => {
+      const b = h('button', { class: isOwnLabel(d.label) ? 'own' : '', title: d.label || '', style: `--c:${d.borderColor || d.backgroundColor || 'var(--muted)'}`,
+        onmouseenter: () => focus(i), onmouseleave: () => focus(pinned),
+        onclick: () => { pinned = pinned === i ? -1 : i; key.querySelectorAll('button').forEach((x, k) => x.classList.toggle('on', k === pinned)); focus(pinned); } },
+      h('i', {}), h('span', {}, d.label || ''));
+      return b;
+    }));
+    return h('div', { class: 'mx-card' }, svg, key);
+  }
+
+  function barChartCard(c) {
+    const S = svgEl;
+    const labels = c.data.labels || [];
+    const sets = c.data.datasets.filter((d) => Array.isArray(d.data));
+    const all = sets.flatMap((d) => d.data.filter((v) => typeof v === 'number'));
+    const [lo, hi] = chartY(c, all);
+    const W = 250, H = 130, L = 24, R = 4, T = 6, B = 18;
+    const n = Math.max(labels.length, ...sets.map((d) => d.data.length), 1);
+    const slot = (W - L - R) / n, bw = Math.max(2, (slot * 0.72) / Math.max(1, sets.length));
+    const y = (v) => T + (H - T - B) * (1 - (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo));
+    const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img' });
+    niceTicks(lo, hi, 3).forEach((v) => {
+      svg.append(S('line', { class: 'grid', x1: L, x2: W - R, y1: y(v), y2: y(v) }));
+      const tx = S('text', { x: L - 4, y: y(v) + 3.5, 'text-anchor': 'end', style: 'font-size:9px' }); tx.textContent = numLabel(v); svg.append(tx);
+    });
+    for (let i = 0; i < n; i++) {
+      const x0 = L + slot * i + (slot - bw * sets.length) / 2;
+      sets.forEach((d, k) => {
+        const v = d.data[i];
+        if (typeof v !== 'number') return;
+        const r = S('rect', { class: 'b' + (k % 4), x: (x0 + k * bw).toFixed(1), y: y(Math.max(v, lo)).toFixed(1), width: (bw - 1).toFixed(1), height: Math.max(0, y(lo) - y(Math.max(v, lo))).toFixed(1), rx: 1.5 });
+        const tt = S('title', {}); tt.textContent = `${labels[i] ?? i + 1}${d.label ? ' · ' + d.label : ''}: ${numLabel(v)}`; r.append(tt);
+        svg.append(r);
+      });
+      const tx = S('text', { x: (L + slot * i + slot / 2).toFixed(1), y: H - 5, 'text-anchor': 'middle', style: 'font-size:9px' }); tx.textContent = labels[i] ?? ''; svg.append(tx);
+    }
+    const title = chartTitle(c);
+    return h('div', { class: 'mx-card' + (isOwnLabel(title) ? ' own' : '') }, title ? h('h5', { title }, title) : null, svg);
+  }
+
+  function leagueCharts() {
+    const host = $('.page_details');
+    if (!host) return;
+    const charts = $$(':scope > img, :scope > table img', host).map((img) => ({ img, c: chartCfg(img) })).filter((x) => x.c);
+    if (!charts.length) return;
+    const lines = charts.filter((x) => x.c.type === 'line').map((x) => lineChartSvg(x.c));
+    const bars = charts.filter((x) => x.c.type === 'bar').map((x) => barChartCard(x.c));
+    // our club's card first
+    bars.sort((a, b) => b.classList.contains('own') - a.classList.contains('own'));
+    const st = { orig: false };
+    const ui = h('div', { class: 'mxr mx-gr' });
+    const first = $(':scope > img', host) || charts[0].img.closest('table') || charts[0].img;
+    host.insertBefore(ui, first);
+    const applyOrig = () => host.classList.toggle('mx-hide-orig-gr', !st.orig);
+    const render = () => ui.replaceChildren(
+      ...lines,
+      bars.length ? h('div', { class: 'mx-gr-grid' }, bars) : null,
+      h('div', { class: 'mxr-legend' }, h('span', { class: 'sp' }),
+        h('button', { class: 'mx-btn', title: t('origT'), onclick: () => { st.orig = !st.orig; applyOrig(); render(); } }, st.orig ? t('origHide') : t('origShow'))));
+    applyOrig();
+    render();
+  }
+
+  /* ------------------------------------------------------------------ *
+   * Competition search (lista_prossima.php): the form's grid of label rows
+   * and field rows becomes a compact filter bar. The form's own fields are
+   * moved, never copied, so the search sends exactly what it sent before.
+   * ------------------------------------------------------------------ */
+  function compSearchPage() {
+    const form = $('.page_details form[name="lista"]') || $('.page_details form');
+    const tbl = form && $(':scope > table', form);
+    if (!tbl || tbl.rows.length < 3) return;
+    const rows = Array.from(tbl.rows);
+    const last = rows[rows.length - 1];
+    const fields = [];
+    for (let r = 0; r + 1 < rows.length - 1; r += 2) {
+      const labs = Array.from(rows[r].cells), ctls = Array.from(rows[r + 1].cells);
+      if (!ctls.some((c) => c.querySelector('select,input'))) return; // not the layout we know
+      labs.forEach((lc, i) => { if (ctls[i] && ctls[i].querySelector('select,input')) fields.push([lc, ctls[i]]); });
+    }
+    if (!fields.length) return;
+    // build everything first, then move the nodes in one go
+    const grid = h('div', { class: 'mx-filters' });
+    const items = fields.map(([lc, cc]) => {
+      const ctl = h('div', { class: 'ctl' });
+      grid.append(h('div', { class: 'fld' }, h('b', {}, lc.textContent.replace(/:\s*$/, '').trim()), ctl));
+      return [cc, ctl];
+    });
+    const chk = h('label', {}), btns = h('div', { class: 'btns' });
+    grid.append(h('div', { class: 'foot' }, chk, btns));
+    const lastCells = Array.from(last.cells);
+    form.insertBefore(grid, tbl);
+    items.forEach(([cc, ctl]) => ctl.append(...Array.from(cc.childNodes).filter((n) => n.nodeType === 1 || n.textContent.trim())));
+    lastCells.forEach((c) => {
+      const target = c.querySelector('input[type="submit"],button') ? btns : chk;
+      target.append(...Array.from(c.childNodes).filter((n) => n.nodeType === 1 || n.textContent.trim()));
+    });
+    tbl.style.display = 'none';
   }
 
   /* ------------------------------------------------------------------ *
@@ -2955,6 +3152,8 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     { k: 'home', label: 'modHome', page: /^\/(index\.php)?$/, run: homePage },
     { k: 'account', label: 'modAccount', page: /\/user\/(messaggi|messaggi_uscita|invia_messaggio|modifica_utente|modifica_opzioni|cambia_password|upload|dettagli_utente)\.php$/, run: accountPages },
     { k: 'league', label: 'modLeague', page: /dettagli_serie(_youth)?\.php$/, run: leaguePage },
+    { k: 'charts', label: 'modCharts', page: /grafici_serie\.php$/, run: leagueCharts },
+    { k: 'compList', label: 'modCompList', page: /lista_prossima\.php$/, run: compSearchPage },
     { k: 'calendar', label: 'modCalendar', page: /calendario(_serie)?\.php$/, run: calendarPage },
     { k: 'glory', label: 'modGlory', page: /(momenti_gloria|albo_oro)\.php$/, run: gloryPages },
     { k: 'athlete', label: 'modAthlete', page: /atleta_one\.php$/, run: () => { try { athleteLayout(); } catch (e) { console.warn('[UI+] athlete layout', e); } athletePage(); } },
