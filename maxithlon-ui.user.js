@@ -1435,7 +1435,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
       const group = head[1] || t('group', gi + 1);
       if (!lab) lab = { coach: head[2], age: head[3], fans: head[5], emp: head[6], forma: head[7], base: head.slice(8, 14) };
       const isYouth = tbl.id === 'atleti8' || tbl.classList.contains('youth');
-      groups.push({ name: group, spec: [head[14], head[15]], color: GROUP_COLORS[gi % GROUP_COLORS.length], youth: isYouth });
+      groups.push({ name: group, gi, spec: [head[14], head[15]], color: GROUP_COLORS[gi % GROUP_COLORS.length], youth: isYouth });
       Array.from(tbl.tBodies[0]?.rows || []).forEach((tr) => {
         const c = tr.cells;
         if (c.length < 18) return;
@@ -1489,18 +1489,45 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
   const ownClubId = () => { try { return new URL($('#left_section a[href*="dettagli_societa"]').href).searchParams.get('u'); } catch (e) { return null; } };
   const foreignClubPage = () => { const u = new URLSearchParams(location.search).get('u'); return !!u && u !== ownClubId(); };
 
+  /*
+   * Roster averages, keyed by the group's table position (#atleti1..8), never by its
+   * name, so they work whatever language the site is in. `alias` maps every group
+   * name seen so far (in any language) to that position; `aid` maps our athletes'
+   * ids to their group, so their own pages find it without reading any text.
+   */
+  const aidOf = (href) => { try { return new URL(href, location.href).searchParams.get('aid'); } catch (e) { return null; } };
   function saveRosterAverages(rows, groups) {
-    const out = {};
+    const prev = rosterAvgData();
+    const out = {}, alias = Object.assign({}, prev.alias), aid = {};
     groups.forEach((g) => {
-      const rs = rows.filter((r) => r.group === g.name);
+      alias[g.name.toLowerCase()] = g.gi;
+      const rs = rows.filter((r) => r.gi === g.gi);
       if (!rs.length) return;
       const o = { n: rs.length, spec: g.spec };
       BASE.forEach((b) => { o[b.k] = avg(rs.map((r) => r[b.k].v)); });
       o.s1 = avg(rs.map((r) => r.s1.v)); o.s2 = avg(rs.map((r) => r.s2.v));
       o.maxid = avg(rs.map((r) => r.maxid));
-      out[g.name.toLowerCase()] = o;
+      out[g.gi] = o;
+      rs.forEach((r) => { const id = aidOf(r.href); if (id) aid[id] = g.gi; });
     });
-    LS.set('rosterAvg', { at: Date.now(), groups: out });
+    LS.set('rosterAvg', { v: 2, at: Date.now(), groups: out, alias, aid });
+  }
+  // Reads the stored averages; the old format (keyed by group name, in one language) is read too.
+  function rosterAvgData() {
+    const ra = LS.get('rosterAvg', null) || {};
+    let groups = ra.groups || {}, alias = ra.alias || {};
+    if (ra.v !== 2) {
+      const keys = Object.keys(groups);
+      alias = Object.fromEntries(keys.map((k, i) => [k, i]));
+      groups = Object.fromEntries(keys.map((k, i) => [i, groups[k]]));
+    }
+    const aid = ra.aid || {};
+    const idxOf = (name, athleteId) => {
+      if (athleteId != null && aid[athleteId] != null) return aid[athleteId];
+      const i = alias[(name || '').trim().toLowerCase()];
+      return i == null ? -1 : i;
+    };
+    return { groups, alias, aid, idxOf, get: (name, athleteId) => { const i = idxOf(name, athleteId); return i >= 0 ? groups[i] || null : null; }, has: Object.keys(groups).length > 0 };
   }
 
   function rosterPage() {
@@ -1687,13 +1714,11 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
   };
   // Own roster averages per group (saved by the Athletes list), with the group colors in roster order
   const rosterRef = () => {
-    const ra = LS.get('rosterAvg', null);
-    const groups = ra?.groups || {};
-    const keys = Object.keys(groups);
+    const ra = rosterAvgData();
     return {
-      get: (name) => groups[(name || '').toLowerCase()] || null,
-      color: (name) => { const i = keys.indexOf((name || '').toLowerCase()); return i >= 0 ? GROUP_COLORS[i % GROUP_COLORS.length] : 'var(--muted)'; },
-      has: keys.length > 0,
+      get: (name) => ra.get(name),
+      color: (name) => { const i = ra.idxOf(name); return i >= 0 ? GROUP_COLORS[i % GROUP_COLORS.length] : 'var(--muted)'; },
+      has: ra.has,
     };
   };
   const sumSkills = (o) => [...BASE.map((b) => o[b.k]), o.s1, o.s2].reduce((s, x) => s + (x || 0), 0);
@@ -2233,7 +2258,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     const axes = [...items.slice(4, 10), ...spec];
     const vals = Object.fromEntries(axes.map((a) => [a.k, a.v]));
     const groupName = ($('h4.heading strong', mid)?.textContent || '').trim();
-    const ref = (LS.get('rosterAvg', {}).groups || {})[groupName.toLowerCase()];
+    const ref = rosterAvgData().get(groupName, aidOf(location.href));
     const refVals = ref && spec.length === 2 ? [...BASE.map((b) => ref[b.k]), ref.s1, ref.s2] : null;
 
     // ---- SVG radar ----
