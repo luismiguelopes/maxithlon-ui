@@ -2,6 +2,17 @@
 
 All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.org/): fixes bump the patch number, new features bump the minor number.
 
+## [1.11.0] — 2026-11-25
+
+### Added
+- Coaches page as cards, grouped by specialty: each coach's athletes in charge (with a bar against the busiest coach), experience and the skills they train as bars colored 0–20, with your athletes' average in that group as a marker. Specialty skills carry the group's own names instead of "Es1/Es2".
+- Tiles for coaches and youth coaches against the maximum, athletes and youth athletes with a coach against your roster, and athletes per coach.
+- Each group shows how many of its athletes have a coach (green when all, amber when some are missing); groups with athletes and no coach get a "No coach" slot.
+- After a visit to the Training page, each coach card lists their athletes and the athletes without a coach are named in their group. The Training page is only read as it was loaded; nothing on it changes and nothing is sent. "Show original" brings back the site's tables.
+
+### Changed
+- The Athletes list also saves each group's name with its averages, so other pages can name groups in the site's current language.
+
 ## [1.10.0] — 2026-11-25
 
 ### Added

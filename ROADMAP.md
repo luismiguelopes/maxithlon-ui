@@ -2,7 +2,7 @@
 
 Planned work for Maxithlon UI+. Items are grouped by milestone, roughly in priority order. The scope rule never changes: UI+ only changes **presentation**. It does not submit forms, automate actions or work around game rules.
 
-Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**, **market search results**, **finances**, **last transactions**, **home**, **league table**, **league charts**, **calendars** and **competition search**. Every other page gets the theme, colors, icons, collapsible intro, footer and right column styles so far.
+Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**, **market search results**, **finances**, **last transactions**, **home**, **league table**, **league charts**, **calendars** and **competition search** and **coaches**. Every other page gets the theme, colors, icons, collapsible intro, footer and right column styles so far.
 
 ## Done
 
@@ -15,6 +15,7 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 - **1.8:** home page dashboard; collapsible and icon-only left menu; messages and account pages restyled.
 - **1.9:** league table dashboard (national and youth); season and league calendars; your athletes and club highlighted in results and rankings; moments of glory and honours board.
 - **1.10:** league charts redrawn in the theme; competition search as a filter bar; athlete radar average in any site language.
+- **1.11:** coaches as cards per group, with their load, skills against the group average, coverage and their athletes.
 
 ## 1.7 — Robustness and languages (left over)
 
@@ -39,9 +40,10 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 - [ ] **League statistics** (`statistiche_serie.php`): fine while empty; check again once athletes have competed this season.
 - [x] **Competitions list** (`lista_prossima.php`): the search form as a compact filter bar (1.10).
 
-## 1.11 — Club pages
+## 1.11–1.12 — Club pages
 
-- [ ] **Coaches**: list as cards with specialty, training plan and assigned athletes.
+- [x] **Coaches**: cards per group with load, skills against the group average, coverage and assigned athletes (1.11).
+- [ ] **Training page** (`allenamento_new.php`): the per-athlete coach and training plan form, restyled without changing what it sends.
 - [ ] **Staff, stadium and relays** pages redesigned.
 - [ ] **Youth academy and youth championship** pages redesigned.
 - [ ] **Weekly tests and training results** as tables with highlights.

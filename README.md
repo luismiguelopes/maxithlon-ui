@@ -33,6 +33,7 @@ It only changes how pages **look**. It never submits forms, makes extra requests
   - filters by group, gender and status, plus search by name or country;
   - sortable table with a 0–20 heat map and the site's rise/drop markers;
   - CSV export of the current view (opens in Excel).
+- **Coaches**: one card per coach, grouped by specialty: athletes in charge, experience and the skills the coach trains as bars, with your athletes' average in that group as a marker. Each group shows how many of its athletes have a coach; groups without one stand out. Open the Training page once and each card also lists the coach's athletes, and the athletes without a coach are named (read from that page as it is, nothing is sent).
 - **Market search results** as a dashboard: cheapest, average price, best value and ending-first cards; price per MAXID point; time left to the deadline; the sum of skills compared with your roster average for the same group, with a "fits my roster" filter; group and gender filters, saved views, heat map, sorting and CSV export.
 - **Finances**: income vs expenses for this week, last week and last season, a category breakdown with week-over-week changes, and the last transactions as a daily chart and a filterable table.
 - **Athlete page** as cards (profile, skills, rankings, notes) with a **skill radar**: the 8 skills (6 base + 2 specialty) compared with your roster's average for that group (in any site language). Full club names instead of the site's cut ones, once seen on another page.
