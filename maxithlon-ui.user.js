@@ -1060,6 +1060,8 @@ html.mx-dark .mx-gr .ln{stroke:var(--c2);} html.mx-dark .mx-gr-key i{background:
 .mx-filters .ctl > select + input,.mx-filters .ctl > select + input + *{flex:0 0 auto;}
 .mx-filters .ctl > input[type="text"]{width:64px!important;min-width:0;}
 .mx-filters .ctl > select:only-child,.mx-filters .ctl > .select2-container:last-child{flex:1 1 100%;}
+.mx-filters .select2-container .select2-selection--single{height:32px!important;display:flex;align-items:center;border-radius:8px!important;}
+.mx-filters .select2-container .select2-selection__arrow{height:30px!important;}
 .mx-filters .foot{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:10px;}
 .mx-filters .foot label{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--text);}
 .mx-filters .foot .btns{margin-left:auto;display:flex;gap:8px;}
@@ -2924,7 +2926,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     let pinned = -1;
     const focus = (i) => { svg.classList.toggle('focus', i >= 0); paths.forEach((p, k) => p.classList.toggle('on', k === i)); if (i >= 0) svg.append(paths[i]); };
     const key = h('div', { class: 'mx-gr-key' }, sets.map((d, i) => {
-      const b = h('button', { class: isOwnLabel(d.label) ? 'own' : '', title: d.label || '', style: `--c:${d.borderColor || d.backgroundColor || 'var(--muted)'}`,
+      const b = h('button', { class: 'mx-key' + (isOwnLabel(d.label) ? ' own' : ''), title: d.label || '', style: `--c:${d.borderColor || d.backgroundColor || 'var(--muted)'}`,
         onmouseenter: () => focus(i), onmouseleave: () => focus(pinned),
         onclick: () => { pinned = pinned === i ? -1 : i; key.querySelectorAll('button').forEach((x, k) => x.classList.toggle('on', k === pinned)); focus(pinned); } },
       h('i', {}), h('span', {}, d.label || ''));
