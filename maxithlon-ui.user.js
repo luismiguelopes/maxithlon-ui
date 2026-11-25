@@ -1083,7 +1083,7 @@ html.mx-dark .mx-gr .ln{stroke:var(--c2);} html.mx-dark .mx-gr-key i{background:
 .mx-tc-ath{display:flex;flex-wrap:wrap;gap:4px;}
 .mx-tc-ath a{font-size:11.5px;padding:1px 7px;border-radius:999px;background:var(--surface2);color:var(--text)!important;text-decoration:none!important;white-space:nowrap;}
 .mx-tc-ath a:hover{background:var(--accent-soft);color:var(--accent)!important;}
-.mx-tc-none{border-style:dashed!important;color:var(--muted);font-size:12.5px;justify-content:center;}
+.mx-tc-none{border-style:dashed!important;color:var(--muted);font-size:12.5px;justify-content:center;align-items:flex-start;}
 .mxr-legend .mk{display:inline-block;width:2px;height:12px;background:var(--text);opacity:.55;vertical-align:middle;margin-right:4px;}
 
 .mx-gr-grid h5{margin:0 0 6px!important;font:700 12.5px/1.3 var(--font)!important;color:var(--text)!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -3198,8 +3198,8 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
       $$('select[name^="tecnico["]', tbl).forEach((sel) => {
         // the option marked selected in the HTML is the saved coach, whatever is picked now
         const opt = sel.querySelector('option[selected]');
-        const tid = opt && opt.value;
-        if (!tid || tid === '0') return;
+        // '0' = no coach: those athletes are listed apart on the Coaches page
+        const tid = (opt && opt.value) || '0';
         const a = sel.closest('tr')?.querySelector('a[href*="aid="]');
         if (!a) return;
         (c[tid] = c[tid] || []).push([aidOf(a.href), a.textContent.trim(), gi]);
@@ -3304,6 +3304,10 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
           const gi = typeof key === 'number' ? key : -1;
           const g = gi >= 0 ? ra.groups[gi] || null : null;
           const load = cs.reduce((x, c) => x + c.n, 0);
+          const free = (assign?.c?.['0'] || []).filter((x) => x[2] === gi);
+          const freeCard = free.length ? h('div', { class: 'mx-card mx-tc-none' },
+            h('span', { class: 'mx-badge bad' }, t('tcNoCoach')),
+            h('div', { class: 'mx-tc-ath' }, free.map(([aid, name]) => h('a', { href: '/user/atleta_one.php?tipo=aid&aid=' + encodeURIComponent(aid) }, name)))) : null;
           const badge = !g?.n ? null : cs.length
             ? h('span', { class: 'mx-badge ' + (load >= g.n ? 'good' : 'warn') }, t('tcCovered', fmt(Math.min(load, g.n)), fmt(g.n)))
             : h('span', { class: 'mx-badge bad' }, t('tcNoCoach'));
@@ -3311,7 +3315,8 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
             h('div', { class: 'mx-tc-gh' },
               h('span', { class: 'mxr-g', style: { background: gi >= 0 ? GROUP_COLORS[gi % GROUP_COLORS.length] : 'var(--muted)' } }),
               h('span', {}, gi >= 0 ? grpName(gi, cs[0]?.spec) : cs[0].spec), badge),
-            h('div', { class: 'mx-tc-grid', style: '--n:' + Math.max(1, cs.length) }, cs.length ? cs.map((c) => coachCard(c, s, g)) : h('div', { class: 'mx-card mx-tc-none' }, t('tcNoCoach'))));
+            h('div', { class: 'mx-tc-grid', style: '--n:' + Math.max(1, cs.length + (cs.length && freeCard ? 1 : 0)) },
+              cs.length ? [cs.map((c) => coachCard(c, s, g)), freeCard] : freeCard || h('div', { class: 'mx-card mx-tc-none' }, t('tcNoCoach'))));
         })));
     };
 
