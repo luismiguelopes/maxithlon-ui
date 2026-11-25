@@ -3319,7 +3319,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     const applyOrig = () => host.classList.toggle('mx-hide-orig-tc', !st.orig);
     const render = () => ui.replaceChildren(
       tiles.length ? h('div', { class: 'mx-tiles' }, tiles) : null,
-      sections.map(sectionUi),
+      ...sections.map(sectionUi),
       h('div', { class: 'mxr-legend' },
         ra.has ? h('span', {}, h('i', { class: 'mk' }), t('tcAvgT')) : h('span', {}, t('tcRoster')),
         h('span', {}, assign ? t('tcFrom', new Date(assign.at).toLocaleDateString(LOCALE)) : t('tcVisit')),
