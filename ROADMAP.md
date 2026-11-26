@@ -52,7 +52,7 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 - [x] **Training results** (`lista_sviluppo.php`) as a dashboard (1.12).
 - [ ] **Weekly tests** (`lista_test_atleti.php`): already readable with the generic style and the site's sparklines; revisit if needed.
 
-## 1.12 — Athlete insights
+## 1.13 — Athlete insights
 
 - [ ] Skill history chart from the athlete development page (`atleta_sviluppo.php`), if the data is on the page.
 - [ ] Side-by-side comparison of two or more athletes (radar overlay).
