@@ -495,7 +495,7 @@ html.mx-light{
 /* ---------- base / layout ---------- */
 html.mx body{background:var(--bg)!important;color:var(--text);font-family:var(--font)!important;font-size:13px;}
 html.mx #inner_main,html.mx #inner_main_centre{background:var(--bg)!important;background-image:none!important;width:100%!important;float:none!important;height:auto!important;}
-html.mx #wrapper{width:min(1500px,96vw)!important;margin:0 auto!important;float:none!important;height:auto!important;display:flow-root;}
+html.mx #wrapper{width:min(1500px,96vw)!important;max-width:none!important;margin:0 auto!important;float:none!important;height:auto!important;display:flow-root;}
 html.mx #header{width:100%!important;float:none!important;height:auto!important;min-height:60px;display:flex!important;align-items:center;gap:18px;
   background:var(--surface)!important;background-image:none!important;border:1px solid var(--border);border-radius:var(--radius);
   margin:14px 0 18px!important;padding:6px 18px!important;box-sizing:border-box;box-shadow:var(--shadow);position:relative;}
@@ -2586,7 +2586,8 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     const here = location.pathname.split('/').pop().replace(/\.php$/, '');
     $$('#header a').forEach((a) => {
       if (a.querySelector('.mx-logo') || a.classList.contains('mx-hi')) return;
-      const hasBg = getComputedStyle(a).backgroundImage !== 'none';
+      // icons are background images, or inline SVGs on the site's newer pages (staff…)
+      const hasBg = getComputedStyle(a).backgroundImage !== 'none' || !!(a.closest('.top_menu') && a.querySelector('svg'));
       const p = (() => { try { return new URL(a.href, location.href).pathname.split('/').pop().replace(/\.php$/, ''); } catch (e) { return ''; } })();
       if (!hasBg) return; // the online counter stays as text
       a.classList.add('mx-hi');
@@ -3639,7 +3640,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
         h('div', { class: 'mx-rl-h' },
           h('span', { class: 'mxr-g ' + tm.gender }),
           tm.href ? h('a', { href: tm.href }, tm.name) : h('b', {}, tm.name),
-          tm.trains != null ? h('span', { class: 'mx-badge ' + (tm.trains ? 'good' : 'bad'), title: tm.trainTip || null }, tm.trains ? '✓' : '✕', ' ', t('colTrain')) : null),
+          tm.trains != null ? h('span', { class: 'mx-badge ' + (tm.trains ? 'good' : 'bad'), title: tm.trainTip || null }, tm.trains ? t('trains') : t('noTrains')) : null),
         h('div', { class: 'mx-rl-meta' },
           h('div', {}, h('span', {}, lab.und), h('b', { class: 'mx-rl-grade' }, tm.und || '–')),
           h('div', { class: 'mx-rl-coord' }, h('span', {}, lab.coord),
@@ -3670,6 +3671,19 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     render();
   }
 
+  // The site's newer pages (staff…) escape some titles twice: "Gest&atilde;o" instead of "Gestão".
+  function fixEntities() {
+    const ta = document.createElement('textarea');
+    $$('#middle_section h1, #middle_section h2, #middle_section h3, #middle_section [class*="breadcrumb"]').forEach((el) => {
+      const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      for (let n = w.nextNode(); n; n = w.nextNode()) {
+        if (!/&(#\d+|#x[\da-f]+|[a-z]+\d*);/i.test(n.textContent)) continue;
+        ta.innerHTML = n.textContent;
+        n.textContent = ta.value;
+      }
+    });
+  }
+
   const MODULES = [
     { k: 'roster', label: 'modRoster', page: /lista_atleti(_youth)?\.php$/, run: rosterPage },
     { k: 'market', label: 'modMarket', page: /mercato\.php$/, run: marketPage },
@@ -3690,6 +3704,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     { k: 'icons', label: 'modIcons', run: () => { decorateIcons(); eventIcons(); } },
     { k: 'sidebar', label: 'modSidebar', run: sidebarSections },
     { k: 'clubs', run: rememberClubs },
+    { k: 'entities', run: fixEntities },
     { k: 'rightCol', label: 'modRightCol', run: rightColumn },
     { k: 'tips', label: 'modTips', run: pageTips },
     { k: 'bars', label: 'modBars', run: restyleBars },
