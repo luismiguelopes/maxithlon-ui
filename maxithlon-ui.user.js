@@ -149,6 +149,8 @@
       failPanel: (n) => `UI+ could not load this panel (${n}). The original page is shown instead.`, failDetails: 'Details in the console',
       lgPos: 'Position', lgOf: (n) => `of ${n}`, lgLeader: 'Gap to leader', lgPromo: 'Promotion zone', lgReleg: 'Relegation zone', lgAvg: 'Points per meeting', lgForm: 'Form', lgFormT: 'Average points in the last 3 meetings (▲▼ against the season average)', lgPromoZ: 'Promotion', lgRelegZ: 'Relegation', lgMissed: 'Did not take part', lgAbove: 'points above the line', lgBelow: 'points below the line', lgNotRun: 'Still to be held', calToday: 'Today', calNext: 'Next', modLeague: 'League table', modCalendar: 'Calendars', modComp: 'Highlights in competition results', modGlory: 'Moments of glory and honours', modCharts: 'League charts', modCompList: 'Competition search as a filter bar',
       modCoaches: 'Coaches', tcNoCoach: 'No coach', tcCovered: (a, b) => `${a} of ${b} with a coach`, tcAvgT: 'Average of your athletes in this group', tcFrom: (d) => `Athletes from the Training page (${d})`, tcVisit: 'Open the Training page once to see the athletes of each coach.', tcPerCoach: 'Athletes per coach', tcRoster: 'Open the Athletes list once to compare the coaches with your groups.',
+      dvLast10: 'Last 10 weeks',
+      modRelays: 'Relays', rlAvg: 'Average', rlLegend: 'Average of the four runners, without the substitute (S). Skills colored from 0 to 20.',
       modDevel: 'Training results', dvWeek: 'Last week', dvPrevWeek: 'Week before', dvSeason: (n) => `Season ${n}`, dvAll: 'All', dvUp: 'Rises', dvDown: 'Drops', dvSW: (s, w) => `Season ${s}, week ${w}`, dvPerWeek: 'Rises and drops per week', dvPerWeekAvg: (n) => `${n} rises per week`, dvBySkill: 'By skill', dvByAth: 'By athlete', dvAthUp: 'Athletes who rose', dvSearch: 'Athlete or skill…', dvEmpty: 'No training results for this filter.', dvCsvFile: 'training-results',
     },
     pt: {
@@ -209,6 +211,8 @@
       failPanel: (n) => `O UI+ não conseguiu carregar este painel (${n}). Está a ser mostrada a página original.`, failDetails: 'Detalhes na consola',
       lgPos: 'Posição', lgOf: (n) => `de ${n}`, lgLeader: 'Distância ao líder', lgPromo: 'Zona de subida', lgReleg: 'Zona de descida', lgAvg: 'Pontos por jornada', lgForm: 'Forma', lgFormT: 'Média de pontos nas 3 últimas jornadas (▲▼ face à média da época)', lgPromoZ: 'Subida', lgRelegZ: 'Descida', lgMissed: 'Não participou', lgAbove: 'pontos acima da linha', lgBelow: 'pontos abaixo da linha', lgNotRun: 'Ainda por disputar', calToday: 'Hoje', calNext: 'Próxima', modLeague: 'Classificação da liga', modCalendar: 'Calendários', modComp: 'Destaques nos resultados das competições', modGlory: 'Momentos de glória e quadro de honra', modCharts: 'Gráficos da liga', modCompList: 'Pesquisa de competições em barra de filtros',
       modCoaches: 'Treinadores', tcNoCoach: 'Sem treinador', tcCovered: (a, b) => `${a} de ${b} com treinador`, tcAvgT: 'Média dos teus atletas neste grupo', tcFrom: (d) => `Atletas da página de Treino (${d})`, tcVisit: 'Abre a página de Treino uma vez para ver os atletas de cada treinador.', tcPerCoach: 'Atletas por treinador', tcRoster: 'Abre a lista de Atletas uma vez para comparar os treinadores com os teus grupos.',
+      dvLast10: 'Últimas 10 semanas',
+      modRelays: 'Estafetas', rlAvg: 'Média', rlLegend: 'Média dos quatro atletas, sem o suplente (S). Habilidades coloridas de 0 a 20.',
       modDevel: 'Resultados dos treinos', dvWeek: 'Última semana', dvPrevWeek: 'Semana anterior', dvSeason: (n) => `Época ${n}`, dvAll: 'Todas', dvUp: 'Subidas', dvDown: 'Descidas', dvSW: (s, w) => `Época ${s}, semana ${w}`, dvPerWeek: 'Subidas e descidas por semana', dvPerWeekAvg: (n) => `${n} subidas por semana`, dvBySkill: 'Por habilidade', dvByAth: 'Por atleta', dvAthUp: 'Atletas que subiram', dvSearch: 'Atleta ou habilidade…', dvEmpty: 'Nenhum resultado de treino com este filtro.', dvCsvFile: 'resultados-treinos',
     },
     it: {
@@ -269,6 +273,8 @@
       failPanel: (n) => `UI+ non è riuscito a caricare questo pannello (${n}). Viene mostrata la pagina originale.`, failDetails: 'Dettagli nella console',
       lgPos: 'Posizione', lgOf: (n) => `di ${n}`, lgLeader: 'Distacco dalla vetta', lgPromo: 'Zona promozione', lgReleg: 'Zona retrocessione', lgAvg: 'Punti per giornata', lgForm: 'Forma', lgFormT: 'Media punti nelle ultime 3 giornate (▲▼ rispetto alla media stagionale)', lgPromoZ: 'Promozione', lgRelegZ: 'Retrocessione', lgMissed: 'Non ha partecipato', lgAbove: 'punti sopra la linea', lgBelow: 'punti sotto la linea', lgNotRun: 'Ancora da disputare', calToday: 'Oggi', calNext: 'Prossima', modLeague: 'Classifica del campionato', modCalendar: 'Calendari', modComp: 'Evidenziazioni nei risultati delle competizioni', modGlory: "Momenti di gloria e albo d'oro", modCharts: 'Grafici del campionato', modCompList: 'Ricerca competizioni come barra di filtri',
       modCoaches: 'Allenatori', tcNoCoach: 'Nessun allenatore', tcCovered: (a, b) => `${a} su ${b} con allenatore`, tcAvgT: 'Media dei tuoi atleti in questo gruppo', tcFrom: (d) => `Atleti dalla pagina Allenamento (${d})`, tcVisit: "Apri una volta la pagina Allenamento per vedere gli atleti di ogni allenatore.", tcPerCoach: 'Atleti per allenatore', tcRoster: 'Apri una volta la lista Atleti per confrontare gli allenatori con i tuoi gruppi.',
+      dvLast10: 'Ultime 10 settimane',
+      modRelays: 'Staffette', rlAvg: 'Media', rlLegend: 'Media dei quattro atleti, senza la riserva (S). Abilità colorate da 0 a 20.',
       modDevel: 'Risultati allenamenti', dvWeek: 'Ultima settimana', dvPrevWeek: 'Settimana precedente', dvSeason: (n) => `Stagione ${n}`, dvAll: 'Tutte', dvUp: 'Aumenti', dvDown: 'Cali', dvSW: (s, w) => `Stagione ${s}, settimana ${w}`, dvPerWeek: 'Aumenti e cali per settimana', dvPerWeekAvg: (n) => `${n} aumenti a settimana`, dvBySkill: 'Per abilità', dvByAth: 'Per atleta', dvAthUp: 'Atleti migliorati', dvSearch: 'Atleta o abilità…', dvEmpty: 'Nessun risultato con questo filtro.', dvCsvFile: 'risultati-allenamenti',
     },
     es: {
@@ -329,6 +335,8 @@
       failPanel: (n) => `UI+ no pudo cargar este panel (${n}). Se muestra la página original.`, failDetails: 'Detalles en la consola',
       lgPos: 'Posición', lgOf: (n) => `de ${n}`, lgLeader: 'Distancia al líder', lgPromo: 'Zona de ascenso', lgReleg: 'Zona de descenso', lgAvg: 'Puntos por jornada', lgForm: 'Forma', lgFormT: 'Media de puntos en las 3 últimas jornadas (▲▼ frente a la media de la temporada)', lgPromoZ: 'Ascenso', lgRelegZ: 'Descenso', lgMissed: 'No participó', lgAbove: 'puntos por encima de la línea', lgBelow: 'puntos por debajo de la línea', lgNotRun: 'Por disputar', calToday: 'Hoy', calNext: 'Próxima', modLeague: 'Clasificación de la liga', modCalendar: 'Calendarios', modComp: 'Destacados en los resultados de competiciones', modGlory: 'Momentos de gloria y palmarés', modCharts: 'Gráficos de la liga', modCompList: 'Búsqueda de competiciones como barra de filtros',
       modCoaches: 'Entrenadores', tcNoCoach: 'Sin entrenador', tcCovered: (a, b) => `${a} de ${b} con entrenador`, tcAvgT: 'Media de tus atletas en este grupo', tcFrom: (d) => `Atletas de la página de Entrenamiento (${d})`, tcVisit: 'Abre una vez la página de Entrenamiento para ver los atletas de cada entrenador.', tcPerCoach: 'Atletas por entrenador', tcRoster: 'Abre una vez la lista de Atletas para comparar los entrenadores con tus grupos.',
+      dvLast10: 'Últimas 10 semanas',
+      modRelays: 'Relevos', rlAvg: 'Media', rlLegend: 'Media de los cuatro atletas, sin el suplente (S). Habilidades coloreadas de 0 a 20.',
       modDevel: 'Resultados de entrenamientos', dvWeek: 'Última semana', dvPrevWeek: 'Semana anterior', dvSeason: (n) => `Temporada ${n}`, dvAll: 'Todas', dvUp: 'Subidas', dvDown: 'Bajadas', dvSW: (s, w) => `Temporada ${s}, semana ${w}`, dvPerWeek: 'Subidas y bajadas por semana', dvPerWeekAvg: (n) => `${n} subidas por semana`, dvBySkill: 'Por habilidad', dvByAth: 'Por atleta', dvAthUp: 'Atletas que subieron', dvSearch: 'Atleta o habilidad…', dvEmpty: 'Ningún resultado con este filtro.', dvCsvFile: 'resultados-entrenamientos',
     },
     fr: {
@@ -389,6 +397,8 @@
       failPanel: (n) => `UI+ n'a pas pu charger ce panneau (${n}). La page d'origine est affichée.`, failDetails: 'Détails dans la console',
       lgPos: 'Position', lgOf: (n) => `sur ${n}`, lgLeader: 'Écart avec le leader', lgPromo: 'Zone de promotion', lgReleg: 'Zone de relégation', lgAvg: 'Points par journée', lgForm: 'Forme', lgFormT: 'Moyenne de points sur les 3 dernières journées (▲▼ par rapport à la moyenne de la saison)', lgPromoZ: 'Promotion', lgRelegZ: 'Relégation', lgMissed: "N'a pas participé", lgAbove: 'points au-dessus de la ligne', lgBelow: 'points sous la ligne', lgNotRun: 'À disputer', calToday: "Aujourd'hui", calNext: 'Prochaine', modLeague: 'Classement de la ligue', modCalendar: 'Calendriers', modComp: 'Mise en avant dans les résultats des compétitions', modGlory: 'Moments de gloire et palmarès', modCharts: 'Graphiques de la ligue', modCompList: 'Recherche de compétitions en barre de filtres',
       modCoaches: 'Entraîneurs', tcNoCoach: "Pas d'entraîneur", tcCovered: (a, b) => `${a} sur ${b} avec entraîneur`, tcAvgT: 'Moyenne de vos athlètes dans ce groupe', tcFrom: (d) => `Athlètes de la page Entraînement (${d})`, tcVisit: "Ouvrez une fois la page Entraînement pour voir les athlètes de chaque entraîneur.", tcPerCoach: 'Athlètes par entraîneur', tcRoster: 'Ouvrez une fois la liste des Athlètes pour comparer les entraîneurs à vos groupes.',
+      dvLast10: '10 dernières semaines',
+      modRelays: 'Relais', rlAvg: 'Moyenne', rlLegend: 'Moyenne des quatre athlètes, sans le remplaçant (S). Compétences colorées de 0 à 20.',
       modDevel: "Résultats d'entraînement", dvWeek: 'Dernière semaine', dvPrevWeek: 'Semaine précédente', dvSeason: (n) => `Saison ${n}`, dvAll: 'Toutes', dvUp: 'Hausses', dvDown: 'Baisses', dvSW: (s, w) => `Saison ${s}, semaine ${w}`, dvPerWeek: 'Hausses et baisses par semaine', dvPerWeekAvg: (n) => `${n} hausses par semaine`, dvBySkill: 'Par compétence', dvByAth: 'Par athlète', dvAthUp: 'Athlètes en progrès', dvSearch: 'Athlète ou compétence…', dvEmpty: 'Aucun résultat pour ce filtre.', dvCsvFile: 'resultats-entrainement',
     },
     de: {
@@ -449,6 +459,8 @@
       failPanel: (n) => `UI+ konnte dieses Panel nicht laden (${n}). Die Originalseite wird angezeigt.`, failDetails: 'Details in der Konsole',
       lgPos: 'Platz', lgOf: (n) => `von ${n}`, lgLeader: 'Rückstand auf Platz 1', lgPromo: 'Aufstiegszone', lgReleg: 'Abstiegszone', lgAvg: 'Punkte pro Spieltag', lgForm: 'Form', lgFormT: 'Durchschnittspunkte der letzten 3 Spieltage (▲▼ gegenüber dem Saisonschnitt)', lgPromoZ: 'Aufstieg', lgRelegZ: 'Abstieg', lgMissed: 'Nicht teilgenommen', lgAbove: 'Punkte über der Linie', lgBelow: 'Punkte unter der Linie', lgNotRun: 'Noch auszutragen', calToday: 'Heute', calNext: 'Nächster', modLeague: 'Ligatabelle', modCalendar: 'Kalender', modComp: 'Hervorhebungen in Wettkampfergebnissen', modGlory: 'Glanzmomente und Ehrentafel', modCharts: 'Ligadiagramme', modCompList: 'Wettkampfsuche als Filterleiste',
       modCoaches: 'Trainer', tcNoCoach: 'Kein Trainer', tcCovered: (a, b) => `${a} von ${b} mit Trainer`, tcAvgT: 'Durchschnitt deiner Athleten in dieser Gruppe', tcFrom: (d) => `Athleten von der Trainingsseite (${d})`, tcVisit: 'Öffne einmal die Trainingsseite, um die Athleten jedes Trainers zu sehen.', tcPerCoach: 'Athleten pro Trainer', tcRoster: 'Öffne einmal die Athletenliste, um die Trainer mit deinen Gruppen zu vergleichen.',
+      dvLast10: 'Letzte 10 Wochen',
+      modRelays: 'Staffeln', rlAvg: 'Schnitt', rlLegend: 'Schnitt der vier Läufer, ohne Ersatz (S). Fähigkeiten von 0 bis 20 eingefärbt.',
       modDevel: 'Trainingsergebnisse', dvWeek: 'Letzte Woche', dvPrevWeek: 'Vorwoche', dvSeason: (n) => `Saison ${n}`, dvAll: 'Alle', dvUp: 'Anstiege', dvDown: 'Rückgänge', dvSW: (s, w) => `Saison ${s}, Woche ${w}`, dvPerWeek: 'Anstiege und Rückgänge pro Woche', dvPerWeekAvg: (n) => `${n} Anstiege pro Woche`, dvBySkill: 'Nach Fähigkeit', dvByAth: 'Nach Athlet', dvAthUp: 'Athleten mit Anstieg', dvSearch: 'Athlet oder Fähigkeit…', dvEmpty: 'Keine Ergebnisse für diesen Filter.', dvCsvFile: 'trainingsergebnisse',
     },
   };
@@ -1094,6 +1106,7 @@ html.mx-dark .mx-gr .ln{stroke:var(--c2);} html.mx-dark .mx-gr-key i{background:
 /* ---------- training results (1.12) ---------- */
 .mx-hide-orig-dv > table#atleti{display:none!important;}
 .mxd .mx-tile .v .mxf-d{font-size:21px;font-weight:700;}
+.mxd .mxf-d.zero{color:var(--muted);opacity:.6;}
 svg.mxf-days text.cur{fill:var(--accent);font-weight:700;}
 .mxd-two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .mxd-two > .mx-card{margin:0 0 16px!important;min-width:0;}
@@ -1113,6 +1126,32 @@ svg.mxf-days text.cur{fill:var(--accent);font-weight:700;}
 .mxd-cur{color:var(--accent);font-weight:700;}
 .mxd-ft{display:inline-flex;align-items:center;gap:6px;color:var(--muted);}
 .mxd .mx-table .mxr-sk{min-width:26px;}
+/* ---------- relays (1.12) ---------- */
+.mx-hide-orig-rl > table[id^="atleti"],.mx-hide-orig-rl > table[id^="atleti"] + br{display:none!important;}
+.mx-rl-sec{margin-bottom:18px;}
+.mx-rl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:12px;}
+@media (max-width:760px){.mx-rl-grid{grid-template-columns:1fr;}}
+.mx-rl-grid > .mx-card{margin:0!important;padding:12px 14px!important;display:flex!important;flex-direction:column;gap:10px;min-width:0;}
+.mx-rl-h{display:flex;align-items:center;gap:8px;font-size:14px;}
+.mx-rl-h a{font-weight:700;color:var(--text)!important;text-decoration:none!important;}
+.mx-rl-h a:hover{color:var(--accent)!important;}
+.mx-rl-h .mx-badge{margin-left:auto;}
+.mx-rl-meta{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;font-size:12px;color:var(--muted);}
+.mx-rl-meta > div{display:flex;align-items:center;gap:8px;min-width:0;}
+.mx-rl-grade{font-size:16px;color:var(--text);}
+.mx-rl-coord .trk{flex:1;height:6px;border-radius:9px;background:var(--surface3);overflow:hidden;}
+.mx-rl-coord .trk i{display:block;height:100%;border-radius:9px;}
+.mx-rl-coord b{color:var(--text);font-size:14px;font-variant-numeric:tabular-nums;}
+html.mx table.mx-rl-legs{width:100%;border-collapse:collapse!important;font-size:12px;margin:0!important;background:transparent!important;border:0!important;box-shadow:none!important;}
+html.mx table.mx-rl-legs th{font:600 10.5px/1.2 var(--font)!important;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)!important;padding:4px 3px!important;text-align:center;background:transparent!important;border:0!important;}
+html.mx table.mx-rl-legs td{padding:3px!important;text-align:center;border:0!important;border-top:1px solid var(--border)!important;background:transparent!important;font-variant-numeric:tabular-nums;}
+html.mx table.mx-rl-legs .l{text-align:left;}
+html.mx table.mx-rl-legs td.pos{color:var(--muted);font-weight:700;width:14px;}
+html.mx table.mx-rl-legs tr.sub td{font-style:italic;opacity:.7;}
+html.mx table.mx-rl-legs tfoot td{color:var(--muted);font-weight:600;border-top:2px solid var(--border)!important;}
+.mx-rl-legs .mxr-name{min-width:0;max-width:170px;}
+.mx-rl-legs .mxr-name a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mx-rl-legs .mxr-sk{min-width:22px;}
 
 .mx-gr-grid h5{margin:0 0 6px!important;font:700 12.5px/1.3 var(--font)!important;color:var(--text)!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .mx-gr .b0{fill:var(--accent);} .mx-gr .b1{fill:color-mix(in srgb,var(--muted) 38%,transparent);}
@@ -1638,12 +1677,17 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     if (!host || !first) return;
     const { rows, groups, lab } = parseRoster();
     if (!rows.length) return;
-    // only our own roster is the reference for the athlete radar
-    if (!foreignClubPage()) saveRosterAverages(rows, groups);
+    // the academy page (lista_atleti_youth.php) has the same tables, one per group, with youth athletes only
+    const youthPage = /lista_atleti_youth\.php$/.test(path);
+    // only our own full roster is the reference for the athlete radar
+    if (!foreignClubPage() && !youthPage) saveRosterAverages(rows, groups);
+    const stKey = youthPage ? 'rosterYouth' : 'roster';
 
-    const st = Object.assign({ grp: 'all', gender: 'all', q: '', flags: [], sort: { k: 'maxid', d: -1 }, heat: true, orig: false }, LS.get('roster', {}));
-    const save = () => LS.set('roster', { grp: st.grp, gender: st.gender, sort: st.sort, heat: st.heat, flags: st.flags });
+    const st = Object.assign({ grp: 'all', gender: 'all', q: '', flags: [], sort: { k: 'maxid', d: -1 }, heat: true, orig: false }, LS.get(stKey, {}));
+    const save = () => LS.set(stKey, { grp: st.grp, gender: st.gender, sort: st.sort, heat: st.heat, flags: st.flags });
 
+    // no "events in the last 10 weeks" column (the academy): no fan-risk column, filter or tile
+    const noEv = rows.every((r) => r.ev == null);
     const ui = h('div', { class: 'mxr' });
     first.parentNode.insertBefore(ui, first);
     const applyOrig = () => host.classList.toggle('mx-hide-orig', !st.orig);
@@ -1680,18 +1724,19 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
         { k: 's2', label: one ? one.spec[1] : t('spec2'), title: one ? one.spec[1] : t('spec2T'), sv: (r) => r.s2.v, td: (r) => skillCell(r.s2, r.spec[1]) },
         { k: 'total', label: 'Σ', title: t('totalT'), sep: true, sv: (r) => r.total, td: (r) => meter(r.total, maxT) },
         { k: 'train', label: t('colTrain'), sep: true, title: t('colTrainT'), sv: (r) => (r.trainOk ? 1 : 0), td: (r) => h('span', { class: r.trainOk ? 'mxr-ok' : 'mxr-no', title: r.trainTip }, r.trainOk ? '✓' : '✕') },
-        { k: 'ev', label: t('colEv'), title: t('colEvT'), sv: (r) => r.ev, td: (r) => h('span', { class: 'mx-badge pill ' + (r.evRisk ? 'bad' : 'good'), title: r.evTip, style: { cursor: 'help' } }, (r.ev ?? '–') + '/10') },
+        { k: 'ev', label: t('colEv'), title: t('colEvT'), hide: noEv, sv: (r) => r.ev, td: (r) => h('span', { class: 'mx-badge pill ' + (r.evRisk ? 'bad' : 'good'), title: r.evTip, style: { cursor: 'help' } }, (r.ev ?? '–') + '/10') },
         { k: 'coach', label: lab.coach, title: t('colCoachT'), sv: (r) => (r.coach ? 1 : 0), td: (r) => h('span', { class: r.coach ? 'mxr-ok' : 'mxr-no', title: r.coachTip }, r.coach ? '✓' : '✕') },
       ].filter((c) => !c.hide);
     };
 
     const FLAGS = [
       { k: 'notrain', label: t('fNoTrain'), test: (r) => !r.trainOk },
-      { k: 'risk', label: t('fRisk'), test: (r) => r.evRisk },
+      noEv ? null : { k: 'risk', label: t('fRisk'), test: (r) => r.evRisk },
       { k: 'sale', label: t('fSale'), test: (r) => !!r.sale },
       { k: 'inj', label: t('fInj'), test: (r) => !!r.inj },
       { k: 'nocoach', label: t('fNoCoach'), test: (r) => !r.coach },
-    ];
+    ].filter(Boolean);
+    st.flags = st.flags.filter((k) => FLAGS.some((f) => f.k === k));
 
     function view() {
       const q = st.q.toLowerCase();
@@ -1722,19 +1767,21 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
       const cnt = (fn) => all.filter(fn).length;
       const M = cnt((r) => r.gender === 'M'), F = cnt((r) => r.gender === 'F');
       const youth = cnt((r) => r.youth);
+      // senior figures, or everyone on the academy page
+      const sen = youthPage ? all : all.filter((r) => !r.youth);
 
       const card = (k, v, s, cls, onclick, extra) => tile(k, v, s, { cls, onclick, title: onclick ? t('clickFilter') : null, extra });
       const toggleFlag = (k) => () => { st.flags = st.flags.includes(k) ? st.flags.filter((x) => x !== k) : [...st.flags, k]; save(); render(); };
 
       const nNoTrain = cnt((r) => !r.trainOk), nRisk = cnt((r) => r.evRisk), nSale = cnt((r) => !!r.sale), nInj = cnt((r) => !!r.inj), nNoCoach = cnt((r) => !r.coach);
       const cards = h('div', { class: 'mx-tiles' },
-        card(t('cAthletes'), all.length, t('cAthletesS', all.length - youth, youth), '', null,
+        card(t('cAthletes'), all.length, youthPage ? null : t('cAthletesS', all.length - youth, youth), '', null,
           h('div', { class: 'bar' }, h('i', { class: 'mxr-bar-m', style: { width: (M / all.length * 100) + '%' } }), h('i', { class: 'mxr-bar-f', style: { width: (F / all.length * 100) + '%' } }))),
         card(t('cGender'), `${M} / ${F}`, t('cGenderS')),
-        card(t('cAge'), fmt(avg(all.filter((r) => !r.youth).map((r) => r.age)), 1), t('cAgeS', fmt(avg(all.filter((r) => r.youth).map((r) => r.age)), 1))),
-        card(t('cMaxid'), fmt(avg(all.filter((r) => !r.youth).map((r) => r.maxid))), t('cMaxidS', fmt(Math.max(...all.map((r) => r.maxid || 0))))),
+        card(t('cAge'), fmt(avg(sen.map((r) => r.age)), 1), youthPage ? null : t('cAgeS', fmt(avg(all.filter((r) => r.youth).map((r) => r.age)), 1))),
+        card(t('cMaxid'), fmt(avg(sen.map((r) => r.maxid))), t('cMaxidS', fmt(Math.max(...all.map((r) => r.maxid || 0))))),
         card(t('cNoTrain'), nNoTrain, t('cNoTrainS'), nNoTrain ? 'warn' : 'good', toggleFlag('notrain')),
-        card(t('cRisk'), nRisk, t('cRiskS'), nRisk ? 'bad' : 'good', toggleFlag('risk')),
+        noEv ? null : card(t('cRisk'), nRisk, t('cRiskS'), nRisk ? 'bad' : 'good', toggleFlag('risk')),
         card(t('cInj'), nInj, nInj ? t('cInjS') : t('cInjOk'), nInj ? 'bad' : 'good', toggleFlag('inj')),
         card(t('cSale'), nSale, '', '', toggleFlag('sale')),
         card(t('cNoCoach'), nNoCoach, '', nNoCoach ? 'warn' : 'good', toggleFlag('nocoach')),
@@ -3399,11 +3446,12 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     const lastKey = keys[keys.length - 1], lastSeason = Math.floor(lastKey / 100);
     const PERIODS = [
       { k: 'week', label: t('dvWeek'), test: (r) => r.key === lastKey },
+      { k: 'l10', label: t('dvLast10'), test: (r) => r.key >= (keys[keys.length - 10] ?? 0) },
       { k: 'season', label: t('dvSeason', lastSeason), test: (r) => r.season === lastSeason },
       { k: 'prev', label: t('dvSeason', lastSeason - 1), test: (r) => r.season === lastSeason - 1 },
       { k: 'all', label: t('dvAll'), test: () => true },
     ];
-    const st = Object.assign({ period: 'season', dir: 'all', q: '', skill: null, sort: { k: 'key', d: -1 }, orig: false }, LS.get('devel', {}));
+    const st = Object.assign({ period: 'l10', dir: 'all', q: '', skill: null, sort: { k: 'key', d: -1 }, orig: false }, LS.get('devel', {}));
     st.skill = null;
     const save = () => LS.set('devel', { period: st.period, dir: st.dir, sort: st.sort });
     const ui = h('div', { class: 'mxr mxf mxd' });
@@ -3421,21 +3469,24 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
         && (!st.skill || r.skill === st.skill)
         && (!q || r.name.toLowerCase().includes(q) || r.skill.toLowerCase().includes(q)));
     };
+    const upDown = (list) => { const u = ups(list), d = downs(list); return h('span', {}, h('span', { class: 'mxf-d ' + (u ? 'up' : 'zero') }, '+' + u), ' ', h('span', { class: 'mxf-d ' + (d ? 'down' : 'zero') }, '−' + d)); };
     const deltaBadge = (d) => h('span', { class: 'mx-badge pill ' + (d > 0 ? 'good' : d < 0 ? 'bad' : '') }, (d > 0 ? '+' : '') + fmt(d));
 
     // rises up and drops down, per week, for the last 20 weeks with changes
     const weekChart = () => {
       const ks = keys.slice(-20);
       const by = ks.map((k) => { const rs = rows.filter((r) => r.key === k); return { k, up: ups(rs), down: downs(rs) }; });
-      const max = Math.max(1, ...by.map((x) => Math.max(x.up, x.down)));
-      const W = Math.max(600, by.length * 44), H = 150, mid = H / 2, bw = Math.min(30, W / by.length - 12);
+      // one scale for both, with the axis placed so rises and drops each get the room they need
+      const mu = Math.max(1, ...by.map((x) => x.up)), md = Math.max(0, ...by.map((x) => x.down));
+      const W = Math.max(600, by.length * 44), H = 150, bw = Math.min(30, W / by.length - 12);
+      const span = H - 28, mid = 14 + span * (mu / (mu + md)), max = mu + md;
       const svgNS = 'http://www.w3.org/2000/svg';
       const S = (tag, a) => { const e = document.createElementNS(svgNS, tag); for (const k in a) e.setAttribute(k, a[k]); return e; };
       const svg = S('svg', { viewBox: `0 0 ${W} ${H + 18}`, class: 'mxf-days' });
       svg.append(S('line', { x1: 0, x2: W, y1: mid, y2: mid, class: 'axis' }));
       by.forEach((x, i) => {
         const cx = (i + 0.5) * (W / by.length);
-        const hu = (x.up / max) * (mid - 14), hd = (x.down / max) * (mid - 14);
+        const hu = (x.up / max) * span, hd = (x.down / max) * span;
         const g = S('g', {});
         const tip = S('title', {}); tip.textContent = `${t('dvSW', Math.floor(x.k / 100), x.k % 100)}\n${t('dvUp')}: ${x.up}\n${t('dvDown')}: ${x.down}`;
         g.append(tip, S('rect', { x: cx - bw / 2, y: mid - hu, width: bw, height: hu, rx: 3, class: 'inc' }), S('rect', { x: cx - bw / 2, y: mid, width: bw, height: hd, rx: 3, class: 'exp' }));
@@ -3454,11 +3505,12 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
       list.forEach((r) => { const o = m.get(r.skill) || { up: 0, down: 0 }; if (r.d > 0) o.up++; else if (r.d < 0) o.down++; m.set(r.skill, o); });
       const items = [...m].sort((a, b) => (b[1].up - b[1].down) - (a[1].up - a[1].down) || a[0].localeCompare(b[0], LOCALE));
       const max = Math.max(1, ...items.map(([, o]) => Math.max(o.up, o.down)));
+      const anyDown = items.some(([, o]) => o.down);
       return items.map(([k, o]) => h('div', { class: 'mxf-item mxd-click' + (st.skill === k ? ' on' : ''), title: t('clickFilter'), onclick: () => { st.skill = st.skill === k ? null : k; render(); } },
         h('div', { class: 'mxf-item-l' }, h('span', {}, k), o.up ? h('b', { class: 'mxf-d up' }, '+' + o.up) : null, o.down ? h('b', { class: 'mxf-d down' }, '−' + o.down) : null),
         h('div', { class: 'mxd-pair' },
           h('div', { class: 'mxf-track' }, h('i', { class: 'inc', style: { width: (o.up / max * 100).toFixed(1) + '%' } })),
-          h('div', { class: 'mxf-track' }, h('i', { class: 'exp', style: { width: (o.down / max * 100).toFixed(1) + '%' } })))));
+          anyDown ? h('div', { class: 'mxf-track' }, h('i', { class: 'exp', style: { width: (o.down / max * 100).toFixed(1) + '%' } })) : null)));
     };
 
     // athletes with the most rises in the period
@@ -3512,9 +3564,9 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
         h('button', { class: 'mx-btn', title: t('origT'), onclick: () => { st.orig = !st.orig; applyOrig(); render(); } }, st.orig ? t('origHide') : t('origShow')));
       ui.replaceChildren(
         h('div', { class: 'mx-tiles' },
-          tile(t('dvWeek'), h('span', {}, h('span', { class: 'mxf-d up' }, '+' + ups(wk)), ' ', h('span', { class: 'mxf-d down' }, '−' + downs(wk))), t('dvSW', lastSeason, lastKey % 100), { cls: downs(wk) > ups(wk) ? 'bad' : 'good' }),
-          prevKey ? tile(t('dvPrevWeek'), h('span', {}, h('span', { class: 'mxf-d up' }, '+' + ups(pw)), ' ', h('span', { class: 'mxf-d down' }, '−' + downs(pw))), t('dvSW', Math.floor(prevKey / 100), prevKey % 100)) : null,
-          tile(t('dvSeason', lastSeason), h('span', {}, h('span', { class: 'mxf-d up' }, '+' + ups(se)), ' ', h('span', { class: 'mxf-d down' }, '−' + downs(se))), t('dvPerWeekAvg', fmt(ups(se) / Math.max(1, new Set(se.map((r) => r.key)).size), 1))),
+          tile(t('dvWeek'), upDown(wk), t('dvSW', lastSeason, lastKey % 100), { cls: downs(wk) > ups(wk) ? 'bad' : 'good' }),
+          prevKey ? tile(t('dvPrevWeek'), upDown(pw), t('dvSW', Math.floor(prevKey / 100), prevKey % 100)) : null,
+          tile(t('dvSeason', lastSeason), upDown(se), t('dvPerWeekAvg', fmt(ups(se) / Math.max(1, new Set(se.map((r) => r.key)).size), 1))),
           tile(t('dvAthUp'), fmt(athUp), t('dvSeason', lastSeason))),
         h('div', { class: 'mx-card' }, sectionTitle(t('dvPerWeek'), h('span', { class: 'mxf-key' }, h('i', { class: 'inc' }), t('dvUp'), h('i', { class: 'exp' }), t('dvDown'))), h('div', { class: 'mxf-days-wrap' }, weekChart())),
         h('div', { class: 'mxd-two' },
@@ -3526,8 +3578,100 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     render();
   }
 
+  /* ------------------------------------------------------------------ *
+   * Relays (staffette.php): one table per distance (#atleti1, #atleti2…).
+   * A team's first row starts with 4 cells spanning its rows: team (link,
+   * <font color> gender) · understanding · coordination · trains (tick/
+   * cross image, reason in title). Every leg row then has: position (1-4,
+   * "S" for the substitute, row in italics) · flag · name · age · form ·
+   * experience · 6 base skills.
+   * ------------------------------------------------------------------ */
+  function relaysPage() {
+    const host = $('.page_details');
+    const tbls = host ? $$(':scope > table[id^="atleti"]', host) : [];
+    if (!tbls.length) return;
+    const sections = tbls.map((tbl) => {
+      const head = Array.from(tbl.rows[0]?.cells || []).map((c) => c.textContent.trim());
+      if (head.length < 16) return null;
+      const lab = { team: head[0], und: head[1], coord: head[2], age: head[7], form: head[8], exp: head[9], base: head.slice(10, 16) };
+      const teams = [];
+      Array.from(tbl.tBodies[0]?.rows || tbl.rows).forEach((tr) => {
+        const c = Array.from(tr.cells);
+        if (!c.length || tr.parentNode.nodeName === 'THEAD') return;
+        if (c.length >= 16) {
+          const a = c[0].querySelector('a');
+          const col = (c[0].querySelector('font')?.getAttribute('color') || '').toUpperCase();
+          const img = c[3].querySelector('img');
+          teams.push({
+            name: c[0].textContent.trim(), href: a ? a.getAttribute('href') : null, gender: col === '#E63CE6' ? 'F' : col === '#32A9AF' ? 'M' : '?',
+            und: c[1].textContent.trim(), coord: toNum(c[2].textContent),
+            trains: img ? /tick/i.test(img.getAttribute('src') || '') : null, trainTip: stripTags(img?.getAttribute('title') || ''),
+            legs: [],
+          });
+          c.splice(0, 4);
+        }
+        const team = teams[teams.length - 1];
+        if (!team || c.length < 12) return;
+        const a = c[2].querySelector('a');
+        const flag = c[1].querySelector('img');
+        const pos = c[0].textContent.trim();
+        team.legs.push({
+          pos, sub: !/^\d+$/.test(pos), name: (a || c[2]).textContent.replace(/\s+/g, ' ').trim(), href: a ? a.getAttribute('href') : null,
+          flagSrc: flag?.getAttribute('src') || null, flagTitle: stripTags(flag?.getAttribute('title') || ''),
+          age: toNum(c[3].textContent), form: toNum(c[4].textContent), exp: toNum(c[5].textContent),
+          sk: c.slice(6, 12).map((td) => toNum(td.textContent)),
+        });
+      });
+      return { lab, teams };
+    }).filter((s) => s && s.teams.length);
+    if (!sections.length) return;
+
+    const st = { orig: false };
+    const ui = h('div', { class: 'mxr mx-rl' });
+    host.insertBefore(ui, tbls[0]);
+    const applyOrig = () => host.classList.toggle('mx-hide-orig-rl', !st.orig);
+    const cell = (v, title) => h('span', { class: 'mxr-sk' + (v >= 15 ? ' top' : v >= 10 ? ' b' : ''), title: title ? `${title}: ${v ?? '–'}` : null, style: { background: heatBg(v) } }, v ?? '–');
+
+    const teamCard = (tm, lab) => {
+      const run = tm.legs.filter((l) => !l.sub);
+      const mean = (f) => avg(run.map(f));
+      return h('div', { class: 'mx-card mx-rl-team' },
+        h('div', { class: 'mx-rl-h' },
+          h('span', { class: 'mxr-g ' + tm.gender }),
+          tm.href ? h('a', { href: tm.href }, tm.name) : h('b', {}, tm.name),
+          tm.trains != null ? h('span', { class: 'mx-badge ' + (tm.trains ? 'good' : 'bad'), title: tm.trainTip || null }, tm.trains ? '✓' : '✕', ' ', t('colTrain')) : null),
+        h('div', { class: 'mx-rl-meta' },
+          h('div', {}, h('span', {}, lab.und), h('b', { class: 'mx-rl-grade' }, tm.und || '–')),
+          h('div', { class: 'mx-rl-coord' }, h('span', {}, lab.coord),
+            h('span', { class: 'trk' }, h('i', { style: { width: ((tm.coord || 0) / 20) * 100 + '%', background: barColor(tm.coord || 0) } })),
+            h('b', {}, fmt(tm.coord)))),
+        h('table', { class: 'mx-rl-legs' },
+          h('thead', {}, h('tr', {}, h('th', {}), h('th', { class: 'l' }), h('th', { title: lab.age }, lab.age), h('th', { title: lab.form }, lab.form), h('th', { title: lab.exp }, lab.exp), lab.base.map((b) => h('th', { title: b }, b)))),
+          h('tbody', {}, tm.legs.map((l) => h('tr', { class: l.sub ? 'sub' : '' },
+            h('td', { class: 'pos' }, l.pos),
+            h('td', { class: 'l' }, h('div', { class: 'mxr-name' }, l.flagSrc ? h('img', { src: l.flagSrc, title: l.flagTitle, alt: '' }) : null, l.href ? h('a', { href: l.href }, l.name) : l.name)),
+            h('td', {}, fmt(l.age)), h('td', {}, cell(l.form, lab.form)), h('td', {}, cell(l.exp, lab.exp)),
+            l.sk.map((v, i) => h('td', {}, cell(v, lab.base[i])))))),
+          run.length ? h('tfoot', {}, h('tr', {},
+            h('td', {}), h('td', { class: 'l' }, t('rlAvg')),
+            h('td', {}, fmt(mean((l) => l.age), 1)), h('td', {}, fmt(mean((l) => l.form), 1)), h('td', {}, fmt(mean((l) => l.exp), 1)),
+            lab.base.map((b, i) => h('td', {}, fmt(mean((l) => l.sk[i]), 1))))) : null));
+    };
+
+    const render = () => ui.replaceChildren(
+      ...sections.map((s) => h('div', { class: 'mx-rl-sec' },
+        h('div', { class: 'mx-tc-h' }, s.lab.team),
+        h('div', { class: 'mx-rl-grid' }, s.teams.map((tm) => teamCard(tm, s.lab))))),
+      h('div', { class: 'mxr-legend' },
+        h('span', {}, t('rlLegend')),
+        h('span', { class: 'sp' }),
+        h('button', { class: 'mx-btn', title: t('origT'), onclick: () => { st.orig = !st.orig; applyOrig(); render(); } }, st.orig ? t('origHide') : t('origShow'))));
+    applyOrig();
+    render();
+  }
+
   const MODULES = [
-    { k: 'roster', label: 'modRoster', page: /lista_atleti\.php$/, run: rosterPage },
+    { k: 'roster', label: 'modRoster', page: /lista_atleti(_youth)?\.php$/, run: rosterPage },
     { k: 'market', label: 'modMarket', page: /mercato\.php$/, run: marketPage },
     { k: 'finances', label: 'modFinances', page: /budget_det\.php$/, run: financePage },
     { k: 'transactions', label: 'modTransactions', page: /last_budget\.php$/, run: transactionsPage },
@@ -3538,6 +3682,7 @@ html.mx #middle_section table.results tr.mx-podium > td{background:rgba(212,160,
     { k: 'compList', label: 'modCompList', page: /lista_prossima\.php$/, run: compSearchPage },
     { k: 'calendar', label: 'modCalendar', page: /calendario(_serie)?\.php$/, run: calendarPage },
     { k: 'coaches', label: 'modCoaches', page: /\/user\/(lista_tecnici|allenamento_new)\.php$/, run: () => (/allenamento_new/.test(path) ? rememberTraining() : coachesPage()) },
+    { k: 'relays', label: 'modRelays', page: /\/user\/staffette\.php$/, run: relaysPage },
     { k: 'devel', label: 'modDevel', page: /\/user\/lista_sviluppo\.php$/, run: trainingResultsPage },
     { k: 'glory', label: 'modGlory', page: /(momenti_gloria|albo_oro)\.php$/, run: gloryPages },
     { k: 'athlete', label: 'modAthlete', page: /atleta_one\.php$/, run: () => { try { athleteLayout(); } catch (e) { console.warn('[UI+] athlete layout', e); } athletePage(); } },
