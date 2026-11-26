@@ -2,6 +2,17 @@
 
 All notable changes to Maxithlon UI+. Versions follow [semver](https://semver.org/): fixes bump the patch number, new features bump the minor number.
 
+## [1.12.0] — 2026-11-26
+
+### Added
+- Training results page as a dashboard: rises and drops in the last week, the week before and this season as tiles; a chart of rises and drops per week over the last 20 weeks with changes; rises and drops per skill (click a skill to filter) and the athletes who rose most. The table filters by period (last week, last 10 weeks, this season, last season, all), by rises or drops and by athlete or skill, shows each change from its old to its new value with the 0–20 colors, and exports to CSV. "Show original" brings back the site's table.
+- Academy athletes list with the same panel as the Athletes list: tiles, group and status filters, search, heat map, sorting and CSV. It keeps its own filters and never replaces the roster averages used by the athlete radar.
+- Relays as one card per team: understanding, coordination as a bar, whether the team trains this week, and the four runners and the substitute with form, experience and skills colored 0–20, plus the runners' averages.
+
+### Fixed
+- The site's newer pages (staff) were held to the old 942 px width and their top bar icons were squeezed together; they now use the full width and the same icons as every other page.
+- Titles the site escapes twice on those pages ("Gest&atilde;o do staff") show their accents.
+
 ## [1.11.0] — 2026-11-25
 
 ### Added

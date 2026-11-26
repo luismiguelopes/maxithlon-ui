@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Maxithlon UI+
 // @namespace    v3mpire.maxithlon.uiplus
-// @version      1.11.0
+// @version      1.12.0
 // @description  A modern interface for Maxithlon: dark/light theme, wide layout, roster dashboard with filters and heat map, athlete skill radar and a command palette (Ctrl+K). Works with any site language.
 // @description:pt  Uma interface moderna para o Maxithlon: tema escuro/claro, layout largo, painel do plantel com filtros e mapa de calor, radar de habilidades do atleta e paleta de comandos (Ctrl+K). Funciona com qualquer língua do site.
 // @description:it  Un'interfaccia moderna per Maxithlon: tema scuro/chiaro, layout ampio, pannelli per rosa, mercato e finanze, radar delle abilità e palette dei comandi (Ctrl+K). Funziona con qualsiasi lingua del sito.

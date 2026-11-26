@@ -2,7 +2,7 @@
 
 Planned work for Maxithlon UI+. Items are grouped by milestone, roughly in priority order. The scope rule never changes: UI+ only changes **presentation**. It does not submit forms, automate actions or work around game rules.
 
-Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**, **market search results**, **finances**, **last transactions**, **home**, **league table**, **league charts**, **calendars** and **competition search** and **coaches**. Every other page gets the theme, colors, icons, collapsible intro, footer and right column styles so far.
+Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**, **market search results**, **finances**, **last transactions**, **home**, **league table**, **league charts**, **calendars** and **competition search** **coaches**, **training results**, **academy athletes** and **relays**. Every other page gets the theme, colors, icons, collapsible intro, footer and right column styles so far.
 
 ## Done
 
@@ -16,6 +16,7 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 - **1.9:** league table dashboard (national and youth); season and league calendars; your athletes and club highlighted in results and rankings; moments of glory and honours board.
 - **1.10:** league charts redrawn in the theme; competition search as a filter bar; athlete radar average in any site language.
 - **1.11:** coaches as cards per group, with their load, skills against the group average, coverage and their athletes.
+- **1.12:** training results dashboard; academy athletes with the roster panel; relays as team cards; the site's newer pages (staff) at full width.
 
 ## 1.7 — Robustness and languages (left over)
 
@@ -40,13 +41,16 @@ Pages already redesigned: **Athletes list** (roster dashboard), **athlete page**
 - [ ] **League statistics** (`statistiche_serie.php`): fine while empty; check again once athletes have competed this season.
 - [x] **Competitions list** (`lista_prossima.php`): the search form as a compact filter bar (1.10).
 
-## 1.11–1.12 — Club pages
+## 1.11–1.13 — Club pages
 
 - [x] **Coaches**: cards per group with load, skills against the group average, coverage and assigned athletes (1.11).
 - [ ] **Training page** (`allenamento_new.php`): the per-athlete coach and training plan form, restyled without changing what it sends.
-- [ ] **Staff, stadium and relays** pages redesigned.
-- [ ] **Youth academy and youth championship** pages redesigned.
-- [ ] **Weekly tests and training results** as tables with highlights.
+- [x] **Relays** as team cards (1.12).
+- [x] **Staff**: the site redesigned this page itself; UI+ only fixes its width, top bar and title (1.12).
+- [ ] **Stadium**: facilities as tiles (it already gets the generic table style).
+- [x] **Youth academy** athletes list with the roster panel (1.12); the youth championship has the league dashboard since 1.9.
+- [x] **Training results** (`lista_sviluppo.php`) as a dashboard (1.12).
+- [ ] **Weekly tests** (`lista_test_atleti.php`): already readable with the generic style and the site's sparklines; revisit if needed.
 
 ## 1.12 — Athlete insights
 
